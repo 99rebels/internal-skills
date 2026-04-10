@@ -4,7 +4,7 @@ Rules that apply to every brief regardless of format. For format-specific resear
 
 - `brief-stack-play.md` — Stack Play briefs
 - `brief-teardown.md` — Teardown briefs
-- `brief-analysis.md` — Analysis briefs (coming soon)
+- `brief-analysis.md` — Analysis briefs
 - `brief-explainer.md` — Explainer briefs (coming soon)
 
 Also reference `strategy-update-v2.md` for format definitions, framing rules, and publication positioning.
