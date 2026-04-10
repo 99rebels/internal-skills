@@ -12,9 +12,17 @@ Explainers are the on-ramp for the publication's audience. They bring in readers
 
 **What an Explainer is not:** It's not a tutorial (tutorials teach how to do a specific task; explainers teach what something is and why it matters). It's not documentation (documentation is reference material; explainers build understanding through narrative). It's not an opinion piece (explainers should be factual and neutral).
 
+**The accuracy bar for Explainers is the highest of any format.** Teardown readers can catch factual errors because they already know the space. Analysis readers can push back on weak arguments because they have their own data. Explainer readers can do neither. By definition they're reading the post because they don't know the topic yet, which means they have no baseline to catch a confidently stated error. A wrong sentence in an Explainer becomes part of the reader's mental model and stays there until something else corrects it. Verify every factual claim against a primary source, define every technical term correctly, and flag any uncertain claim rather than smoothing over it. Confident-sounding inaccuracy is the failure mode to avoid.
+
+**Length target: 1000-1500 words.** Explainers are shorter than the other formats because readers new to the topic have less patience for length. Scope the research to support this target. A brief rich enough for a 2500-word post is a brief that's going to lose material at the drafting stage.
+
+**Explainers are the long-term traffic engine.** Of the four formats, Explainers are the most likely to rank in search engines over time and keep bringing in new readers months after publishing. Favour evergreen concepts over timely ones when proposing topics, and favour search-friendly titles over cute hooks. "What Are AI Agent Skills?" will bring in new readers for years. "The Three Most Confusing Things About This Week's ClawHub Update" will be dead in a month.
+
 ---
 
 ## Research Steps
+
+**Before anything else: does this Explainer teach something the reader can't easily get from the official documentation?** A post that restates what's already in the ClawHub or OpenClaw docs, only worse, isn't worth writing. Explainers earn their place by closing a real explanatory gap — simplifying something the official docs over-complicate, connecting concepts the docs leave disconnected, adding examples the docs don't include, or explaining the "why" the docs skip past. If you can't finish the sentence "this Explainer is worth reading instead of the official docs because..." in one line, pick a different topic or a better frame. The failure mode here is the post that teaches nothing a motivated reader couldn't find in five minutes of official reading.
 
 1. **Define the scope.** What exactly are we explaining? One concept per post. "What is a skill?" is a post. "Everything about agent skills" is a book chapter. If you can't define the scope in one sentence, the post is too broad.
 
@@ -22,7 +30,7 @@ Explainers are the on-ramp for the publication's audience. They bring in readers
 
 3. **Identify what the reader already knows.** Assume they've heard of AI agents but don't know specifics. No jargon without explanation. No assumed context. Every concept that can't be defined in one sentence from general computing knowledge gets explicitly defined in the brief.
 
-4. **Verify every claim.** This is the most accuracy-critical format. Readers have no baseline to catch errors — if you say ClawHub has 48,000 skills and the real number is 31,000, the reader won't know. Check every fact against primary sources:
+4. **Verify every claim.** Check every fact against primary sources:
    - ClawHub docs and CLI output for ClawHub-specific claims
    - OpenClaw docs for OpenClaw-specific claims
    - Official GitHub repos for version numbers, features, capabilities
@@ -36,11 +44,11 @@ Explainers are the on-ramp for the publication's audience. They bring in readers
 
 7. **Find the right level of detail.** Enough to be useful, not enough to overwhelm. If explaining SKILL.md structure, show the anatomy of a real one — but a simplified version, not a 200-line file dump. If explaining how to install a skill, show the command and what happens next — not the full dependency tree.
 
-8. **Anticipate confusion points.** What will readers misunderstand? What's counterintuitive? What seems like it should work but doesn't? Address these explicitly in the brief. If you found something confusing when you first learned it, the reader will too.
+8. **Find real evidence of confusion.** Don't just speculate about what readers will misunderstand — go find evidence of what they actually do misunderstand. Look at Reddit threads where people ask the same question repeatedly, Discord conversations where the same answer gets given over and over, comments on relevant posts or docs, support issues in skill repos, Stack Overflow-style questions about the topic. Real misconceptions from real sources are stronger material than imagined ones. Capture the specific misunderstanding verbatim where possible. If you found something confusing when you first learned it, that counts as evidence too, but try to corroborate it with at least one external source.
 
 9. **Propose a logical progression.** From no knowledge to basic competence. Each section should build on the previous one. A reader who skips a section should still be able to follow the next one. Map this out in the brief so the writer can see the intended structure.
 
-10. **Define a "start here" next action.** What should the reader do in the next ten minutes if they want to try this for themselves? Explainers that end with "now you know what a skill is" are forgettable. Explainers that end with "here's how to install your first one" give the reader momentum.
+10. **Define a "start here" next action.** What should the reader do in the next ten minutes if they want to try this for themselves? A good Start Here is specific, achievable in ten minutes, and produces a visible result the reader can see. "Install ClawHub" is too vague. "Run `clawhub install brw-homepage-audit` and open the SKILL.md file it installs" is specific, achievable, and gives the reader something concrete to look at. Favour the second shape. Explainers that end with "now you know what a skill is" are forgettable. Explainers that end with an action the reader can actually complete give the reader momentum, and readers with momentum become subscribers.
 
 11. **Run the read-aloud test.** Could a non-technical reader follow this? If the brief itself uses jargon that would confuse a newcomer, the post will too. Catch this in the brief, not in the draft. If you need to re-read a sentence three times to parse it, rewrite it.
 
@@ -65,6 +73,7 @@ Use this structure when writing the brief. Adapt headings if the specific post c
 **Why now:** [timeliness — why explain this concept this week? Is it trending? Referenced in recent news?]
 **The hook:** [the use case or problem that opens the post — why should the reader care?]
 **Target audience:** [who is this for? assumed prior knowledge level]
+**What this explainer assumes:** [what the reader already knows before starting — be honest about the prerequisite. If the assumed concept hasn't been covered in a previous Explainer, flag it.]
 **What this explainer enables:** [what can the reader do after reading this that they couldn't before?]
 
 ---
@@ -119,16 +128,16 @@ Use this structure when writing the brief. Adapt headings if the specific post c
 
 ## Common Misconceptions
 
-[Things the reader will likely get wrong. Address them explicitly. This is where the explainer earns its credibility — by showing you understand what's confusing about this topic.]
+[Things the reader will likely get wrong, grounded in real evidence where possible. This is where the explainer earns its credibility — by showing you understand what's confusing about this topic.]
 
-1. [Misconception]: [why it's wrong, what's actually true]
-2. [Misconception]: [why it's wrong, what's actually true]
+1. [Misconception — source if available]: [why it's wrong, what's actually true]
+2. [Misconception — source if available]: [why it's wrong, what's actually true]
 
 ---
 
 ## Start Here
 
-[The reader's next action. What should they do in the next ten minutes? This should be specific and achievable — not "go explore ClawHub" but "run this command to install your first skill and try it on a simple task."]
+[The reader's next action. What should they do in the next ten minutes? This should be specific, achievable, and produce a visible result. See research step 10 for guidance on what makes a good Start Here.]
 
 ---
 
@@ -167,14 +176,15 @@ For the writer to use or ignore:
 
 Run these before handing off the brief. These are in addition to the universal checks in `brief-universal.md`.
 
+- **[MANDATORY]** The topic-selection gate is passed: this Explainer teaches something the reader can't easily get from the official documentation. If it just restates existing docs, it's not worth writing.
 - **[MANDATORY]** The concept is defined in one sentence. If it needs more, the scope is too broad.
 - **[MANDATORY]** Every factual claim has been verified against a primary source. Source URLs are included in the Research Notes.
 - **[MANDATORY]** Every technical term introduced has a correct definition. No approximations.
 - **[MANDATORY]** Every abstract concept has at least one concrete, relatable example attached. Real skills/repos, not hypothetical ones.
 - **[MANDATORY]** Comparisons (if any) are accurate on both sides. A wrong description of the comparison target is the same error as a wrong description of the thing being explained.
-- **[MANDATORY]** The assumed reader knowledge level is explicitly stated. No jargon without definition.
-- **[MANDATORY]** Common misconceptions are identified and addressed. If you can't think of any, you haven't thought about this topic from a newcomer's perspective.
-- **[MANDATORY]** A "Start Here" next action is defined. The reader should know exactly what to do after reading.
+- **[MANDATORY]** The assumed prior knowledge is explicit. If it references a concept not covered in a previous Explainer, the brief flags this and either covers the prerequisite briefly or suggests it as a future post.
+- **[MANDATORY]** Common misconceptions are grounded in real evidence (Reddit threads, Discord conversations, support issues) where possible, not just speculation.
+- **[MANDATORY]** A "Start Here" next action is defined. It should be specific, achievable in ten minutes, and produce a visible result.
 - **[MANDATORY]** What this explainer enables is noted — the bridge to deeper content.
 - **[MANDATORY]** The brief passes the read-aloud test. If you need to re-read a sentence three times, rewrite it. The brief should be clear enough that a non-technical person could follow it.
 - **[MANDATORY]** Uncertain claims are flagged `[UNVERIFIED]`. Explainer errors are the most damaging because readers have no baseline to catch them.
@@ -182,3 +192,5 @@ Run these before handing off the brief. These are in addition to the universal c
 - **[GUIDANCE]** The logical progression is mapped out — each section builds on the previous one.
 - **[GUIDANCE]** Examples use real skills/repos from ClawHub, not made-up ones.
 - **[GUIDANCE]** The brief identifies where analogies break down. Every analogy has limits.
+- **[GUIDANCE]** The research is scoped to support a 1000-1500 word post, not a 2500-word one.
+- **[GUIDANCE]** The topic favours evergreen concepts over timely ones, and search-friendly titles over cute hooks.
