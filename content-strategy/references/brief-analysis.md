@@ -16,6 +16,8 @@ Analysis is the format that most directly serves the publication's positioning a
 - **Argument-led** — Starts with a claim about the market, finds evidence to support it, and stress-tests it against counterarguments. The argument is the spine. "Agensi's Stripe integration will pressure other registries to add payments within 12 months" is an argument-led claim.
 - **Mixed** — Most real Analysis posts will be both. Data supports the argument, and the argument gives meaning to the data. Label which is dominant when proposing the idea, so Rian knows the research workload.
 
+Mixed briefs can start from either end: data-first (gather numbers, let them suggest a thesis) or thesis-first (state a claim, find data that tests it). Pick one and note the direction in the Topic & Angle section of the brief. This tells the writer how the argument was constructed and helps them decide whether to lead the post with data or with argument.
+
 **What Analysis is not:** It's not a data dump. It's not an opinion piece with no evidence. It's not a list of interesting facts. Every Analysis post needs a spine — a single question, claim, or finding that the entire post serves.
 
 ---
@@ -36,7 +38,7 @@ Analysis is the format that most directly serves the publication's positioning a
 
 3. **Gather the data.** Run the queries, scrape the pages, collect the numbers. Save raw data to `data/research/<post-slug>/raw/` so Claude can reference it during writing and Rian can verify claims. Don't just read numbers into memory — save them.
 
-4. **Find the story.** Look for surprises, patterns, outliers, and contradictions in the data. The post should make the reader see something they didn't expect. "ClawHub has 48k skills" is a fact. "48k skills, but 12 authors publish 40% of the top-100 by downloads" is a story. The difference is the second one has a finding. Flag the most surprising or counter-intuitive data point — that's usually the spine of the post.
+4. **Find the story.** Look for surprises, patterns, outliers, and contradictions in the data. The post should make the reader see something they didn't expect. "ClawHub has 48k skills" is a fact. "48k skills, but 12 authors publish 40% of the top-100 by downloads" is a story. The difference is the second one has a finding. Flag the most surprising or counter-intuitive data point — that's usually the spine of a data-led post.
 
 5. **Check for counterexamples.** Any data point that contradicts your emerging narrative? Include it. A post that only presents confirming evidence reads like cherry-picking. The strongest analysis acknowledges what doesn't fit and explains why.
 
@@ -66,13 +68,26 @@ Analysis is the format that most directly serves the publication's positioning a
 
 8. **Flag strong vs speculative parts.** The writer needs to know where to be firm and where to hedge. If one piece of evidence is rock-solid and two are circumstantial, say so. Don't present equal confidence for unequal evidence.
 
-### For All Analysis Posts
+### Universal Steps (both sub-types)
 
-1. **Write the "so what" synthesis.** Raw data or raw arguments without synthesis is a half-done brief. The brief must include a section that answers: what does this mean for the reader? What should an operator do with this information? If the answer is "nothing," the post probably isn't worth writing.
+These steps apply to every Analysis brief regardless of sub-type. Complete them after the sub-type-specific steps above. Numbered 10-12 following data-led; argument-led briefs treat these as steps 9-11.
 
-2. **Don't overreach.** If the data only supports a narrow conclusion, don't pretend it supports a broader one. "Category X has more instruction-only skills than code-based ones" is honest. "The market is shifting away from code" is an overreach from the same data. Let the writer decide how far to stretch the conclusion, but give them an honest assessment of what the data actually supports.
+10. **Calibrate the audience.** Analysis posts serve different sub-audiences within the readership depending on the topic. Before finalising the brief, pick the specific sub-audience this post is pitched to. Candidates include:
+    - Operators deciding what to build or automate
+    - Founders scanning for unexplored market angles
+    - Skill authors deciding what to publish and how
+    - Platform builders and registry operators
+    - Consultants and agencies advising clients on agent strategy
 
-3. **Collect quotable moments.** Analysis posts can feel dry without them. Real moments from the research — a surprising number you found, a pattern that emerged unexpectedly, a data point that contradicted your assumption. Write them verbatim. See `brief-universal.md` for quotable moments guidance.
+    Pick one as primary, optionally one as secondary. Note the choice in the Target audience field of the template and let it shape the synthesis section. An insight that lands with skill authors may not land with platform builders, and the "so what" section should be tuned to the primary audience.
+
+11. **Write the "so what" synthesis.** Raw data or raw arguments without synthesis is a half-done brief. The brief must include a section that answers: what does this mean for the reader? What should an operator do with this information? If the answer is "nothing," the post probably isn't worth writing.
+
+    Don't overreach. If the data only supports a narrow conclusion, don't pretend it supports a broader one. "Category X has more instruction-only skills than code-based ones" is honest. "The market is shifting away from code" is an overreach from the same data. Let the writer decide how far to stretch the conclusion, but give them an honest assessment of what the data actually supports.
+
+12. **Identify the spine.** Every Analysis post needs a single element that carries the weight of the post. For data-led posts this is usually the most surprising finding. For argument-led posts it's usually the strongest or most counter-intuitive supporting point, or an unexpected counterargument that turned out to hold up, or a historical analogy that reframes how the reader sees the present. Flag this element explicitly in the Suggested Narrative Elements section of the brief so the writer knows what the post is really built around. If you can't identify a spine, the post probably isn't ready to write.
+
+13. **Collect quotable moments.** Analysis posts can feel dry without them. Real moments from the research — a surprising number you found, a pattern that emerged unexpectedly, a data point that contradicted your assumption. Write them verbatim. See `brief-universal.md` for quotable moments guidance.
 
 ---
 
@@ -88,9 +103,11 @@ Use this structure when writing the brief. Adapt headings if the specific post c
 **Working title:** [title]
 **Format:** Analysis
 **Sub-type:** [data-led / argument-led / mixed]
+**Research direction:** [data-first / thesis-first — for mixed posts only]
 **Why now:** [timeliness — why this analysis matters this week specifically]
 **The question or thesis:** [one sentence — what is this post answering or arguing?]
-**Target audience:** [who is this for? what do they already know about this market?]
+**Target audience:** [specific sub-audience — see research step 10]
+**Target audience (secondary):** [optional — if the post has a secondary audience]
 
 ---
 
@@ -102,6 +119,8 @@ Use this structure when writing the brief. Adapt headings if the specific post c
 
 ## Data and Evidence
 
+*If the post is making a pure structural argument with no load-bearing quantitative findings, write "no significant quantitative data — see Argument Structure" in place of the subsections below and skip to the Argument Structure section. This should be rare. Most Analysis posts will have meaningful data even when the argument is the spine, and data almost always sharpens an argument. Only use this carve-out when the post genuinely doesn't lean on numbers.*
+
 ### Data Sources
 - [Source 1]: [what it provided, timestamp]
 - [Source 2]: [what it provided, timestamp]
@@ -109,15 +128,14 @@ Use this structure when writing the brief. Adapt headings if the specific post c
 
 ### Key Findings
 
-[The core data points and patterns. Present them in order of impact — lead with the most surprising or important finding. Include numbers, timestamps, and source references for each.]
+[Typically 3-5 findings. Add more if the data genuinely supports them, cut to fewer if the research only produced three strong ones. Don't pad to hit a number.]
 
 1. **[Finding 1]:** [data point + what it means]
 2. **[Finding 2]:** [data point + what it means]
 3. **[Finding 3]:** [data point + what it means]
-4. **[Finding 4]:** [data point + what it means]
 
 ### The Most Surprising Finding
-[Call out the single most counter-intuitive or unexpected data point. This is usually the spine of the post.]
+[Call out the single most counter-intuitive or unexpected data point. This is often the spine of the post.]
 
 ### Counterexamples and Complications
 [Data points or evidence that don't fit the emerging narrative. Be honest about them. This is what separates analysis from cherry-picking.]
@@ -158,7 +176,7 @@ Use this structure when writing the brief. Adapt headings if the specific post c
 
 [The synthesis section. Step back from the data and arguments and answer: what should the reader do with this information? This is where the post earns its identity as market intelligence, not just interesting data.]
 
-[Specific implications for different reader types if relevant — operators, founders, skill authors, platform builders.]
+[Tune this section to the primary audience identified in research step 10. What does this mean for them specifically?]
 
 [What should the reader pay attention to going forward? What's the signal to watch?]
 
@@ -181,6 +199,7 @@ Use this structure when writing the brief. Adapt headings if the specific post c
 For the writer to use or ignore:
 
 - **Primary angle:** [the spine of the post — the question or thesis that drives everything]
+- **The spine:** [the single element that carries the post's weight — see research step 12]
 - **Alternative angle:** [in case the primary doesn't work]
 - **Hook idea:** [what opens the post — often the most surprising finding]
 - **Closing idea:** [one memorable line — often the "so what" distilled]
@@ -201,18 +220,20 @@ Run these before handing off the brief. These are in addition to the universal c
 
 - **[MANDATORY]** The question or thesis is stated in one clear sentence. If it needs more, the post isn't focused enough.
 - **[MANDATORY]** The sub-type is labelled: data-led, argument-led, or mixed. The writer needs to know which lens to use.
+- **[MANDATORY]** For mixed posts, the research direction is noted: data-first or thesis-first.
 - **[MANDATORY]** Every number has been verified at the source and timestamped. "As of [date]" on any figure that could change.
 - **[MANDATORY]** Comparisons are apples-to-apples. If comparing metrics across sources, the measurement methodology is noted.
 - **[MANDATORY]** Raw data is provided or a clear file path is included. The writer should be able to interrogate the data independently.
 - **[MANDATORY]** Counterexamples or complications are included. A post with only confirming evidence is cherry-picking.
 - **[MANDATORY]** The "What the Data Can't Tell Us" section is present. Honest about limitations.
 - **[MANDATORY]** The "So What Does This Mean" synthesis section is present and points toward something actionable. If the reader can't act on this information, the post needs a stronger synthesis.
-- **[MANDATORY]** For argument-led posts: the strongest counterargument is identified and addressed.
-- **[MANDATORY]** For argument-led posts: the thesis is falsifiable. The reader should be able to check back later and assess whether it held up.
+- **[MANDATORY]** The synthesis is tuned to the primary audience. Not generic "readers should pay attention" — specific to the sub-audience identified in the brief.
+- **[MANDATORY]** The spine is identified and flagged in the Suggested Narrative Elements. If you can't identify a single element that carries the post, it isn't ready.
+- **[MANDATORY]** For argument-led posts making forward-looking claims, the prediction is falsifiable. The reader should be able to check back later and assess whether it held up. "The market will grow" is not a prediction. "Paid skills will emerge on ClawHub within 12 months" is.
+- **[MANDATORY]** For argument-led posts making structural claims (about how the market is shaped today, not where it's going), the counterargument section is complete and substantive. Structural arguments don't need to be falsifiable in the predictive sense, but they do need to survive a smart reader pushing back.
 - **[MANDATORY]** No unfalsifiable predictions. "The market will grow" is not a prediction. "Paid skills will emerge on ClawHub within 12 months" is.
-- **[MANDATORY]** The brief flags which parts of the evidence are strong vs speculative. The writer needs to know where to be firm.
 - **[MANDATORY]** Historical analogies (if used) are accurate on both sides. A wrong description of the comparison market undermines the whole analogy.
+- **[MANDATORY]** The brief flags which parts of the evidence are strong vs speculative. The writer needs to know where to be firm.
 - **[GUIDANCE]** The brief provides enough raw material for the writer to reframe the narrative if the primary angle doesn't work. Analysis briefs should be rich enough to support multiple storylines.
 - **[GUIDANCE]** The "So What" synthesis doesn't overreach. If the data supports a narrow conclusion, the synthesis should stay narrow. Don't ask the writer to make claims the evidence can't support.
-- **[GUIDANCE]** The most surprising finding is flagged explicitly. This is usually the spine of the post and the best candidate for the hook.
 - **[GUIDANCE]** Caveats are specific to this analysis, not generic disclaimers. "Data may be incomplete" is generic. "This analysis only covers ClawHub skills with 100+ downloads, so it misses the long tail of niche skills" is specific.
