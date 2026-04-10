@@ -1,0 +1,1337 @@
+[
+  {
+    "date": "2026-04-04",
+    "timestamp": "2026-04-04T16:15:07.661629+00:00",
+    "clawhub": {
+      "tracked": {
+        "self-improving-agent": {
+          "dl": 347883,
+          "stars": 2956
+        },
+        "ontology": {
+          "dl": 150899,
+          "stars": 476
+        },
+        "obsidian": {
+          "dl": 73638,
+          "stars": 300
+        },
+        "baidu-search": {
+          "dl": 71966,
+          "stars": 189
+        },
+        "api-gateway": {
+          "dl": 62304,
+          "stars": 305
+        },
+        "prismfy-search": {
+          "dl": 50851,
+          "stars": 16
+        }
+      },
+      "yours": {
+        "github-growth-tracker": {
+          "dl": 51,
+          "stars": 0
+        },
+        "rebels-skill-polisher": {
+          "dl": 29,
+          "stars": 0
+        },
+        "rebels-gmail-checker": {
+          "dl": 59,
+          "stars": 0
+        }
+      }
+    },
+    "agensi": {
+      "totalSkills": 80,
+      "skillSlugs": [
+        "registrera-f-renklat-rsbokslut-p-skatteverket-automatiskt",
+        "market-tech-analyst",
+        "env-doctor",
+        "content-writer",
+        "spotify-to-tidal-copy-songs",
+        "keyword-research",
+        "synthesizing-institutional-knowledge",
+        "youtube-video-translator",
+        "periodisk-sammanstallning-ec-sales-list",
+        "git-commit-writer",
+        "lobster-debugging",
+        "task-initiator",
+        "skill-creator",
+        "transfer-playlist-to-apple-music",
+        "ai-productivity",
+        "api-designer",
+        "api-contract-tester",
+        "business-planner",
+        "coding-plus",
+        "security-audit",
+        "chatops-session-ops",
+        "readme-generator",
+        "lobster-coordinator",
+        "content-rewriter",
+        "gmail-checker",
+        "codeberg",
+        "content-brainstorm",
+        "deep-research-team",
+        "temporal-reasoning-sleuth",
+        "dependency-auditor",
+        "describe-rename-sound-files",
+        "designing-hybrid-context-layers",
+        "diagnosing-rag-failure-modes",
+        "discord-bot",
+        "endless-loop",
+        "pretext-layout",
+        "prompt-engineer",
+        "sales-ops-revenue-workflow-pro-skill",
+        "code-reviewer",
+        "seo-optimizer",
+        "sun-tzu-business-strategy",
+        "founder-ops",
+        "gtm-engine",
+        "background-removal",
+        "mega-playlist-transfer",
+        "migration-auditor",
+        "multi-agent-coordinator",
+        "opencode-coding",
+        "pr-description-writer",
+        "founder-triage",
+        "rag-architect",
+        "research-to-decision-pro-skill",
+        "spotify-to-youtube-music-copy-songs",
+        "stack-ship",
+        "lss-audit",
+        "truth-first",
+        "video-enhancement",
+        "web3-graphql",
+        "changelog-generator",
+        "context-switch-protector",
+        "github-growth-tracker",
+        "dopamine-sprint",
+        "skill-builder",
+        "skill-router-1",
+        "legacyshield",
+        "lss-coaching",
+        "bypass-macos-file-dialog",
+        "lss-visuals",
+        "skill-router",
+        "video-face-swap",
+        "lss-tools",
+        "evaluating-ai-harness-dimensions",
+        "subagent-orchestrator-develop-based-on-the-claude-code-sourcemap",
+        "lss-artifacts",
+        "truth-first-enterprise",
+        "lss-methodologies",
+        "benchmarking-ai-agents-beyond-models",
+        "incident-postmortem",
+        "jira-rules-builder",
+        "raamatuhai"
+      ]
+    },
+    "github": {
+      "openclaw": {
+        "stars": 347894,
+        "forks": 69490,
+        "openIssues": 17050
+      },
+      "clawhub": {
+        "stars": 7462,
+        "forks": 1167,
+        "openIssues": 799
+      },
+      "claude-code": {
+        "stars": 108652,
+        "forks": 17889,
+        "openIssues": 9061
+      },
+      "codex": {
+        "stars": 73078,
+        "forks": 10258,
+        "openIssues": 2271
+      },
+      "cursor": {
+        "stars": 32571,
+        "forks": 2224,
+        "openIssues": 1
+      },
+      "cline": {
+        "stars": 59876,
+        "forks": 6084,
+        "openIssues": 698
+      },
+      "aider": {
+        "stars": 42816,
+        "forks": 4128,
+        "openIssues": 1466
+      },
+      "gemini-cli": {
+        "stars": 100198,
+        "forks": 12877,
+        "openIssues": 3284
+      }
+    }
+  },
+  {
+    "date": "2026-04-05",
+    "timestamp": "2026-04-05T07:01:39.249743+00:00",
+    "clawhub": {
+      "tracked": {
+        "self-improving-agent": {
+          "dl": 350614,
+          "stars": 2977
+        },
+        "ontology": {
+          "dl": 151805,
+          "stars": 481
+        },
+        "obsidian": {
+          "dl": 74143,
+          "stars": 301
+        },
+        "baidu-search": {
+          "dl": 72429,
+          "stars": 191
+        },
+        "api-gateway": {
+          "dl": 62700,
+          "stars": 309
+        },
+        "prismfy-search": {
+          "dl": 51261,
+          "stars": 17
+        }
+      },
+      "yours": {
+        "github-growth-tracker": {
+          "dl": 65,
+          "stars": 0
+        },
+        "rebels-skill-polisher": {
+          "dl": 29,
+          "stars": 0
+        },
+        "rebels-gmail-checker": {
+          "dl": 82,
+          "stars": 0
+        }
+      }
+    },
+    "agensi": {
+      "totalSkills": 81,
+      "skillSlugs": [
+        "endless-loop",
+        "prompt-engineer",
+        "temporal-reasoning-sleuth",
+        "synthesizing-institutional-knowledge",
+        "code-reviewer",
+        "subagent-orchestrator-develop-based-on-the-claude-code-sourcemap",
+        "git-commit-writer",
+        "skill-router-1",
+        "multi-agent-coordinator",
+        "ai-productivity",
+        "market-tech-analyst",
+        "diagnosing-rag-failure-modes",
+        "bypass-macos-file-dialog",
+        "content-brainstorm",
+        "seo-optimizer",
+        "content-writer",
+        "lss-tools",
+        "keyword-research",
+        "env-doctor",
+        "deep-research-team",
+        "santa-method",
+        "founder-triage",
+        "dopamine-sprint",
+        "context-switch-protector",
+        "research-to-decision-pro-skill",
+        "describe-rename-sound-files",
+        "readme-generator",
+        "truth-first",
+        "lobster-debugging",
+        "pretext-layout",
+        "chatops-session-ops",
+        "security-audit",
+        "changelog-generator",
+        "spotify-to-tidal-copy-songs",
+        "designing-hybrid-context-layers",
+        "gmail-checker",
+        "skill-creator",
+        "web3-graphql",
+        "benchmarking-ai-agents-beyond-models",
+        "evaluating-ai-harness-dimensions",
+        "api-designer",
+        "opencode-coding",
+        "pr-description-writer",
+        "mega-playlist-transfer",
+        "skill-builder",
+        "jira-rules-builder",
+        "registrera-f-renklat-rsbokslut-p-skatteverket-automatiskt",
+        "lobster-coordinator",
+        "lss-visuals",
+        "lss-audit",
+        "youtube-video-translator",
+        "periodisk-sammanstallning-ec-sales-list",
+        "task-initiator",
+        "transfer-playlist-to-apple-music",
+        "api-contract-tester",
+        "business-planner",
+        "coding-plus",
+        "content-rewriter",
+        "codeberg",
+        "dependency-auditor",
+        "discord-bot",
+        "sales-ops-revenue-workflow-pro-skill",
+        "sun-tzu-business-strategy",
+        "founder-ops",
+        "gtm-engine",
+        "background-removal",
+        "migration-auditor",
+        "rag-architect",
+        "spotify-to-youtube-music-copy-songs",
+        "stack-ship",
+        "video-enhancement",
+        "github-growth-tracker",
+        "legacyshield",
+        "lss-coaching",
+        "skill-router",
+        "video-face-swap",
+        "lss-artifacts",
+        "truth-first-enterprise",
+        "lss-methodologies",
+        "incident-postmortem",
+        "raamatuhai"
+      ]
+    },
+    "github": {
+      "openclaw": {
+        "stars": 348323,
+        "forks": 69657,
+        "openIssues": 17004
+      },
+      "clawhub": {
+        "stars": 7484,
+        "forks": 1171,
+        "openIssues": 798
+      },
+      "claude-code": {
+        "stars": 108966,
+        "forks": 17998,
+        "openIssues": 9162
+      },
+      "codex": {
+        "stars": 73167,
+        "forks": 10278,
+        "openIssues": 2291
+      },
+      "cursor": {
+        "stars": 32575,
+        "forks": 2224,
+        "openIssues": 1
+      },
+      "cline": {
+        "stars": 59895,
+        "forks": 6084,
+        "openIssues": 701
+      },
+      "aider": {
+        "stars": 42831,
+        "forks": 4129,
+        "openIssues": 1467
+      },
+      "gemini-cli": {
+        "stars": 100250,
+        "forks": 12890,
+        "openIssues": 3210
+      }
+    }
+  },
+  {
+    "date": "2026-04-06",
+    "timestamp": "2026-04-06T08:01:16.936751+00:00",
+    "clawhub": {
+      "tracked": {
+        "self-improving-agent": {
+          "dl": 354680,
+          "stars": 2995
+        },
+        "ontology": {
+          "dl": 153163,
+          "stars": 484
+        },
+        "obsidian": {
+          "dl": 74876,
+          "stars": 303
+        },
+        "baidu-search": {
+          "dl": 73055,
+          "stars": 192
+        },
+        "api-gateway": {
+          "dl": 63321,
+          "stars": 311
+        },
+        "prismfy-search": {
+          "dl": 53468,
+          "stars": 19
+        }
+      },
+      "yours": {
+        "rebels-skill-polisher": {
+          "dl": 32,
+          "stars": 0
+        },
+        "rebels-gmail-checker": {
+          "dl": 85,
+          "stars": 0
+        },
+        "github-growth-tracker": {
+          "dl": 68,
+          "stars": 0
+        }
+      }
+    },
+    "agensi": {
+      "totalSkills": 92,
+      "skillSlugs": [
+        "migration-auditor",
+        "market-tech-analyst",
+        "multi-agent-coordinator",
+        "periodisk-sammanstallning-ec-sales-list",
+        "pr-description-writer",
+        "pretext-layout",
+        "skill-builder",
+        "rag-architect",
+        "research-to-decision-pro-skill",
+        "security-audit",
+        "seo-optimizer",
+        "agent-portability-checker",
+        "code-reviewer",
+        "spotify-to-tidal-copy-songs",
+        "spotify-to-youtube-music-copy-songs",
+        "sun-tzu-business-strategy",
+        "synthesizing-institutional-knowledge",
+        "task-initiator",
+        "transfer-playlist-to-apple-music",
+        "truth-first",
+        "truth-first-enterprise",
+        "video-face-swap",
+        "youtube-video-translator",
+        "api-contract-tester",
+        "business-planner",
+        "client-reporting-pack-generator",
+        "skill-creator",
+        "lss-methodologies",
+        "lss-coaching",
+        "lss-artifacts",
+        "lss-tools",
+        "skill-router-1",
+        "lss-audit",
+        "github-growth-tracker",
+        "describe-rename-sound-files",
+        "readme-generator",
+        "keyword-research",
+        "bypass-macos-file-dialog",
+        "web3-graphql",
+        "v85-ai-boy",
+        "git-commit-writer",
+        "skill-router",
+        "skill-polisher",
+        "evaluating-ai-harness-dimensions",
+        "jira-rules-builder",
+        "temporal-reasoning-sleuth",
+        "agent-permission-boundary-audit",
+        "prompt-engineer-pro",
+        "agent-eval-coverage-audit",
+        "subagent-orchestrator-develop-based-on-the-claude-code-sourcemap",
+        "gmail-checker",
+        "context-switch-protector",
+        "competitor-content-gap-analyzer",
+        "skill-security-vendor-pack",
+        "local-seo-audit",
+        "santa-method",
+        "landing-page-cro-audit",
+        "lobster-coordinator",
+        "lobster-debugging",
+        "agent-reliability-audit",
+        "benchmarking-ai-agents-beyond-models",
+        "background-removal",
+        "opencode-coding",
+        "api-designer",
+        "dependency-auditor",
+        "ai-productivity",
+        "discord-bot",
+        "coding-plus",
+        "content-rewriter",
+        "env-doctor",
+        "prompt-engineer",
+        "changelog-generator",
+        "founder-triage",
+        "codeberg",
+        "endless-loop",
+        "diagnosing-rag-failure-modes",
+        "content-brainstorm",
+        "content-writer",
+        "deep-research-team",
+        "dopamine-sprint",
+        "chatops-session-ops",
+        "designing-hybrid-context-layers",
+        "mega-playlist-transfer",
+        "registrera-f-renklat-rsbokslut-p-skatteverket-automatiskt",
+        "lss-visuals",
+        "sales-ops-revenue-workflow-pro-skill",
+        "founder-ops",
+        "gtm-engine",
+        "stack-ship",
+        "video-enhancement",
+        "incident-postmortem",
+        "raamatuhai"
+      ]
+    },
+    "github": {
+      "openclaw": {
+        "stars": 349355,
+        "forks": 70006,
+        "openIssues": 17023
+      },
+      "clawhub": {
+        "stars": 7537,
+        "forks": 1181,
+        "openIssues": 814
+      },
+      "claude-code": {
+        "stars": 109534,
+        "forks": 18169,
+        "openIssues": 9229
+      },
+      "codex": {
+        "stars": 73371,
+        "forks": 10314,
+        "openIssues": 2314
+      },
+      "cursor": {
+        "stars": 32580,
+        "forks": 2222,
+        "openIssues": 1
+      },
+      "cline": {
+        "stars": 59935,
+        "forks": 6087,
+        "openIssues": 700
+      },
+      "aider": {
+        "stars": 42884,
+        "forks": 4142,
+        "openIssues": 1469
+      },
+      "gemini-cli": {
+        "stars": 100346,
+        "forks": 12909,
+        "openIssues": 3214
+      }
+    }
+  },
+  {
+    "date": "2026-04-07",
+    "timestamp": "2026-04-07T07:00:51.779203+00:00",
+    "clawhub": {
+      "tracked": {
+        "self-improving-agent": {
+          "dl": 358682,
+          "stars": 3014
+        },
+        "ontology": {
+          "dl": 154440,
+          "stars": 491
+        },
+        "obsidian": {
+          "dl": 75575,
+          "stars": 305
+        },
+        "baidu-search": {
+          "dl": 73733,
+          "stars": 193
+        },
+        "api-gateway": {
+          "dl": 63883,
+          "stars": 320
+        },
+        "prismfy-search": {
+          "dl": 58454,
+          "stars": 20
+        }
+      },
+      "yours": {
+        "github-growth-tracker": {
+          "dl": 78,
+          "stars": 0
+        },
+        "rebels-skill-polisher": {
+          "dl": 40,
+          "stars": 0
+        },
+        "agent-portability-checker": {
+          "dl": 64,
+          "stars": 0
+        },
+        "rebels-invoice-extractor": {
+          "dl": 33,
+          "stars": 0
+        },
+        "rebels-gmail-checker": {
+          "dl": 93,
+          "stars": 0
+        }
+      }
+    },
+    "agensi": {
+      "totalSkills": 94,
+      "skillSlugs": [
+        "code-reviewer",
+        "pr-description-writer",
+        "changelog-generator",
+        "evaluating-ai-harness-dimensions",
+        "dependency-auditor",
+        "temporal-reasoning-sleuth",
+        "stack-ship",
+        "chatops-session-ops",
+        "git-commit-writer",
+        "ai-productivity",
+        "env-doctor",
+        "content-rewriter",
+        "gtm-engine",
+        "founder-ops",
+        "diagnosing-rag-failure-modes",
+        "content-writer",
+        "coding-plus",
+        "skill-router",
+        "business-planner",
+        "security-audit",
+        "skill-builder",
+        "llm-wiki-maintainer",
+        "api-designer",
+        "skill-router-1",
+        "readme-generator",
+        "bypass-macos-file-dialog",
+        "context-switch-protector",
+        "web-crawler",
+        "v85-ai-boy",
+        "santa-method",
+        "local-seo-audit",
+        "landing-page-cro-audit",
+        "competitor-content-gap-analyzer",
+        "client-reporting-pack-generator",
+        "agent-portability-checker",
+        "market-tech-analyst",
+        "spotify-to-tidal-copy-songs",
+        "gmail-checker",
+        "opencode-coding",
+        "lobster-debugging",
+        "video-face-swap",
+        "skill-polisher",
+        "content-brainstorm",
+        "skill-security-vendor-pack",
+        "agent-eval-coverage-audit",
+        "prompt-engineer-pro",
+        "agent-permission-boundary-audit",
+        "agent-reliability-audit",
+        "lobster-coordinator",
+        "github-growth-tracker",
+        "founder-triage",
+        "pretext-layout",
+        "skill-creator",
+        "task-initiator",
+        "seo-optimizer",
+        "synthesizing-institutional-knowledge",
+        "sun-tzu-business-strategy",
+        "research-to-decision-pro-skill",
+        "dopamine-sprint",
+        "jira-rules-builder",
+        "prompt-engineer",
+        "describe-rename-sound-files",
+        "spotify-to-youtube-music-copy-songs",
+        "subagent-orchestrator-develop-based-on-the-claude-code-sourcemap",
+        "youtube-video-translator",
+        "incident-postmortem",
+        "transfer-playlist-to-apple-music",
+        "video-enhancement",
+        "registrera-f-renklat-rsbokslut-p-skatteverket-automatiskt",
+        "mega-playlist-transfer",
+        "truth-first-enterprise",
+        "designing-hybrid-context-layers",
+        "background-removal",
+        "multi-agent-coordinator",
+        "migration-auditor",
+        "lss-methodologies",
+        "lss-coaching",
+        "lss-audit",
+        "api-contract-tester",
+        "deep-research-team",
+        "lss-artifacts",
+        "lss-visuals",
+        "rag-architect",
+        "raamatuhai",
+        "endless-loop",
+        "sales-ops-revenue-workflow-pro-skill",
+        "web3-graphql",
+        "discord-bot",
+        "lss-tools",
+        "keyword-research",
+        "truth-first",
+        "codeberg",
+        "periodisk-sammanstallning-ec-sales-list",
+        "benchmarking-ai-agents-beyond-models"
+      ]
+    },
+    "github": {
+      "openclaw": {
+        "stars": 350469,
+        "forks": 70379,
+        "openIssues": 17200
+      },
+      "clawhub": {
+        "stars": 7584,
+        "forks": 1185,
+        "openIssues": 825
+      },
+      "claude-code": {
+        "stars": 110174,
+        "forks": 18311,
+        "openIssues": 9254
+      },
+      "codex": {
+        "stars": 73562,
+        "forks": 10349,
+        "openIssues": 2324
+      },
+      "cursor": {
+        "stars": 32591,
+        "forks": 2224,
+        "openIssues": 1
+      },
+      "cline": {
+        "stars": 59986,
+        "forks": 6100,
+        "openIssues": 708
+      },
+      "aider": {
+        "stars": 42929,
+        "forks": 4155,
+        "openIssues": 1470
+      },
+      "gemini-cli": {
+        "stars": 100446,
+        "forks": 12931,
+        "openIssues": 3192
+      }
+    }
+  },
+  {
+    "date": "2026-04-08",
+    "timestamp": "2026-04-08T07:01:14.979183+00:00",
+    "clawhub": {
+      "tracked": {
+        "self-improving-agent": {
+          "dl": 363025,
+          "stars": 3044
+        },
+        "ontology": {
+          "dl": 155760,
+          "stars": 496
+        },
+        "obsidian": {
+          "dl": 76318,
+          "stars": 305
+        },
+        "baidu-search": {
+          "dl": 74434,
+          "stars": 194
+        },
+        "prismfy-search": {
+          "dl": 70874,
+          "stars": 20
+        },
+        "api-gateway": {
+          "dl": 64464,
+          "stars": 322
+        }
+      },
+      "yours": {
+        "rebels-gmail-checker": {
+          "dl": 97,
+          "stars": 0
+        },
+        "agent-portability-checker": {
+          "dl": 69,
+          "stars": 0
+        },
+        "rebels-skill-polisher": {
+          "dl": 45,
+          "stars": 0
+        },
+        "rebels-invoice-extractor": {
+          "dl": 46,
+          "stars": 0
+        },
+        "github-growth-tracker": {
+          "dl": 88,
+          "stars": 0
+        }
+      }
+    },
+    "agensi": {
+      "totalSkills": 99,
+      "skillSlugs": [
+        "registrera-f-renklat-rsbokslut-p-skatteverket-automatiskt",
+        "api-designer",
+        "project-phase-manager",
+        "code-reviewer",
+        "seo-optimizer",
+        "local-seo-audit",
+        "git-commit-writer",
+        "game-dev",
+        "career-expert-alpha-version",
+        "benchmarking-ai-agents-beyond-models",
+        "synthesizing-institutional-knowledge",
+        "ai-productivity",
+        "pr-description-writer",
+        "market-tech-analyst",
+        "web-crawler",
+        "temporal-reasoning-sleuth",
+        "sun-tzu-business-strategy",
+        "lobster-coordinator",
+        "llm-wiki-maintainer",
+        "env-doctor",
+        "deep-research-team",
+        "agent-cli-builder",
+        "invoice-extractor",
+        "video-enhancement",
+        "codeberg",
+        "endless-loop",
+        "lss-coaching",
+        "periodisk-sammanstallning-ec-sales-list",
+        "lss-tools",
+        "discord-bot",
+        "lss-visuals",
+        "lss-artifacts",
+        "lss-audit",
+        "lss-methodologies",
+        "migration-auditor",
+        "incident-postmortem",
+        "subagent-orchestrator-develop-based-on-the-claude-code-sourcemap",
+        "jira-rules-builder",
+        "dopamine-sprint",
+        "content-brainstorm",
+        "video-face-swap",
+        "content-writer",
+        "content-rewriter",
+        "chatops-session-ops",
+        "youtube-video-translator",
+        "transfer-playlist-to-apple-music",
+        "changelog-generator",
+        "skill-polisher",
+        "bypass-macos-file-dialog",
+        "background-removal",
+        "api-contract-tester",
+        "v85-ai-boy",
+        "designing-hybrid-context-layers",
+        "task-initiator",
+        "skill-builder",
+        "skill-creator",
+        "readme-generator",
+        "raamatuhai",
+        "founder-triage",
+        "truth-first-enterprise",
+        "keyword-research",
+        "pretext-layout",
+        "prompt-engineer",
+        "truth-first",
+        "gmail-checker",
+        "business-planner",
+        "prompt-engineer-pro",
+        "context-switch-protector",
+        "competitor-content-gap-analyzer",
+        "agent-permission-boundary-audit",
+        "web3-graphql",
+        "gtm-engine",
+        "describe-rename-sound-files",
+        "diagnosing-rag-failure-modes",
+        "spotify-to-tidal-copy-songs",
+        "founder-ops",
+        "sales-ops-revenue-workflow-pro-skill",
+        "agent-reliability-audit",
+        "skill-security-vendor-pack",
+        "agent-portability-checker",
+        "agent-eval-coverage-audit",
+        "dependency-auditor",
+        "opencode-coding",
+        "skill-router-1",
+        "skill-router",
+        "rag-architect",
+        "stack-ship",
+        "security-audit",
+        "coding-plus",
+        "github-growth-tracker",
+        "spotify-to-youtube-music-copy-songs",
+        "evaluating-ai-harness-dimensions",
+        "research-to-decision-pro-skill",
+        "multi-agent-coordinator",
+        "santa-method",
+        "mega-playlist-transfer",
+        "lobster-debugging",
+        "client-reporting-pack-generator",
+        "landing-page-cro-audit"
+      ]
+    },
+    "github": {
+      "openclaw": {
+        "stars": 351547,
+        "forks": 70755,
+        "openIssues": 17553
+      },
+      "clawhub": {
+        "stars": 7644,
+        "forks": 1186,
+        "openIssues": 830
+      },
+      "claude-code": {
+        "stars": 110811,
+        "forks": 18460,
+        "openIssues": 9421
+      },
+      "codex": {
+        "stars": 73797,
+        "forks": 10385,
+        "openIssues": 2339
+      },
+      "cursor": {
+        "stars": 32597,
+        "forks": 2223,
+        "openIssues": 1
+      },
+      "cline": {
+        "stars": 60019,
+        "forks": 6108,
+        "openIssues": 706
+      },
+      "aider": {
+        "stars": 42981,
+        "forks": 4157,
+        "openIssues": 1476
+      },
+      "gemini-cli": {
+        "stars": 100567,
+        "forks": 12963,
+        "openIssues": 3119
+      }
+    }
+  },
+  {
+    "date": "2026-04-09",
+    "timestamp": "2026-04-09T07:00:35.205825+00:00",
+    "clawhub": {
+      "tracked": {
+        "self-improving-agent": {
+          "dl": 367234,
+          "stars": 3077
+        },
+        "ontology": {
+          "dl": 157088,
+          "stars": 509
+        },
+        "obsidian": {
+          "dl": 77051,
+          "stars": 314
+        },
+        "prismfy-search": {
+          "dl": 75686,
+          "stars": 20
+        },
+        "baidu-search": {
+          "dl": 75071,
+          "stars": 194
+        },
+        "api-gateway": {
+          "dl": 64998,
+          "stars": 325
+        }
+      },
+      "yours": {
+        "rebels-invoice-extractor": {
+          "dl": 53,
+          "stars": 0
+        },
+        "rebels-gmail-checker": {
+          "dl": 101,
+          "stars": 0
+        },
+        "rebels-skill-polisher": {
+          "dl": 51,
+          "stars": 0
+        },
+        "github-growth-tracker": {
+          "dl": 93,
+          "stars": 0
+        },
+        "agent-portability-checker": {
+          "dl": 73,
+          "stars": 0
+        }
+      }
+    },
+    "agensi": {
+      "totalSkills": 102,
+      "skillSlugs": [
+        "llm-wiki-maintainer",
+        "alpha-signals-pro",
+        "yield-maximizer",
+        "code-reviewer",
+        "git-commit-writer",
+        "readme-generator",
+        "seo-optimizer",
+        "prompt-engineer",
+        "temporal-reasoning-sleuth",
+        "incident-postmortem",
+        "changelog-generator",
+        "background-removal",
+        "v85-ai-boy",
+        "env-doctor",
+        "synthesizing-institutional-knowledge",
+        "career-expert-alpha-version",
+        "skill-creator",
+        "context-switch-protector",
+        "skill-polisher",
+        "content-writer",
+        "content-rewriter",
+        "github-growth-tracker",
+        "skill-router-1",
+        "prompt-engineer-pro",
+        "gmail-checker",
+        "agent-eval-coverage-audit",
+        "agent-permission-boundary-audit",
+        "agent-reliability-audit",
+        "spotify-to-tidal-copy-songs",
+        "multi-agent-coordinator",
+        "truth-first-enterprise",
+        "subagent-orchestrator-develop-based-on-the-claude-code-sourcemap",
+        "transfer-playlist-to-apple-music",
+        "research-to-decision-pro-skill",
+        "lobster-debugging",
+        "pr-description-writer",
+        "periodisk-sammanstallning-ec-sales-list",
+        "benchmarking-ai-agents-beyond-models",
+        "sun-tzu-business-strategy",
+        "registrera-f-renklat-rsbokslut-p-skatteverket-automatiskt",
+        "api-contract-tester",
+        "designing-hybrid-context-layers",
+        "sales-ops-revenue-workflow-pro-skill",
+        "stack-ship",
+        "lss-audit",
+        "lss-visuals",
+        "business-planner",
+        "lss-tools",
+        "ai-productivity",
+        "web-crawler",
+        "video-face-swap",
+        "market-tech-analyst",
+        "task-initiator",
+        "lss-artifacts",
+        "skill-router",
+        "skill-builder",
+        "deep-research-team",
+        "lss-coaching",
+        "lss-methodologies",
+        "santa-method",
+        "api-designer",
+        "truth-first",
+        "codeberg",
+        "pretext-layout",
+        "raamatuhai",
+        "opencode-coding",
+        "rag-architect",
+        "agent-cli-builder",
+        "local-seo-audit",
+        "bypass-macos-file-dialog",
+        "founder-ops",
+        "chatops-session-ops",
+        "agent-portability-checker",
+        "client-reporting-pack-generator",
+        "invoice-extractor",
+        "jira-rules-builder",
+        "content-brainstorm",
+        "mega-playlist-transfer",
+        "migration-auditor",
+        "momsdeklaration-skatteverket",
+        "project-phase-manager",
+        "security-audit",
+        "spotify-to-youtube-music-copy-songs",
+        "video-enhancement",
+        "web3-graphql",
+        "youtube-video-translator",
+        "coding-plus",
+        "competitor-content-gap-analyzer",
+        "lobster-coordinator",
+        "dependency-auditor",
+        "describe-rename-sound-files",
+        "diagnosing-rag-failure-modes",
+        "discord-bot",
+        "skill-security-vendor-pack",
+        "dopamine-sprint",
+        "endless-loop",
+        "founder-triage",
+        "game-dev",
+        "evaluating-ai-harness-dimensions",
+        "gtm-engine",
+        "keyword-research",
+        "landing-page-cro-audit"
+      ]
+    },
+    "github": {
+      "openclaw": {
+        "stars": 352587,
+        "forks": 71082,
+        "openIssues": 17822
+      },
+      "clawhub": {
+        "stars": 7710,
+        "forks": 1190,
+        "openIssues": 841
+      },
+      "claude-code": {
+        "stars": 111367,
+        "forks": 18584,
+        "openIssues": 9501
+      },
+      "codex": {
+        "stars": 74035,
+        "forks": 10434,
+        "openIssues": 2340
+      },
+      "cursor": {
+        "stars": 32608,
+        "forks": 2222,
+        "openIssues": 1
+      },
+      "cline": {
+        "stars": 60051,
+        "forks": 6112,
+        "openIssues": 708
+      },
+      "aider": {
+        "stars": 43044,
+        "forks": 4158,
+        "openIssues": 1477
+      },
+      "gemini-cli": {
+        "stars": 100671,
+        "forks": 12984,
+        "openIssues": 3029
+      }
+    }
+  },
+  {
+    "date": "2026-04-10",
+    "timestamp": "2026-04-10T07:00:30.127195+00:00",
+    "clawhub": {
+      "tracked": {
+        "self-improving-agent": {
+          "dl": 371393,
+          "stars": 3097
+        },
+        "ontology": {
+          "dl": 158404,
+          "stars": 512
+        },
+        "obsidian": {
+          "dl": 77771,
+          "stars": 317
+        },
+        "prismfy-search": {
+          "dl": 75909,
+          "stars": 21
+        },
+        "baidu-search": {
+          "dl": 75706,
+          "stars": 196
+        },
+        "api-gateway": {
+          "dl": 65618,
+          "stars": 327
+        }
+      },
+      "yours": {
+        "rebels-gmail-checker": {
+          "dl": 104,
+          "stars": 0
+        },
+        "agent-portability-checker": {
+          "dl": 77,
+          "stars": 0
+        },
+        "rebels-skill-polisher": {
+          "dl": 54,
+          "stars": 0
+        },
+        "rebels-invoice-extractor": {
+          "dl": 59,
+          "stars": 0
+        },
+        "github-growth-tracker": {
+          "dl": 98,
+          "stars": 0
+        }
+      }
+    },
+    "agensi": {
+      "totalSkills": 104,
+      "skillSlugs": [
+        "readme-generator",
+        "git-commit-writer",
+        "code-reviewer",
+        "sales-ops-revenue-workflow-pro-skill",
+        "content-writer",
+        "content-rewriter",
+        "env-doctor",
+        "pr-description-writer",
+        "seo-optimizer",
+        "bug-hunt",
+        "task-initiator",
+        "spotify-to-tidal-copy-songs",
+        "prompt-engineer",
+        "benchmarking-ai-agents-beyond-models",
+        "temporal-reasoning-sleuth",
+        "game-dev",
+        "codeberg",
+        "describe-rename-sound-files",
+        "harness-engineering",
+        "career-expert-alpha-version",
+        "yield-maximizer",
+        "background-removal",
+        "video-face-swap",
+        "api-designer",
+        "designing-hybrid-context-layers",
+        "skill-creator",
+        "alpha-signals-pro",
+        "sun-tzu-business-strategy",
+        "evaluating-ai-harness-dimensions",
+        "llm-wiki-maintainer",
+        "migration-auditor",
+        "jira-rules-builder",
+        "lobster-debugging",
+        "changelog-generator",
+        "keyword-research",
+        "project-phase-manager",
+        "momsdeklaration-skatteverket",
+        "pretext-layout",
+        "synthesizing-institutional-knowledge",
+        "incident-postmortem",
+        "v85-ai-boy",
+        "context-switch-protector",
+        "skill-polisher",
+        "github-growth-tracker",
+        "skill-router-1",
+        "prompt-engineer-pro",
+        "gmail-checker",
+        "agent-eval-coverage-audit",
+        "agent-permission-boundary-audit",
+        "agent-reliability-audit",
+        "multi-agent-coordinator",
+        "truth-first-enterprise",
+        "subagent-orchestrator-develop-based-on-the-claude-code-sourcemap",
+        "transfer-playlist-to-apple-music",
+        "research-to-decision-pro-skill",
+        "periodisk-sammanstallning-ec-sales-list",
+        "registrera-f-renklat-rsbokslut-p-skatteverket-automatiskt",
+        "api-contract-tester",
+        "stack-ship",
+        "lss-audit",
+        "lss-visuals",
+        "business-planner",
+        "lss-tools",
+        "ai-productivity",
+        "web-crawler",
+        "market-tech-analyst",
+        "lss-artifacts",
+        "skill-router",
+        "skill-builder",
+        "deep-research-team",
+        "lss-coaching",
+        "lss-methodologies",
+        "santa-method",
+        "truth-first",
+        "raamatuhai",
+        "opencode-coding",
+        "rag-architect",
+        "agent-cli-builder",
+        "local-seo-audit",
+        "bypass-macos-file-dialog",
+        "founder-ops",
+        "chatops-session-ops",
+        "agent-portability-checker",
+        "client-reporting-pack-generator",
+        "invoice-extractor",
+        "content-brainstorm",
+        "mega-playlist-transfer",
+        "security-audit",
+        "spotify-to-youtube-music-copy-songs",
+        "video-enhancement",
+        "web3-graphql",
+        "youtube-video-translator",
+        "coding-plus",
+        "competitor-content-gap-analyzer",
+        "lobster-coordinator",
+        "dependency-auditor",
+        "diagnosing-rag-failure-modes",
+        "discord-bot",
+        "skill-security-vendor-pack",
+        "dopamine-sprint",
+        "endless-loop",
+        "founder-triage",
+        "gtm-engine",
+        "landing-page-cro-audit"
+      ]
+    },
+    "github": {
+      "openclaw": {
+        "stars": 353589,
+        "forks": 71411,
+        "openIssues": 17999
+      },
+      "clawhub": {
+        "stars": 7776,
+        "forks": 1200,
+        "openIssues": 860
+      },
+      "claude-code": {
+        "stars": 111919,
+        "forks": 18678,
+        "openIssues": 9597
+      },
+      "codex": {
+        "stars": 74272,
+        "forks": 10482,
+        "openIssues": 2392
+      },
+      "cursor": {
+        "stars": 32616,
+        "forks": 2223,
+        "openIssues": 1
+      },
+      "cline": {
+        "stars": 60099,
+        "forks": 6122,
+        "openIssues": 670
+      },
+      "aider": {
+        "stars": 43102,
+        "forks": 4167,
+        "openIssues": 1480
+      },
+      "gemini-cli": {
+        "stars": 100774,
+        "forks": 13005,
+        "openIssues": 2941
+      }
+    }
+  }
+]

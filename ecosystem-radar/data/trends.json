@@ -1,0 +1,178 @@
+{
+  "lastUpdated": "2026-04-06",
+  "generatedAt": "2026-04-06T11:23:10.180618+00:00",
+  "dataPoints": 3,
+  "dateRange": "2026-04-04 to 2026-04-06",
+  "windows": [
+    7,
+    30,
+    90
+  ],
+  "yourSkills": {
+    "rebels-skill-polisher": {
+      "current": {
+        "dl": 32,
+        "stars": 0
+      },
+      "7d": null,
+      "30d": null,
+      "90d": null
+    },
+    "rebels-gmail-checker": {
+      "current": {
+        "dl": 85,
+        "stars": 0
+      },
+      "7d": null,
+      "30d": null,
+      "90d": null
+    },
+    "github-growth-tracker": {
+      "current": {
+        "dl": 68,
+        "stars": 0
+      },
+      "7d": null,
+      "30d": null,
+      "90d": null
+    }
+  },
+  "trackedSkills": {
+    "self-improving-agent": {
+      "current": {
+        "dl": 354680,
+        "stars": 2995
+      },
+      "7d": null,
+      "30d": null,
+      "90d": null
+    },
+    "ontology": {
+      "current": {
+        "dl": 153163,
+        "stars": 484
+      },
+      "7d": null,
+      "30d": null,
+      "90d": null
+    },
+    "obsidian": {
+      "current": {
+        "dl": 74876,
+        "stars": 303
+      },
+      "7d": null,
+      "30d": null,
+      "90d": null
+    },
+    "baidu-search": {
+      "current": {
+        "dl": 73055,
+        "stars": 192
+      },
+      "7d": null,
+      "30d": null,
+      "90d": null
+    },
+    "api-gateway": {
+      "current": {
+        "dl": 63321,
+        "stars": 311
+      },
+      "7d": null,
+      "30d": null,
+      "90d": null
+    },
+    "prismfy-search": {
+      "current": {
+        "dl": 53468,
+        "stars": 19
+      },
+      "7d": null,
+      "30d": null,
+      "90d": null
+    }
+  },
+  "agensi": {
+    "current": {
+      "totalSkills": 92
+    },
+    "7d": null,
+    "30d": null,
+    "90d": null
+  },
+  "github": {
+    "openclaw": {
+      "current": {
+        "stars": 349355,
+        "forks": 70006
+      },
+      "7d": null,
+      "30d": null,
+      "90d": null
+    },
+    "clawhub": {
+      "current": {
+        "stars": 7537,
+        "forks": 1181
+      },
+      "7d": null,
+      "30d": null,
+      "90d": null
+    },
+    "claude-code": {
+      "current": {
+        "stars": 109534,
+        "forks": 18169
+      },
+      "7d": null,
+      "30d": null,
+      "90d": null
+    },
+    "codex": {
+      "current": {
+        "stars": 73371,
+        "forks": 10314
+      },
+      "7d": null,
+      "30d": null,
+      "90d": null
+    },
+    "cursor": {
+      "current": {
+        "stars": 32580,
+        "forks": 2222
+      },
+      "7d": null,
+      "30d": null,
+      "90d": null
+    },
+    "cline": {
+      "current": {
+        "stars": 59935,
+        "forks": 6087
+      },
+      "7d": null,
+      "30d": null,
+      "90d": null
+    },
+    "aider": {
+      "current": {
+        "stars": 42884,
+        "forks": 4142
+      },
+      "7d": null,
+      "30d": null,
+      "90d": null
+    },
+    "gemini-cli": {
+      "current": {
+        "stars": 100346,
+        "forks": 12909
+      },
+      "7d": null,
+      "30d": null,
+      "90d": null
+    }
+  }
+}

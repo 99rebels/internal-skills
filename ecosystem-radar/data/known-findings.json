@@ -1,0 +1,100 @@
+{
+  "findings": [
+    {
+      "id": "agensi-only-payments",
+      "claim": "Agensi is the only platform with a fully working payment system for individual skill purchases",
+      "firstSeen": "2026-04-04",
+      "lastUpdated": "2026-04-06",
+      "source": "deep-report-2",
+      "status": "active"
+    },
+    {
+      "id": "anthropic-100m-partner",
+      "claim": "Anthropic committed $100M to Claude Partner Network with enterprise marketplace",
+      "firstSeen": "2026-04-04",
+      "lastUpdated": "2026-04-06",
+      "source": "deep-report-2",
+      "status": "active"
+    },
+    {
+      "id": "skill-md-standard-adoption",
+      "claim": "SKILL.md standard published by Anthropic (Dec 2025) now supported by OpenClaw, Claude Code, Codex, Cursor, and Gemini CLI",
+      "firstSeen": "2026-04-04",
+      "lastUpdated": "2026-04-06",
+      "source": "deep-report-2",
+      "status": "active"
+    },
+    {
+      "id": "clawhub-noise-rate",
+      "claim": "~30% of new ClawHub skills have zero downloads — improved from 61%, possibly due to sampling variance",
+      "firstSeen": "2026-04-04",
+      "lastUpdated": "2026-04-06",
+      "source": "deep-report-2",
+      "status": "active"
+    },
+    {
+      "id": "codex-alpha",
+      "claim": "OpenAI Codex CLI is still in alpha (v0.119.0-alpha.9) — platform is immature",
+      "firstSeen": "2026-04-04",
+      "lastUpdated": "2026-04-06",
+      "source": "deep-report-2",
+      "status": "active"
+    },
+    {
+      "id": "gemini-preview",
+      "claim": "Google Gemini CLI is in preview (v0.37.0-preview.1) — significant new entrant at 100k stars",
+      "firstSeen": "2026-04-04",
+      "lastUpdated": "2026-04-06",
+      "source": "deep-report-2",
+      "status": "active"
+    },
+    {
+      "id": "openclaw-stars-dominance",
+      "claim": "OpenClaw dominates GitHub stars (349k) but ClawHub marketplace only has 7.5k — gap between platform and marketplace users persists",
+      "firstSeen": "2026-04-04",
+      "lastUpdated": "2026-04-06",
+      "source": "deep-report-2",
+      "status": "active"
+    },
+    {
+      "id": "anthropic-third-party-pricing",
+      "claim": "Anthropic now charges additional fees for Claude Pro/Max users accessing via third-party frameworks like OpenClaw (effective April 4, 2026)",
+      "firstSeen": "2026-04-06",
+      "lastUpdated": "2026-04-06",
+      "source": "deep-report-2",
+      "status": "active"
+    },
+    {
+      "id": "agensi-growth-momentum",
+      "claim": "Agensi growing at 18.75% per 2 days (92 skills from 80), showing strong marketplace momentum",
+      "firstSeen": "2026-04-06",
+      "lastUpdated": "2026-04-06",
+      "source": "deep-report-2",
+      "status": "active"
+    },
+    {
+      "id": "enterprise-marketplace-wave",
+      "claim": "Major tech players entering: Salesforce AgentExchange (March 2025), Google Cloud AI Agent Marketplace (Oct 2025), Oracle AI Agent Marketplace (Oct 2025) — all enterprise-focused",
+      "firstSeen": "2026-04-06",
+      "lastUpdated": "2026-04-06",
+      "source": "deep-report-2",
+      "status": "active"
+    },
+    {
+      "id": "agentic-payment-infrastructure",
+      "claim": "Specialized payment infrastructure emerging: Stripe Shared Payment Tokens, Mastercard Agent Pay, Crossmint Headless Checkout for AI agent commerce",
+      "firstSeen": "2026-04-06",
+      "lastUpdated": "2026-04-06",
+      "source": "deep-report-2",
+      "status": "active"
+    },
+    {
+      "id": "security-supply-chain-concerns",
+      "claim": "Malicious skills found on platforms highlighting AI supply chain attack surfaces — need for trust layers and permission controls",
+      "firstSeen": "2026-04-06",
+      "lastUpdated": "2026-04-06",
+      "source": "deep-report-2",
+      "status": "active"
+    }
+  ]
+}

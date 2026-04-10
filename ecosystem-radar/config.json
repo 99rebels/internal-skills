@@ -1,0 +1,129 @@
+{
+  "platforms": {
+    "clawhub": {
+      "type": "cli",
+      "enabled": true,
+      "url": "https://clawhub.ai",
+      "yourSkills": ["github-growth-tracker", "rebels-gmail-checker", "rebels-skill-polisher", "agent-portability-checker", "rebels-invoice-extractor"],
+      "trackSkills": [
+        "self-improving-agent",
+        "ontology",
+        "obsidian",
+        "agent-browser",
+        "api-gateway",
+        "mcpporter",
+        "prismfy-search",
+        "baidu-search"
+      ]
+    },
+    "agensi": {
+      "type": "scrape",
+      "enabled": true,
+      "url": "https://www.agensi.io",
+      "label": "Agensi",
+      "paymentIndicator": "https://www.agensi.io/stripe-terms",
+      "leaderboardUrl": "https://www.agensi.io/leaderboard"
+    },
+    "github": {
+      "type": "github",
+      "enabled": true,
+      "repos": {
+        "openclaw": "openclaw/openclaw",
+        "clawhub": "openclaw/clawhub",
+        "claude-code": "anthropics/claude-code",
+        "codex": "openai/codex",
+        "cursor": "getcursor/cursor",
+        "cline": "cline/cline",
+        "aider": "paul-gauthier/aider",
+        "gemini-cli": "google-gemini/gemini-cli"
+      },
+      "label": "Platform Adoption (GitHub)"
+    },
+    "openagentskill": {
+      "type": "scrape",
+      "enabled": false,
+      "url": "https://openagentskill.com",
+      "label": "OpenAgentSkill",
+      "note": "Disabled: JS-rendered site returns unreliable data. Revisit if they add an API."
+    },
+    "skillsmp": {
+      "type": "api",
+      "baseUrl": "https://skillsmp.com/api",
+      "apiKey": "sk_live_skillsmp_afSP9E-8VCTDSJAUTJYX0Ac5f2osHb9x0qQX94zvFoU",
+      "enabled": false,
+      "url": "https://skillsmp.com",
+      "label": "SkillsMP",
+      "note": "Disabled: Cloudflare blocks all automated access."
+    },
+    "lobehub": {
+      "type": "scrape",
+      "enabled": false,
+      "url": "https://lobehub.com/skills",
+      "label": "LobeHub",
+      "note": "169k+ skills indexed. No clear public API. Enable when scrape strategy is ready."
+    },
+    "cursor": {
+      "type": "scrape",
+      "enabled": true,
+      "url": "https://cursor.com/marketplace",
+      "label": "Cursor Marketplace",
+      "pages": {
+        "home": "https://cursor.com/marketplace",
+        "automations": "https://cursor.com/marketplace/automations"
+      },
+      "note": "JS-rendered. Can track featured items and page existence. Enterprise plugins from Datadog, Slack, Figma, Linear. No individual creator payments yet."
+    },
+    "claude-skills-market": {
+      "type": "scrape",
+      "enabled": true,
+      "url": "https://www.claudeskillsmarket.com",
+      "label": "Claude Skills Market",
+      "pages": {
+        "browse": "https://www.claudeskillsmarket.com/browse-skills",
+        "free": "https://www.claudeskillsmarket.com/free-skills"
+      },
+      "note": "JS-rendered. Similar to Agensi — marketplace for Claude skills with free and paid tiers. Track page existence and payment indicators."
+    }
+  },
+
+  "delivery": {
+    "slackChannelId": "C0AQF46E50E",
+    "slackChannelName": "#cambrian_agent"
+  },
+
+  "watch": {
+    "searchQueries": [
+      "agent skill marketplace 2026",
+      "SKILL.md marketplace new launch",
+      "AI agent store marketplace payments",
+      "Claude Code skills marketplace",
+      "agent skills shop sell buy",
+      "Cursor rules marketplace",
+      "claude skills market paid",
+      "Agent 37 monetization skills"
+    ],
+    "newsQueries": [
+      "OpenClaw agent skills news update",
+      "Claude Code skills marketplace",
+      "AI agent monetization marketplace",
+      "SKILL.md standard adoption",
+      "agent skill marketplace launch",
+      "Cursor skills marketplace",
+      "Claude Code skill store",
+      "Agensi marketplace news"
+    ],
+    "paymentCheckUrls": {
+      "clawhub": ["https://clawhub.ai/pricing", "https://clawhub.ai/pro"],
+      "agensi": ["https://www.agensi.io/pricing", "https://www.agensi.io/pro"],
+      "cursor": ["https://cursor.com/pricing", "https://cursor.com/marketplace/pricing"],
+      "claude-marketplace": ["https://claude.com/platform/marketplace/pricing"],
+      "claude-skills-market": ["https://claudeskillsmarket.com/pricing"],
+      "agent37": ["https://agent37.com/pricing"]
+    }
+  },
+
+  "thresholds": {
+    "minDataPointsForTrend": 3,
+    "trendWindowDays": 5
+  }
+}

@@ -1,0 +1,33 @@
+📡 Ecosystem Pulse — Apr 8, 2026
+─────────────────────────────────
+
+📊 CLAWHUB
+  self-improving-agent    363k dl  ↑4.3k  ⭐3,044  ↑30
+  ontology                155k dl  ↑1.3k  ⭐496   ↑5
+  obsidian                76k dl   ↑743
+  baidu-search            74k dl   ↑701   ⭐194   ↑1
+  prismfy-search          70k dl   ↑12.4k
+  api-gateway             64k dl   ↑581   ⭐322   ↑2
+
+─────────────────────────────────
+
+⭐ YOUR SKILLS
+  rebels-gmail-checker*    97 dl   ↑4
+  agent-portability-checker*  69 dl   ↑5
+  rebels-invoice-extractor* 46 dl   ↑13
+  github-growth-tracker*     88 dl   ↑10
+
+─────────────────────────────────
+
+🏪 MARKETPLACES
+  Agensi    99 skills  ↑5
+  Cursor    featured (free)
+
+─────────────────────────────────
+
+🐙 GITHUB
+  openclaw 351k  ↑1k
+  claude-code 110k  ↑600+
+  codex 73k  ↑200+
+
+─────────────────────────────────

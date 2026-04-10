@@ -1,0 +1,371 @@
+{
+  "timestamp": "2026-04-06T07:01:11.139458+00:00",
+  "runType": "watch",
+  "paymentFeatures": {
+    "clawhub": {
+      "hasPayment": false,
+      "paymentUrls": {
+        "https://clawhub.ai/pricing": {
+          "hasPaymentContent": false,
+          "detail": "404"
+        },
+        "https://clawhub.ai/pro": {
+          "hasPaymentContent": false,
+          "detail": "404"
+        },
+        "https://clawhub.ai/premium": {
+          "hasPaymentContent": false,
+          "detail": "404"
+        },
+        "https://clawhub.ai/monetize": {
+          "hasPaymentContent": false,
+          "detail": "404"
+        },
+        "https://clawhub.ai/sell": {
+          "hasPaymentContent": false,
+          "detail": "404"
+        },
+        "https://clawhub.ai/payments": {
+          "hasPaymentContent": false,
+          "detail": "404"
+        }
+      }
+    },
+    "agensi": {
+      "hasPayment": true,
+      "paymentUrls": {
+        "https://www.agensi.io/pricing": {
+          "hasPaymentContent": true,
+          "detail": [
+            "stripe",
+            "payment",
+            "commission",
+            "payout",
+            "pay",
+            "purchase",
+            "buy",
+            "sell"
+          ]
+        },
+        "https://www.agensi.io/pro": {
+          "hasPaymentContent": true,
+          "detail": [
+            "stripe",
+            "payment",
+            "commission",
+            "payout",
+            "pay",
+            "purchase",
+            "buy",
+            "sell"
+          ]
+        },
+        "https://www.agensi.io/premium": {
+          "hasPaymentContent": true,
+          "detail": [
+            "stripe",
+            "payment",
+            "commission",
+            "payout",
+            "pay",
+            "purchase",
+            "buy",
+            "sell"
+          ]
+        },
+        "https://www.agensi.io/monetize": {
+          "hasPaymentContent": true,
+          "detail": [
+            "stripe",
+            "payment",
+            "commission",
+            "payout",
+            "pay",
+            "purchase",
+            "buy",
+            "sell"
+          ]
+        },
+        "https://www.agensi.io/sell": {
+          "hasPaymentContent": true,
+          "detail": [
+            "stripe",
+            "payment",
+            "commission",
+            "payout",
+            "pay",
+            "purchase",
+            "buy",
+            "sell"
+          ]
+        },
+        "https://www.agensi.io/payments": {
+          "hasPaymentContent": true,
+          "detail": [
+            "stripe",
+            "payment",
+            "commission",
+            "payout",
+            "pay",
+            "purchase",
+            "buy",
+            "sell"
+          ]
+        }
+      },
+      "evidence": [
+        {
+          "url": "https://www.agensi.io/pricing",
+          "terms": [
+            "stripe",
+            "payment",
+            "commission",
+            "payout",
+            "pay",
+            "purchase",
+            "buy",
+            "sell"
+          ]
+        },
+        {
+          "url": "https://www.agensi.io/pro",
+          "terms": [
+            "stripe",
+            "payment",
+            "commission",
+            "payout",
+            "pay",
+            "purchase",
+            "buy",
+            "sell"
+          ]
+        },
+        {
+          "url": "https://www.agensi.io/pricing",
+          "terms": [
+            "stripe",
+            "payment",
+            "commission",
+            "payout",
+            "pay",
+            "purchase",
+            "buy",
+            "sell"
+          ]
+        },
+        {
+          "url": "https://www.agensi.io/pro",
+          "terms": [
+            "stripe",
+            "payment",
+            "commission",
+            "payout",
+            "pay",
+            "purchase",
+            "buy",
+            "sell"
+          ]
+        },
+        {
+          "url": "https://www.agensi.io/premium",
+          "terms": [
+            "stripe",
+            "payment",
+            "commission",
+            "payout",
+            "pay",
+            "purchase",
+            "buy",
+            "sell"
+          ]
+        },
+        {
+          "url": "https://www.agensi.io/monetize",
+          "terms": [
+            "stripe",
+            "payment",
+            "commission",
+            "payout",
+            "pay",
+            "purchase",
+            "buy",
+            "sell"
+          ]
+        },
+        {
+          "url": "https://www.agensi.io/sell",
+          "terms": [
+            "stripe",
+            "payment",
+            "commission",
+            "payout",
+            "pay",
+            "purchase",
+            "buy",
+            "sell"
+          ]
+        },
+        {
+          "url": "https://www.agensi.io/payments",
+          "terms": [
+            "stripe",
+            "payment",
+            "commission",
+            "payout",
+            "pay",
+            "purchase",
+            "buy",
+            "sell"
+          ]
+        }
+      ]
+    },
+    "github": {
+      "hasPayment": false,
+      "paymentUrls": {
+        "https:///pricing": {
+          "hasPaymentContent": false,
+          "detail": "<urlopen error no host given>"
+        },
+        "https:///pro": {
+          "hasPaymentContent": false,
+          "detail": "<urlopen error no host given>"
+        },
+        "https:///premium": {
+          "hasPaymentContent": false,
+          "detail": "<urlopen error no host given>"
+        },
+        "https:///monetize": {
+          "hasPaymentContent": false,
+          "detail": "<urlopen error no host given>"
+        },
+        "https:///sell": {
+          "hasPaymentContent": false,
+          "detail": "<urlopen error no host given>"
+        },
+        "https:///payments": {
+          "hasPaymentContent": false,
+          "detail": "<urlopen error no host given>"
+        }
+      }
+    },
+    "cursor": {
+      "hasPayment": false,
+      "paymentUrls": {
+        "https://cursor.com/pricing": {
+          "hasPaymentContent": false,
+          "detail": [
+            "pricing"
+          ]
+        },
+        "https://cursor.com/marketplace/pricing": {
+          "hasPaymentContent": false,
+          "detail": "404"
+        },
+        "https://cursor.com/pro": {
+          "hasPaymentContent": false,
+          "detail": "404"
+        },
+        "https://cursor.com/premium": {
+          "hasPaymentContent": false,
+          "detail": "404"
+        },
+        "https://cursor.com/monetize": {
+          "hasPaymentContent": false,
+          "detail": "404"
+        },
+        "https://cursor.com/sell": {
+          "hasPaymentContent": false,
+          "detail": "404"
+        },
+        "https://cursor.com/payments": {
+          "hasPaymentContent": false,
+          "detail": "404"
+        }
+      }
+    },
+    "claude-skills-market": {
+      "hasPayment": false,
+      "paymentUrls": {
+        "https://claudeskillsmarket.com/pricing": {
+          "hasPaymentContent": false,
+          "detail": [
+            "commission"
+          ]
+        },
+        "https://www.claudeskillsmarket.com/pricing": {
+          "hasPaymentContent": false,
+          "detail": [
+            "commission"
+          ]
+        },
+        "https://www.claudeskillsmarket.com/pro": {
+          "hasPaymentContent": false,
+          "detail": [
+            "commission"
+          ]
+        },
+        "https://www.claudeskillsmarket.com/premium": {
+          "hasPaymentContent": false,
+          "detail": [
+            "commission"
+          ]
+        },
+        "https://www.claudeskillsmarket.com/monetize": {
+          "hasPaymentContent": false,
+          "detail": [
+            "commission"
+          ]
+        },
+        "https://www.claudeskillsmarket.com/sell": {
+          "hasPaymentContent": false,
+          "detail": [
+            "commission"
+          ]
+        },
+        "https://www.claudeskillsmarket.com/payments": {
+          "hasPaymentContent": false,
+          "detail": [
+            "commission"
+          ]
+        }
+      }
+    }
+  },
+  "newMarketplaceSearch": {
+    "knownPlatforms": [
+      "https://clawhub.ai",
+      "https://cursor.com/marketplace",
+      "https://lobehub.com/skills",
+      "https://openagentskill.com",
+      "https://skillsmp.com",
+      "https://www.agensi.io",
+      "https://www.claudeskillsmarket.com"
+    ],
+    "searchQueries": [
+      "agent skill marketplace 2026",
+      "SKILL.md marketplace new launch",
+      "AI agent store marketplace payments",
+      "Claude Code skills marketplace",
+      "agent skills shop sell buy",
+      "Cursor rules marketplace",
+      "claude skills market paid",
+      "Agent 37 monetization skills"
+    ],
+    "note": "Marketplace discovery should use web_search in the LLM step. Compare results against knownPlatforms."
+  },
+  "agensiPaymentDetail": {
+    "checked": true,
+    "hasContent": true,
+    "contentLength": 24309,
+    "paymentTerms": [
+      "stripe",
+      "connect",
+      "payout",
+      "commission",
+      "fee",
+      "revenue",
+      "buyer"
+    ]
+  }
+}

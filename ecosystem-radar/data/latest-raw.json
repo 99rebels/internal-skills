@@ -1,0 +1,351 @@
+{
+  "timestamp": "2026-04-10T07:00:30.127195+00:00",
+  "runType": "collect",
+  "platforms": {
+    "clawhub": {
+      "trackedSkills": [
+        {
+          "slug": "self-improving-agent",
+          "displayName": "self-improving-agent",
+          "downloads": 371393,
+          "installs": 5679,
+          "stars": 3097,
+          "comments": 53,
+          "versions": 25,
+          "updatedAt": 1775236062451
+        },
+        {
+          "slug": "ontology",
+          "displayName": "ontology",
+          "downloads": 158404,
+          "installs": 1097,
+          "stars": 512,
+          "comments": 7,
+          "versions": 4,
+          "updatedAt": 1773250316960
+        },
+        {
+          "slug": "obsidian",
+          "displayName": "Obsidian",
+          "downloads": 77771,
+          "installs": 2261,
+          "stars": 317,
+          "comments": 9,
+          "versions": 1,
+          "updatedAt": 1775790015088
+        },
+        {
+          "slug": "prismfy-search",
+          "displayName": "Prismfy Search",
+          "downloads": 75909,
+          "installs": 6,
+          "stars": 21,
+          "comments": 0,
+          "versions": 2,
+          "updatedAt": 1775168249728
+        },
+        {
+          "slug": "baidu-search",
+          "displayName": "Baidu Search",
+          "downloads": 75706,
+          "installs": 786,
+          "stars": 196,
+          "comments": 21,
+          "versions": 11,
+          "updatedAt": 1773829609493
+        },
+        {
+          "slug": "api-gateway",
+          "displayName": "API Gateway",
+          "downloads": 65618,
+          "installs": 480,
+          "stars": 327,
+          "comments": 2,
+          "versions": 81,
+          "updatedAt": 1775784106963
+        }
+      ],
+      "yourSkills": [
+        {
+          "slug": "rebels-gmail-checker",
+          "displayName": "Gmail Checker",
+          "downloads": 104,
+          "installs": 0,
+          "stars": 0,
+          "comments": 0,
+          "versions": 6,
+          "updatedAt": 1775333609143
+        },
+        {
+          "slug": "agent-portability-checker",
+          "displayName": "Agent Portability Checker",
+          "downloads": 77,
+          "installs": 0,
+          "stars": 0,
+          "comments": 0,
+          "versions": 6,
+          "updatedAt": 1775412710112
+        },
+        {
+          "slug": "rebels-skill-polisher",
+          "displayName": "Skill Polisher",
+          "downloads": 54,
+          "installs": 0,
+          "stars": 0,
+          "comments": 0,
+          "versions": 1,
+          "updatedAt": 1775232114222
+        },
+        {
+          "slug": "rebels-invoice-extractor",
+          "displayName": "Invoice Extractor",
+          "downloads": 59,
+          "installs": 0,
+          "stars": 0,
+          "comments": 0,
+          "versions": 3,
+          "updatedAt": 1775497908321
+        },
+        {
+          "slug": "github-growth-tracker",
+          "displayName": "Github Growth Tracker",
+          "downloads": 98,
+          "installs": 0,
+          "stars": 0,
+          "comments": 0,
+          "versions": 10,
+          "updatedAt": 1775332093007
+        }
+      ],
+      "errors": [
+        "agent-browser: no JSON output",
+        "mcpporter: no JSON output"
+      ]
+    },
+    "agensi": {
+      "totalSkills": 104,
+      "hasPayments": true,
+      "paymentProvider": "Stripe",
+      "skillSlugs": [
+        "readme-generator",
+        "git-commit-writer",
+        "code-reviewer",
+        "sales-ops-revenue-workflow-pro-skill",
+        "content-writer",
+        "content-rewriter",
+        "env-doctor",
+        "pr-description-writer",
+        "seo-optimizer",
+        "bug-hunt",
+        "task-initiator",
+        "spotify-to-tidal-copy-songs",
+        "prompt-engineer",
+        "benchmarking-ai-agents-beyond-models",
+        "temporal-reasoning-sleuth",
+        "game-dev",
+        "codeberg",
+        "describe-rename-sound-files",
+        "harness-engineering",
+        "career-expert-alpha-version",
+        "yield-maximizer",
+        "background-removal",
+        "video-face-swap",
+        "api-designer",
+        "designing-hybrid-context-layers",
+        "skill-creator",
+        "alpha-signals-pro",
+        "sun-tzu-business-strategy",
+        "evaluating-ai-harness-dimensions",
+        "llm-wiki-maintainer",
+        "migration-auditor",
+        "jira-rules-builder",
+        "lobster-debugging",
+        "changelog-generator",
+        "keyword-research",
+        "project-phase-manager",
+        "momsdeklaration-skatteverket",
+        "pretext-layout",
+        "synthesizing-institutional-knowledge",
+        "incident-postmortem",
+        "v85-ai-boy",
+        "context-switch-protector",
+        "skill-polisher",
+        "github-growth-tracker",
+        "skill-router-1",
+        "prompt-engineer-pro",
+        "gmail-checker",
+        "agent-eval-coverage-audit",
+        "agent-permission-boundary-audit",
+        "agent-reliability-audit",
+        "multi-agent-coordinator",
+        "truth-first-enterprise",
+        "subagent-orchestrator-develop-based-on-the-claude-code-sourcemap",
+        "transfer-playlist-to-apple-music",
+        "research-to-decision-pro-skill",
+        "periodisk-sammanstallning-ec-sales-list",
+        "registrera-f-renklat-rsbokslut-p-skatteverket-automatiskt",
+        "api-contract-tester",
+        "stack-ship",
+        "lss-audit",
+        "lss-visuals",
+        "business-planner",
+        "lss-tools",
+        "ai-productivity",
+        "web-crawler",
+        "market-tech-analyst",
+        "lss-artifacts",
+        "skill-router",
+        "skill-builder",
+        "deep-research-team",
+        "lss-coaching",
+        "lss-methodologies",
+        "santa-method",
+        "truth-first",
+        "raamatuhai",
+        "opencode-coding",
+        "rag-architect",
+        "agent-cli-builder",
+        "local-seo-audit",
+        "bypass-macos-file-dialog",
+        "founder-ops",
+        "chatops-session-ops",
+        "agent-portability-checker",
+        "client-reporting-pack-generator",
+        "invoice-extractor",
+        "content-brainstorm",
+        "mega-playlist-transfer",
+        "security-audit",
+        "spotify-to-youtube-music-copy-songs",
+        "video-enhancement",
+        "web3-graphql",
+        "youtube-video-translator",
+        "coding-plus",
+        "competitor-content-gap-analyzer",
+        "lobster-coordinator",
+        "dependency-auditor",
+        "diagnosing-rag-failure-modes",
+        "discord-bot",
+        "skill-security-vendor-pack",
+        "dopamine-sprint",
+        "endless-loop",
+        "founder-triage",
+        "gtm-engine",
+        "landing-page-cro-audit"
+      ]
+    },
+    "github": {
+      "repos": {
+        "openclaw": {
+          "repo": "openclaw/openclaw",
+          "stars": 353589,
+          "forks": 71411,
+          "openIssues": 17999,
+          "pushedAt": "2026-04-10T06:57:53Z",
+          "latestRelease": {
+            "tag": "v2026.4.9",
+            "publishedAt": "2026-04-09T02:25:28Z"
+          }
+        },
+        "clawhub": {
+          "repo": "openclaw/clawhub",
+          "stars": 7776,
+          "forks": 1200,
+          "openIssues": 860,
+          "pushedAt": "2026-04-10T04:20:41Z",
+          "latestRelease": {
+            "tag": "v0.1.0",
+            "publishedAt": "2026-01-07T19:07:32Z"
+          }
+        },
+        "claude-code": {
+          "repo": "anthropics/claude-code",
+          "stars": 111919,
+          "forks": 18678,
+          "openIssues": 9597,
+          "pushedAt": "2026-04-10T05:16:35Z",
+          "latestRelease": {
+            "tag": "v2.1.100",
+            "publishedAt": "2026-04-10T05:16:35Z"
+          }
+        },
+        "codex": {
+          "repo": "openai/codex",
+          "stars": 74272,
+          "forks": 10482,
+          "openIssues": 2392,
+          "pushedAt": "2026-04-10T06:26:15Z",
+          "latestRelease": {
+            "tag": "rust-v0.119.0-alpha.29",
+            "publishedAt": "2026-04-09T23:51:24Z"
+          }
+        },
+        "cursor": {
+          "repo": "getcursor/cursor",
+          "stars": 32616,
+          "forks": 2223,
+          "openIssues": 1,
+          "pushedAt": "2026-01-31T04:04:26Z"
+        },
+        "cline": {
+          "repo": "cline/cline",
+          "stars": 60099,
+          "forks": 6122,
+          "openIssues": 670,
+          "pushedAt": "2026-04-10T03:50:04Z",
+          "latestRelease": {
+            "tag": "v3.77.0",
+            "publishedAt": "2026-04-01T17:26:16Z"
+          }
+        },
+        "aider": {
+          "repo": "paul-gauthier/aider",
+          "stars": 43102,
+          "forks": 4167,
+          "openIssues": 1480,
+          "pushedAt": "2026-04-09T05:09:59Z",
+          "latestRelease": {
+            "tag": "v0.86.0",
+            "publishedAt": "2025-08-09T17:42:19Z"
+          }
+        },
+        "gemini-cli": {
+          "repo": "google-gemini/gemini-cli",
+          "stars": 100774,
+          "forks": 13005,
+          "openIssues": 2941,
+          "pushedAt": "2026-04-10T05:09:06Z",
+          "latestRelease": {
+            "tag": "v0.39.0-nightly.20260410.96cc8a0da",
+            "publishedAt": "2026-04-10T04:13:33Z"
+          }
+        }
+      }
+    },
+    "openagentskill": {
+      "skipped": true
+    },
+    "skillsmp": {
+      "skipped": true
+    },
+    "lobehub": {
+      "skipped": true
+    },
+    "cursor": {
+      "pagesAccessible": {
+        "home": true,
+        "automations": true
+      },
+      "featuredCount": 3,
+      "note": "JS-rendered, limited server-side data"
+    },
+    "claude-skills-market": {
+      "pagesAccessible": {
+        "browse": true,
+        "free": true
+      },
+      "hasBrowsePage": true,
+      "hasFreeSkills": true,
+      "note": "JS-rendered, limited server-side data"
+    }
+  }
+}

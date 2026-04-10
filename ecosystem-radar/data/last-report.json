@@ -1,0 +1,40 @@
+{
+  "date": "2026-04-06",
+  "reportNumber": 2,
+  "articleHeadlines": [
+    "Anthropic charges additional fees for Claude Pro/Max users via third-party frameworks",
+    "Enterprise marketplace wave: Salesforce AgentExchange, Google Cloud AI Agent Marketplace, Oracle AI Agent Marketplace",
+    "Agentic payment infrastructure emerging: Stripe Shared Payment Tokens, Mastercard Agent Pay",
+    "Security concerns: Malicious skills found on platforms highlighting AI supply chain attack surfaces",
+    "Agensi shows strong growth momentum (18.75% skill increase in 2 days)",
+    "Specialized platforms emerging: AI Agent Store, Agentverse, Gorilla's Agent Marketplace"
+  ],
+  "keyNumbers": {
+    "clawhubTotalSkills": "~1733",
+    "clawhubZeroDownloadPct": 30,
+    "agensiTotalSkills": 92,
+    "openclawStars": 349355,
+    "claudeCodeStars": 109534,
+    "geminiCliStars": 100346,
+    "salesforceAgentExchange": "200+ partners",
+    "googleCloudMarketplace": "October 2025 announcement",
+    "oracleAgentMarketplace": "100+ AI agents"
+  },
+  "newPlatforms": [
+    "Salesforce AgentExchange",
+    "Google Cloud AI Agent Marketplace",
+    "Oracle AI Agent Marketplace",
+    "AI Agent Store",
+    "Agentverse",
+    "Gorilla's Agent Marketplace"
+  ],
+  "paymentChanges": [],
+  "marketTrends": {
+    "enterpriseFirst": "Major tech players focusing on enterprise marketplaces",
+    "paymentInfrastructure": "Specialized agentic payment solutions emerging",
+    "securityFocus": "Increased attention on AI supply chain security",
+    "crossPlatform": "SKILL.md standard enabling cross-platform compatibility",
+    "marketConsolidation": "Multiple marketplace types coexisting (enterprise, consumer, directories)"
+  },
+  "summary": "Phase 2 ecosystem acceleration: Enterprise platforms (Salesforce, Google Cloud, Oracle) entering rapidly, Agensi maintains strong growth with 92 skills and live payments, specialized payment infrastructure emerging for AI agent commerce, security concerns growing alongside market expansion. Individual creator monetization remains limited but enterprise infrastructure building rapidly."
+}

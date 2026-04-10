@@ -1,0 +1,35 @@
+📡 Ecosystem Pulse — Apr 10, 2026
+─────────────────────────────────
+
+📊 CLAWHUB
+  self-improving-agent    371k dl  ↑4,159  ⭐3,097
+  ontology                158k dl  ↑1,316  ⭐512
+  obsidian                78k dl   ↑720    ⭐317
+  prismfy-search          76k dl   ↑223    ⭐21
+  baidu-search            76k dl   ↑635    ⭐196
+  api-gateway             66k dl   ↑620    ⭐327
+
+─────────────────────────────────
+
+⭐ YOUR SKILLS
+  rebels-gmail-checker*   104 dl  ↑3
+  agent-portability-checker* 77 dl  ↑4
+  rebels-skill-polisher*  54 dl  ↑3
+  rebels-invoice-extractor* 59 dl  ↑6
+  github-growth-tracker*  98 dl  ↑5
+
+─────────────────────────────────
+
+🏪 MARKETPLACES
+  Agensi    104 skills  ↑2 (new: bug-hunt, harness-engineering)
+  Cursor    featured (free)
+
+─────────────────────────────────
+
+🐙 GITHUB
+  openclaw 354k  ↑1,002  |  claude-code 112k  ↑552  |  codex 74k  ↑237
+  clawhub 7.8k  ↑66  |  cline 60k  ↑48  |  aider 43k  ↑58
+
+─────────────────────────────────
+
+NOTE: Slack message could not be sent due to missing SLACK_TOKEN. Please configure the Slack token to send messages to channel C0AQF46E50E.

@@ -1,0 +1,33 @@
+📡 Ecosystem Pulse — Apr 9, 2026
+─────────────────────────────────
+
+📊 CLAWHUB
+  self-improving-agent    367k dl  ↑4.2k  ⭐3,077 ↑33
+  ontology                157k dl  ↑1.3k  ⭐509 ↑13
+  obsidian               77k dl  ↑733   ⭐314 ↑9
+  prismfy-search         76k dl  ↑4.8k  ⭐20 
+  baidu-search           75k dl  ↑637   ⭐194 
+  api-gateway            65k dl  ↑534   ⭐325 ↑3
+
+─────────────────────────────────
+
+⭐ YOUR SKILLS
+  rebels-gmail-checker*  101 dl  ↑4
+  rebels-invoice-extractor*  53 dl  ↑7
+  rebels-skill-polisher*  51 dl  ↑6
+  github-growth-tracker*  93 dl  ↑5
+  agent-portability-checker*  73 dl  ↑4
+
+─────────────────────────────────
+
+🏪 MARKETPLACES
+  Agensi    102 skills ↑3 (3 new: alpha-signals-pro, momsdeklaration-skatteverket, yield-maximizer)
+  Cursor    featured (free)
+
+─────────────────────────────────
+
+🐙 GITHUB
+  openclaw 352k ↑1.0k  |  claude-code 111k ↑556  |  codex 74k ↑238
+  cline 60k ↑32  |  aider 43k ↑63  |  gemini-cli 101k ↑104
+
+─────────────────────────────────

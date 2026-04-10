@@ -1,0 +1,30 @@
+📡 Ecosystem Radar — Deep Report #2 — April 6, 2026
+
+**Major Updates:**
+🆕 **6 New Marketplaces Discovered:**
+- Salesforce AgentExchange (200+ partners)
+- Google Cloud AI Agent Marketplace 
+- Oracle AI Agent Marketplace (100+ agents)
+- AI Agent Store (directory/marketplace)
+- Agentverse (performance tracking)
+- Gorilla's Agent Marketplace (open source, 150+ verified agents)
+
+📊 **Platform Growth:**
+- OpenClaw: 349k stars (+50 in 2 days)
+- Claude Code: 109k stars (+30, strongest growth)
+- Agensi: 92 skills (+15, 18.75% growth in 2 days!)
+- Your skills: rebels-gmail-checker (+3), github-growth-tracker (+1)
+
+💰 **Payment Status:**
+- Agensi remains the ONLY live consumer marketplace with Stripe payments
+- Enterprise platforms building payment infrastructure (Stripe SPTs, Mastercard Agent Pay)
+- Anthropic now charges additional fees for third-party framework access
+
+⚠️ **Security Concerns:**
+- Malicious skills found on platforms highlighting AI supply chain risks
+- Need for trust layers and permission controls
+
+🔮 **Market Direction:**
+Moving from "early adoption" to "mainstream enterprise integration" - major players building infrastructure for AI agent commerce. Individual creator monetization still limited but coming.
+
+**Key Insight:** Enterprise-first strategy dominates while Agensi maintains unique position in consumer payments space. Next 6 months likely to see enterprise platforms expand to individual creators.

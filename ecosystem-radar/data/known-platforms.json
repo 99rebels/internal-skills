@@ -1,0 +1,139 @@
+{
+  "platforms": [
+    {
+      "name": "ClawHub",
+      "url": "https://clawhub.ai",
+      "type": "Registry + Marketplace",
+      "dateDiscovered": "2026-04-04",
+      "paymentStatus": "none",
+      "currentStatus": "active",
+      "notes": "~1,733+ skills indexed. Security reviews but no payments."
+    },
+    {
+      "name": "Agensi",
+      "url": "https://www.agensi.io",
+      "type": "Marketplace",
+      "dateDiscovered": "2026-04-04",
+      "paymentStatus": "stripe",
+      "currentStatus": "active",
+      "notes": "92 skills. One-time purchase model. Explicit cross-platform compatibility. Strong growth (15 skills in 2 days)."
+    },
+    {
+      "name": "SkillsMP",
+      "url": "https://skillsmp.com",
+      "type": "Directory/Aggregator",
+      "dateDiscovered": "2026-04-04",
+      "paymentStatus": "none",
+      "currentStatus": "active",
+      "notes": "145k+ skills indexed but no payments. Directory/aggregator model."
+    },
+    {
+      "name": "agentskill.sh",
+      "url": "https://agentskill.sh",
+      "type": "Directory/Aggregator",
+      "dateDiscovered": "2026-04-04",
+      "paymentStatus": "none",
+      "currentStatus": "active",
+      "notes": "110k+ skills indexed."
+    },
+    {
+      "name": "claude skills market",
+      "url": "https://claude.com/platform/marketplace",
+      "type": "Marketplace",
+      "dateDiscovered": "2026-04-04",
+      "paymentStatus": "enterprise",
+      "currentStatus": "active",
+      "notes": "Anthropic Claude Marketplace. $100M partner network. Enterprise-focused."
+    },
+    {
+      "name": "Agent 37",
+      "url": "https://agent37.com",
+      "type": "Hosted Skill Platform",
+      "dateDiscovered": "2026-04-04",
+      "paymentStatus": "subscriptions",
+      "currentStatus": "active",
+      "notes": "Subscription model detected."
+    },
+    {
+      "name": "Agentalent.ai",
+      "url": "https://agentalent.ai",
+      "type": "Agent-as-service",
+      "dateDiscovered": "2026-04-04",
+      "paymentStatus": "unknown",
+      "currentStatus": "active",
+      "notes": "Agent-as-service model."
+    },
+    {
+      "name": "LobeHub Skills",
+      "url": "https://lobehub.com",
+      "type": "Aggregator",
+      "dateDiscovered": "2026-04-04",
+      "paymentStatus": "none",
+      "currentStatus": "active",
+      "notes": "169k+ skills. Fully JS-rendered, unreliable scraping."
+    },
+    {
+      "name": "Cursor Marketplace",
+      "url": "https://cursor.com/marketplace",
+      "type": "Marketplace",
+      "dateDiscovered": "2026-04-04",
+      "paymentStatus": "none",
+      "currentStatus": "active",
+      "notes": "Free plugins. Enterprise partners (Datadog, Slack, Figma, Linear). No individual payments."
+    },
+    {
+      "name": "Salesforce AgentExchange",
+      "url": "https://agentexchange.salesforce.com",
+      "type": "Enterprise Marketplace",
+      "dateDiscovered": "2026-04-06",
+      "paymentStatus": "enterprise",
+      "currentStatus": "active",
+      "notes": "Launched March 4, 2025. Integrated into Salesforce. 200+ initial partners. Enterprise-focused."
+    },
+    {
+      "name": "Google Cloud AI Agent Marketplace",
+      "url": "https://cloud.google.com/partners/ai-agent-marketplace",
+      "type": "Enterprise Marketplace",
+      "dateDiscovered": "2026-04-06",
+      "paymentStatus": "enterprise",
+      "currentStatus": "announced",
+      "notes": "Announced October 14, 2025. Integrates with Gemini Enterprise. Google Cloud-validated agents."
+    },
+    {
+      "name": "Oracle AI Agent Marketplace",
+      "url": "https://www.oracle.com/artificial-intelligence/ai-agents/oracle-announces-ai-agent-marketplace/",
+      "type": "Enterprise Marketplace",
+      "dateDiscovered": "2026-04-06",
+      "paymentStatus": "enterprise",
+      "currentStatus": "active",
+      "notes": "Introduced October 16, 2025. 100+ AI agents from 20+ vendors. Oracle AI Agent Studio integration."
+    },
+    {
+      "name": "AI Agent Store",
+      "url": "https://aiagentstore.ai",
+      "type": "Directory/Marketplace",
+      "dateDiscovered": "2026-04-06",
+      "paymentStatus": "unknown",
+      "currentStatus": "active",
+      "notes": "Directory and marketplace categorizing AI agents by use cases (finance, productivity, sales)."
+    },
+    {
+      "name": "Agentverse",
+      "url": "https://agentverse.ai",
+      "type": "Performance Platform",
+      "dateDiscovered": "2026-04-06",
+      "paymentStatus": "unknown",
+      "currentStatus": "active",
+      "notes": "Focuses on helping AI agents gain visibility, track performance, and collect feedback. SEO and monetization focus."
+    },
+    {
+      "name": "Gorilla's Agent Marketplace",
+      "url": "https://gorilla.cs.berkeley.edu/agent-marketplace",
+      "type": "Open Source Marketplace",
+      "dateDiscovered": "2026-04-06",
+      "paymentStatus": "unknown",
+      "currentStatus": "active",
+      "notes": "Open-source initiative. Centralized platform for discovering, deploying, and customizing 150+ verified LLM agents."
+    }
+  ]
+}
