@@ -231,7 +231,6 @@ Run these before handing off the brief. These are in addition to the universal c
 - **[MANDATORY]** The spine is identified and flagged in the Suggested Narrative Elements. If you can't identify a single element that carries the post, it isn't ready.
 - **[MANDATORY]** For argument-led posts making forward-looking claims, the prediction is falsifiable. The reader should be able to check back later and assess whether it held up. "The market will grow" is not a prediction. "Paid skills will emerge on ClawHub within 12 months" is.
 - **[MANDATORY]** For argument-led posts making structural claims (about how the market is shaped today, not where it's going), the counterargument section is complete and substantive. Structural arguments don't need to be falsifiable in the predictive sense, but they do need to survive a smart reader pushing back.
-- **[MANDATORY]** No unfalsifiable predictions. "The market will grow" is not a prediction. "Paid skills will emerge on ClawHub within 12 months" is.
 - **[MANDATORY]** Historical analogies (if used) are accurate on both sides. A wrong description of the comparison market undermines the whole analogy.
 - **[MANDATORY]** The brief flags which parts of the evidence are strong vs speculative. The writer needs to know where to be firm.
 - **[GUIDANCE]** The brief provides enough raw material for the writer to reframe the narrative if the primary angle doesn't work. Analysis briefs should be rich enough to support multiple storylines.
