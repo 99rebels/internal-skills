@@ -70,6 +70,8 @@ Research should be conducted in this order, stopping early if sufficient informa
    - Common indicators: "Powered by WordPress", Shopify, Wix, Squarespace, custom
    - Note: this is passive observation from the source code, not active scanning
 
+**Important — JS-rendered sites:** Many modern websites render content via JavaScript (React, Next.js, Vue, etc.). A simple HTTP fetch returns an empty shell with no useful content. The web research helper should handle this gracefully. Options include using a headless browser (Playwright has been used successfully for this in other skills) or falling back to search engine cached content. If neither works, flag the site as "content not accessible via standard fetch — may require manual review." Claude Code should decide the best technical approach for this problem.
+
 ### 4.2 What to Collect
 
 **Must collect (required for assessment):**
@@ -87,12 +89,7 @@ Research should be conducted in this order, stopping early if sufficient informa
 - Recent news or changes (funding, expansion, rebrand)
 - Marketing signals (running ads, content marketing, SEO investment)
 
-**Cannot collect (note as unverified):**
-- Actual budget or revenue
-- Decision-making process
-- Internal priorities or pain points
-- Timeline for a potential project
-- Previous experience with web designers
+**Note on unverified findings:** The "Unverified" section in the report should focus on things that *should* have been verifiable but couldn't be confirmed (e.g., "their About page mentions 3 locations but I couldn't confirm the second one exists," "tech stack suggests WordPress but the theme is heavily customised — couldn't confirm the CMS"). It should NOT list things that are universally unknowable from public sources (budget, internal decision-making, timeline). Those are obvious — the user already knows they need a discovery call to learn those.
 
 ### 4.3 Research Quality Tiers
 
@@ -190,12 +187,13 @@ The full qualification report is saved as a markdown file. The Notion row stores
 
 [This section is NON-NEGOTIABLE. It must appear in every report.]
 
-- "[What couldn't be verified] — [Why it couldn't be verified] — [How the freelancer could verify it]"
-- "[Assumption made] — [What the assumption was based on] — [Alternative interpretations]"
-- "[Requires conversation] — [What can only be learned by talking to the client]"
+Focus on findings that *should* have been verifiable but weren't — not obvious unknowables like budget or internal decisions.
 
-If the agent is highly confident about all findings (rare), this section should say:
-"⚠️ All findings above were verified from public sources. Note that company information may have changed since this research was conducted."
+- "[Specific claim that couldn't be confirmed] — [Why it couldn't be confirmed] — [How the freelancer could verify it]"
+- "[Assumption made about something verifiable] — [What the assumption was based on] — [Alternative interpretations]"
+- "[Data that should exist but doesn't] — [e.g., "No Google Business profile found — unusual for a local business this size"]
+
+If everything was verified or the agent is highly confident: "⚠️ All findings above were verified from public sources."
 
 ## Recommendation
 
