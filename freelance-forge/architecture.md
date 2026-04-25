@@ -26,6 +26,7 @@ Every freelancer does the same repetitive work: research a lead, score whether t
 - **Workflow, not tool.** Each sub-skill is independently useful, but together they form a complete pipeline. No other bundle on ClawHub does this.
 - **Schema-adaptive.** Works with the user's existing Notion setup instead of forcing a specific database structure.
 - **Agent assists, never replaces.** The human is the designer and the relationship holder. The agent handles the process.
+- **Honest about uncertainty.** Every report and assessment explicitly flags what the agent couldn't verify or isn't sure about. Confident wrong answers are worse than honest "I don't know."
 
 ---
 
@@ -60,6 +61,30 @@ The agent never sends emails, never creates invoices, never commits to deadlines
 The agent generates text-based, structured, verifiable assets: project briefs, checklists, sitemaps, email drafts, proposal documents. It does NOT generate logos, brand guidelines, design mockups, or any visual creative work.
 
 **Why:** LLMs are good at structured text. They are not good at visual design. Generating bad creative work is worse than generating none.
+
+### 2.6 Honest About Uncertainty
+
+Every output that involves analysis or assessment must explicitly flag what the agent could not verify, could not test, or is not confident about. This applies to all sub-skills but is most critical for the Lead Qualifier.
+
+**Why:** A confidently wrong assessment is worse than an honest "I couldn't verify this." The freelancer will act on the agent's output. If the agent guesses that a company has a £50K marketing budget when it actually doesn't, that leads to an embarrassing pitch. Flagging uncertainty lets the freelancer verify before acting.
+
+**Pattern:** Every report should include an "Unverified / Could Not Confirm" section that lists:
+- Claims that could not be verified from public sources
+- Assumptions the agent made (and what those assumptions were based on)
+- Things that would require direct conversation with the client to confirm
+- Confidence level on key findings (HIGH / MEDIUM / LOW) where appropriate
+
+### 2.7 Reports as Files, Notion as Metadata
+
+Each sub-skill generates a **full report or document** as a markdown file in the workspace. The Notion database stores **summaries and metadata** (scores, one-line recommendations, key dates, statuses), not the full content.
+
+**Why:** A Notion database cell is not the right place for a 500-word qualification brief. The freelancer needs to read a proper document with structure, context, and reasoning. Notion is for scanning and tracking; files are for reading and acting.
+
+**Pattern:**
+- Lead Qualifier → full research brief (file) + score/summary (Notion)
+- Proposal Builder → full proposal document (file) + proposal summary (Notion)
+- Project Onboarder → project brief + checklist + sitemap (files) + project link (Notion)
+- Pipeline Tracker → pipeline digest (chat output) + statuses (Notion)
 
 ---
 
@@ -129,7 +154,7 @@ No sub-skill reads another sub-skill's output files. Everything flows through No
 
 On first run of the Pipeline Tracker (or any sub-skill that needs Notion access):
 
-1. **Check for existing config** — if `freelance-forge-config.json` exists in the workspace, load the schema mapping and skip discovery.
+1. **Check for existing config** — if `freelance-forge-config.json` exists in the config directory, load the schema mapping and skip discovery.
 2. **If no config:** Ask the user: "Do you have an existing client pipeline or CRM database in Notion?"
 3. **If yes:** User provides database ID or name → agent fetches schema via Notion API (`GET /databases/{id}`).
 4. **Agent identifies field mappings** by inspecting property types and names:
@@ -140,8 +165,12 @@ On first run of the Pipeline Tracker (or any sub-skill that needs Notion access)
    - Rich text / textarea properties → Research Notes, Discovery Notes
    - URL property → Website
    - Email property → Contact Email
-5. **Present mapping to user:** "Here's how I'd map your database fields:" → user confirms or adjusts.
-6. **Save config** to `freelance-forge-config.json`.
+5. **Agent identifies gaps** — compares mapped fields against required fields and identifies what's missing.
+6. **Present mapping to user:** "Here's how I'd map your database fields. You have most of what I need. I'd add 3 columns: Lead Score (number), Website (URL), Research Notes (text)." → user confirms or adjusts.
+7. **Augment the database** — if user confirms, use `PATCH /databases/{id}` to add missing properties. Existing properties are never modified or removed.
+8. **Save config** to `freelance-forge-config.json`.
+
+**Important:** The augmentation approach means we work with what the user already has. If their database is called "Clients" with a "Stage" column using values "New/Contacted/Won/Lost" — we map to that, not rename it. If they're missing a lead score column, we add one. The user's existing data and workflow are preserved.
 
 ### 4.2 Default Pipeline Schema
 
@@ -222,8 +251,28 @@ This file is the bridge between our abstract concepts and the user's actual Noti
 
 - Use the official Notion API (bearer token auth)
 - The user provides their own Notion integration token during setup
-- Token stored in OpenClaw credentials (not in the config file or code)
+- Token provided via `NOTION_TOKEN` environment variable (with setup instructions on how to create a Notion integration)
 - API calls through simple Python scripts using `requests` (no heavy SDK)
+- Config file location determined by `FREELANCE_FORGE_CONFIG_DIR` env var, defaulting to `~/.freelance-forge/`
+
+### 4.6 Cross-Agent Compatibility
+
+The bundle is designed to work across SKILL.md-compatible agents (OpenClaw, Claude Code, Codex CLI, Cursor, Gemini CLI). To achieve this:
+
+- **No hardcoded platform paths** — all paths resolved via env vars with sensible defaults
+- **Config directory:** `FREELANCE_FORGE_CONFIG_DIR` (default: `~/.freelance-forge/`)
+- **Notion token:** `NOTION_TOKEN` env var (standard across all platforms)
+- **Reports directory:** `FREELANCE_FORGE_REPORTS_DIR` (default: `./freelance-forge-reports/`)
+- **Scripts use standard tools** — bash and Python 3, no platform-specific dependencies
+- **SKILL.md files are self-contained** — each works independently with no cross-file imports in the skill definition
+
+**Distribution format:**
+- **OpenClaw:** `openclaw-install.sh` + `openclaw.bundle.json`
+- **Claude Code:** `.claude-plugin/plugin.json` manifest (can coexist in the same bundle)
+- **Agensi:** plugin bundle format (paid distribution)
+- All three formats can be packaged in the same repo — the bundle manifest supports multiple install targets
+
+**Portability:** Use the agent-portability-checker skill to audit the finished product before publishing. Fix any flagged issues. This is a post-build step, not an architecture concern — build for quality first, ensure portability after.
 
 ---
 
@@ -243,19 +292,51 @@ This file is the bridge between our abstract concepts and the user's actual Noti
 5. Offer to draft a qualification summary or follow-up email
 
 **Output:**
-- Qualification score + reasoning (displayed to user)
-- New Notion pipeline row
-- Optional: draft email for first contact
+- Full qualification report (markdown file) — see report structure below
+- Qualification score + reasoning (displayed to user and stored in Notion)
+- New Notion pipeline row (summary data only)
+- Optional: draft follow-up email (chat output, user copies and sends)
+
+**Qualification Report Structure:**
+```
+# Lead Qualification: [Company Name]
+
+## Company Overview
+[Full research summary — what the company does, size, location, industry]
+
+## Fit Assessment
+**Score: X/10**
+- [Reasoning for score — why this score, what supports it]
+
+## Key Findings
+- [Finding 1 — e.g., current site is outdated]
+- [Finding 2 — e.g., spending on ads but poor landing page]
+- [Finding 3 — e.g., no mobile optimisation]
+
+## Unverified / Could Not Confirm ⚠️
+- [Thing that couldn't be verified — e.g., "Could not confirm budget. No pricing or budget information found on public sources."]
+- [Assumption made — e.g., "Assuming 5-10 employees based on LinkedIn, but company size page not accessible."]
+- [Requires client conversation — e.g., "Decision-making process unknown — unclear if marketing manager or owner makes website decisions."]
+
+## Recommendation
+[What the freelancer should do with this lead, based on available information]
+
+## Suggested Next Steps
+[Numbered action items for the freelancer]
+```
+
+**Critical:** The "Unverified / Could Not Confirm" section is non-negotiable. Every qualification report must include it. If the agent is highly confident about everything (rare), the section says "All findings verified from public sources" rather than being omitted.
 
 **Notion interaction:**
 - Reads config for field mappings
 - Creates new page in pipeline database
-- Writes: Company Name, Website, Lead Score, Research Notes, Status = Lead
+- Writes: Company Name, Website, Lead Score, Research Notes (summary only, not full report), Status = Lead
 
 **Edge cases:**
-- Very little web presence → flag as "limited info, manual research recommended"
+- Very little web presence → flag as "limited info, manual research recommended" with specific note on what couldn't be found
 - Company is clearly too small/large for freelancer scope → note in score reasoning
 - Already exists in pipeline → alert user, offer to update existing row instead
+- Multiple companies with similar names → flag ambiguity, ask user to confirm which one
 
 ---
 
@@ -278,18 +359,19 @@ This file is the bridge between our abstract concepts and the user's actual Noti
 5. Update pipeline: Proposal Summary, Proposal Date, Status = Proposal Sent
 
 **Output:**
-- Proposal markdown file
-- Pipeline status updated
-- Optional: draft email with proposal attached/linked
+- Full proposal document (markdown file)
+- Pipeline status updated (Notion stores summary only)
+- Optional: draft email with proposal summary (chat output, user copies and sends)
 
 **Notion interaction:**
 - Reads: client's pipeline row
-- Writes: Proposal Summary, Proposal Date, Status
+- Writes: Proposal Summary (brief, not full proposal), Proposal Date, Status
 
 **Edge cases:**
 - No discovery notes provided → prompt user to provide them, offer to generate a discovery template
 - No pipeline row for this client → suggest running Lead Qualifier first, or create a minimal row
 - Pricing: agent should present ranges based on service type and scope, not exact figures. The freelancer sets the final price.
+- Insufficient information for a section → flag it in the proposal: "[Confirm with client: technical requirements for booking system]"
 
 ---
 
@@ -319,10 +401,10 @@ This file is the bridge between our abstract concepts and the user's actual Noti
 
 **Output:**
 - Notion project database (linked to pipeline)
-- Project brief (markdown or Notion page)
-- Onboarding checklist (markdown or Notion page)
-- Sitemap/IA draft
-- Optional: draft welcome email with checklist for client
+- Project brief (markdown file)
+- Onboarding checklist (markdown file)
+- Sitemap/IA draft (markdown file)
+- Optional: draft welcome email with checklist (chat output, user copies and sends)
 
 **Notion interaction:**
 - Reads: client's pipeline row
@@ -333,6 +415,7 @@ This file is the bridge between our abstract concepts and the user's actual Noti
 - Pipeline row missing proposal data → use whatever's available, flag gaps
 - Client already has a project database → ask if user wants to use existing or create new
 - Very large project → suggest phased onboarding (brief first, detailed sitemap later)
+- Missing discovery notes → generate onboarding checklist with placeholders marked for confirmation
 
 ---
 
@@ -379,6 +462,7 @@ A Python module that handles:
 - Updating pages (changing status, adding notes)
 - Querying databases (filter by status, sort by date)
 - Fetching database schema for discovery
+- Augmenting existing databases (adding missing properties via `PATCH`)
 
 ### 6.2 Web Research Helper
 
@@ -387,14 +471,16 @@ Used by Lead Qualifier:
 - Extract basic info (company description, services, contact info)
 - Detect tech stack indicators (CMS, hosting, frameworks)
 - Find social media profiles
+- **Track what couldn't be found** — return a structured list of unverified claims alongside verified findings
 
 ### 6.3 Config Manager
 
 Used by all sub-skills:
-- Load `freelance-forge-config.json`
+- Load config from `FREELANCE_FORGE_CONFIG_DIR/freelance-forge-config.json` (env var with default)
 - Validate that required fields exist
 - Provide sensible defaults for missing optional fields
 - Handle first-run setup (no config exists yet)
+- Support cross-platform paths via env vars
 
 ### 6.4 Template System
 
@@ -404,6 +490,14 @@ Used by Proposal Builder and Project Onboarder:
 - Output completed documents
 
 Templates are starting points, not rigid forms. The agent should adapt content based on the specific client context, not fill in blanks mechanically.
+
+### 6.5 Report Generator
+
+Used by all sub-skills:
+- Generate markdown report files with consistent structure
+- Include uncertainty sections in every analytical output
+- Save to `FREELANCE_FORGE_REPORTS_DIR` (env var with default)
+- Return the file path so the agent can reference it in chat
 
 ---
 
@@ -544,12 +638,14 @@ The `openclaw-install.sh` script should:
 ## 9. Constraints & Boundaries
 
 ### The Agent Must Never
-- Send emails or messages to clients
+- Send emails or messages to clients (see §2.4 — drafting is chat output only)
 - Generate or modify invoices or financial documents
 - Commit to deadlines, pricing, or scope on behalf of the freelancer
 - Access client accounts (Notion, hosting, email) directly
 - Delete data from the user's Notion workspace
 - Share client information across different leads/clients
+- Present uncertain findings as confirmed facts (see §2.6)
+- Omit the uncertainty section from any analytical report
 
 ### What Requires User Confirmation
 - Creating a new Notion database (confirm name, confirm workspace)
@@ -572,7 +668,10 @@ The `openclaw-install.sh` script should:
 - Shared scripts should handle graceful degradation (if config file doesn't exist, prompt for setup instead of crashing)
 - Keep Notion API calls minimal — fetch what's needed, don't pull entire databases when a filtered query works
 - All user-facing output should be concise and actionable — freelancers are busy, they want the answer, not a wall of text
-- Error handling should suggest the fix, not just report the error ("Notion token not found. Run `export NOTION_TOKEN=...` or add it to your credentials.")
+- Error handling should suggest the fix, not just report the error ("Notion token not found. Set the NOTION_TOKEN environment variable. See setup instructions.")
+- Every analytical output must include uncertainty flags — what the agent couldn't verify, what assumptions were made, what requires human confirmation (see §2.6)
+- Full reports are saved as files; Notion stores summaries and metadata only (see §2.7)
+- Email drafting means outputting text in the chat for the user to copy and send — no inbox integration, no email API, no OAuth
 
 ### What Claude Code Has Freedom On
 - Exact SKILL.md structure and wording (follow the SKILL.md standard, but the specific sections and phrasing are up to you)
@@ -585,8 +684,11 @@ The `openclaw-install.sh` script should:
 ### What Should Stay Fixed
 - The four sub-skills and their responsibilities (§5)
 - Notion as the single source of truth (§2.1)
-- Schema-adaptive approach (§4.1)
-- Draft-only email policy (§2.4)
+- Schema-adaptive approach with augmentation for partial schemas (§4.1)
+- Draft-only email policy — chat output, no inbox integration (§2.4)
+- Honest uncertainty flagging in every analytical report (§2.6)
+- Reports as files, Notion as metadata (§2.7)
+- Cross-agent compatibility via env vars (§4.6)
 - The constraints and boundaries (§9)
 - The config file structure (§4.4)
 - Each sub-skill working standalone after install
