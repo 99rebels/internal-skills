@@ -123,6 +123,16 @@ Pricing is the most sensitive part of the proposal. The agent's role is to provi
 - Never price below market rate to "win the deal" — that's the freelancer's decision, not the agent's
 - If no pricing signal exists at all, present a broad range with a note: "Pricing range is wide due to limited scope information. Recommend clarifying scope before finalising."
 
+### Pricing Strategy Preferences
+
+Freelancers often have established pricing approaches. On first use of the Proposal Builder, check the config for a `pricingStrategy` preference. If it doesn't exist, ask the user:
+
+- "Do you have a pricing strategy you'd like me to use? For example: day rate, project-based, value-based, or tiered packages?"
+- If they have one: default to their strategy and apply it to proposals going forward. Save the preference in config.
+- If they don't: use market-informed ranges as described above.
+
+This is a one-time setup — the preference persists in config. The freelancer can always override pricing in any individual proposal.
+
 ---
 
 ## 6. Tone & Style
