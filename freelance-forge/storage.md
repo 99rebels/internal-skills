@@ -270,6 +270,9 @@ If the database file doesn't exist, create it. If a table is missing, create it.
 
 The helper provides functions for common queries. Sub-skills call these functions; they don't write raw SQL.
 
+**Fuzzy match definition:**
+Case-insensitive `LIKE %query%` on `company` (and `task_name` for tasks). If multiple rows match, return all candidates so the caller can disambiguate. No Levenshtein distance or phonetic matching in v1 — the query complexity doesn't warrant it at freelancer scale.
+
 **Pipeline summary:**
 ```python
 get_leads_by_status()          # Returns leads grouped by status
@@ -278,8 +281,8 @@ get_leads_sorted_by_score()    # All leads sorted by score descending
 
 **Follow-up checking:**
 ```python
-get_stale_leads()              # Leads past their per-status follow-up threshold (see §7.2)
-get_overdue_follow_ups(days=5) # Legacy: leads in 'proposal_sent' past threshold
+get_stale_leads()              # Leads past their per-status threshold (uses MAX(status_since, last_follow_up))
+get_overdue_follow_ups(days=5) # Convenience: same check filtered to status='proposal_sent'
 ```
 
 **Task management:**
@@ -309,13 +312,6 @@ add_tag(lead_id, tag_name, category="custom")
 remove_tag(lead_id, tag_name)
 get_leads_by_tag(tag_name)
 get_tags_for_lead(lead_id)
-```
-
-**Tasks:**
-```python
-get_tasks(lead_id)             # All tasks for a project
-add_task(lead_id, task_name, ...)
-update_task_status(task_id, status)
 ```
 
 **Export:**
@@ -406,7 +402,7 @@ The Pipeline Tracker supports these query types out of the box:
 - **Aggregate stats** — "how many leads this month?", "conversion rate from lead to active"
 - **Task queries** — "show me O'Brien's tasks", "what's left to do?" (see §7.5)
 
-### 7.4 Follow-Up Suggestion System
+### 7.3 Follow-Up Suggestion System
 
 **The problem:** Freelancers forget to follow up. A lead gets qualified, the freelancer means to call them, a week passes, nothing happens. Same for post-proposal follow-ups, onboarding check-ins, etc.
 
@@ -423,7 +419,7 @@ The Pipeline Tracker supports these query types out of the box:
 | `complete` | null (disabled) | |
 | `lost` | null (disabled) | |
 
-**The query:** `get_stale_leads()` returns all leads where `(current_date - status_since) > threshold` for their status.
+**The query:** `get_stale_leads()` returns all leads where `(current_date - MAX(status_since, last_follow_up)) > threshold` for their status. If `last_follow_up` is NULL, only `status_since` is used.
 
 **How the agent presents it:**
 - When showing the pipeline summary, stale leads get a visual indicator: `⚠️ follow up suggested (7 days in qualified)`
@@ -432,13 +428,14 @@ The Pipeline Tracker supports these query types out of the box:
 - If the user asks specifically ("any follow-ups needed?"), the agent provides the full stale leads list regardless
 
 **When the threshold resets:**
-- Any status change resets `status_since` (the agent updates it automatically)
-- The user reports a follow-up ("I followed up with Acme") → `last_follow_up` is updated, `status_since` is reset to now
-- The user logs any activity on the lead → `date_updated` changes, but `status_since` only changes on status transitions
+- A status change resets `status_since` to now (the only thing that changes it)
+- A user-reported follow-up updates `last_follow_up` to now — `status_since` is NOT changed
+- The stale check uses `MAX(status_since, last_follow_up)` against the threshold, not `status_since` alone
+- This means a follow-up buys the freelancer time within the same status without losing the status history
 
 **Custom thresholds:** Users can set their own thresholds via config or by telling the agent ("remind me about leads after 3 days"). Custom statuses get a default threshold of 7 days unless configured.
 
-### 7.5 Task Queries
+### 7.4 Task Queries
 
 During active projects, the freelancer manages tasks through the Pipeline Tracker:
 - "show me O'Brien's tasks" → `get_tasks(lead_id)`
@@ -447,7 +444,7 @@ During active projects, the freelancer manages tasks through the Pipeline Tracke
 - "what's left to do for O'Brien?" → `get_pending_tasks(lead_id)`
 - "show me all overdue tasks" → filter tasks where `due_date < today AND status != 'done'`
 
-### 7.3 Export for External Use
+### 7.5 Export for External Use
 
 Users who want their data in Notion, Google Sheets, or any other tool:
 - `export_pipeline(format="csv")` → import into Notion/Sheets/Excel

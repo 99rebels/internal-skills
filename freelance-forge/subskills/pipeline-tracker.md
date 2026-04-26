@@ -76,7 +76,7 @@ Keep the confirmation output minimal — one line is sufficient.
 
 ---
 
-## 6. Follow-Up Checker
+## 6. Follow-Up System
 
 **Timing:** The follow-up check runs automatically whenever the pipeline summary is shown (§4). It can also be triggered directly ("any overdue follow-ups?").
 
@@ -173,7 +173,7 @@ During active projects, the Pipeline Tracker handles day-to-day task operations:
 
 ---
 
-## 11. Database Interactions
+## 12. Database Interactions
 
 The Pipeline Tracker uses these database helper functions:
 - `get_leads_by_status()` — pipeline summary
@@ -195,7 +195,7 @@ It does NOT create leads (that's handled by Lead Qualifier) and does NOT create 
 
 ---
 
-## 12. Error Handling Principles
+## 13. Error Handling Principles
 
 Errors should be helpful and actionable, not just informative. General patterns:
 
@@ -208,7 +208,7 @@ Errors should be helpful and actionable, not just informative. General patterns:
 
 ---
 
-## 13. Design Decisions
+## 14. Design Decisions
 
 ### Why No Setup Flow
 The entire Notion integration (schema discovery, field mapping, augmentation, config saving) was replaced by a single function call that creates the database. Setup is not a user-facing concept anymore. The database exists or it doesn't — and if it doesn't, it's created. This is the single biggest simplification from the architecture shift.
@@ -236,7 +236,7 @@ With Notion gone, we lost the visual kanban board. Tags partially compensate —
 
 ---
 
-## 14. Claude Code Implementation Notes
+## 15. Claude Code Implementation Notes
 
 ### What's Fixed
 - No setup flow — database created automatically on first use

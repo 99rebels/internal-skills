@@ -69,7 +69,7 @@ Do fewer things well. A lead qualification that's accurate and honest is worth m
 
 ### Adapt to the User's Workflow
 
-The user has an existing Notion setup, existing pricing strategies, existing ways of working. The agent adapts to them, not the other way around. Schema discovery exists because of this principle. Pricing strategy preferences exist because of this principle. The agent is a guest in the freelancer's business.
+The user has existing pricing strategies, existing ways of working, and existing categorisation preferences. The agent adapts to them, not the other way around. Tags exist because of this principle — users define their own categories. Pricing strategy preferences exist because of this principle. The agent is a guest in the freelancer's business.
 
 ### Templates Are Starting Points, Not Forms
 
@@ -85,9 +85,9 @@ This applies to everything: emails, proposals, status changes, pricing, project 
 
 If the agent can't do something, say so. If the research quality is LOW, say so. If a proposal has significant gaps, say so. If the follow-up check can't determine whether the client was contacted, say so. Honesty about limitations builds trust. Fabricated competence destroys it.
 
-### Reports Are for Reading, Notion Is for Scanning
+### Reports Are for Reading, the Database Is for Scanning
 
-The freelancer reads a full report when they need depth. They scan Notion when they need a quick overview. Don't put a 500-word assessment in a Notion cell. Don't put a one-line summary in a report file. Each output format serves its purpose.
+The freelancer reads a full report when they need depth. They query the database when they need a quick overview. Don't put a 500-word assessment in a database cell. Don't put a one-line summary in a report file. Each output format serves its purpose.
 
 ### Minimal Friction Setup
 
@@ -103,11 +103,11 @@ When building the SKILL.md files and scripts, these principles should shape ever
 
 - **Proposal generation:** Every sentence should be traceable to either the discovery notes or the lead research. If a sentence can't be traced, it's either an inference (label it) or a fabrication (remove it).
 
-- **Notion interactions:** Read before write. Never assume a field exists — check the config. Never assume a value is correct — verify against the source.
+- **Database interactions:** Every write to `leads` or `tasks` also writes to `activity_log` in the same transaction. Every analytical output includes an explicit confidence/uncertainty section.
 
 - **Error handling:** When something goes wrong, tell the user what happened and what to do about it. Don't hide failures behind generic messages.
 
-- **User interactions:** Ask before doing anything that writes to the user's Notion workspace (except routine status updates). Confirm before creating new databases. Confirm before adding properties to existing databases.
+- **User interactions:** Ask before doing anything destructive (deleting a lead). Routine operations (status updates, tag changes, task updates) don't need confirmation except when specified (status → 'lost').
 
 ---
 

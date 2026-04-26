@@ -571,22 +571,6 @@ The `openclaw-install.sh` script should:
 - Tags provide unlimited user-defined categorisation — no predefined categories, no schema changes
 - The agent suggests tags based on research; users add/remove/query freely
 - No external service dependency — works offline, no API limits, no paywalls
-- An agent sending an email to the wrong person, with wrong info, or at the wrong time could damage a relationship permanently
-- Drafting is valuable (saves time writing) without the risk of sending
-
-### Why Each Sub-Skill Standalone
-- The skill matcher can only find skills in the standard skills/ directory
-- Nested sub-skills would be invisible to the agent after the bundle is installed
-- Users should be able to use just one piece if that's all they need
-
-### Why No Invoice Generation (v1)
-- Invoices involve money. Getting them wrong has real consequences.
-- Requires payment API integration (Stripe, Xero, GoCardless) which is a separate scope.
-- The pipeline tracker shows where clients are — the freelancer can generate invoices themselves using the pipeline data as reference.
-
-### Why No Automated Scheduling
-- Automated follow-up reminders are fine ("flag overdue items"). Automated actions (send email after 5 days) cross the trust boundary.
-- The agent should inform and suggest, never act autonomously on client communication.
 
 ---
 
@@ -603,7 +587,7 @@ The `openclaw-install.sh` script should:
 - Omit the uncertainty section from any analytical report
 
 ### What Requires User Confirmation
-- Changing a lead's status to "Lost" (irreversible signal)
+- **Changing a lead's status to "Lost"** — significant signal that should not happen by accident. Data is preserved and status can be reverted, but the confirmation prevents accidental changes.
 - Exporting pipeline data
 
 ### Scope Boundaries

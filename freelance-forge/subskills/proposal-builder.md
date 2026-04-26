@@ -13,7 +13,7 @@ The Proposal Builder takes discovery notes from a client call and generates a sc
 **It does three things:**
 1. **Synthesise** — merge pipeline data (research notes, score, context) with fresh discovery notes
 2. **Generate** — produce a structured proposal document with scope, timeline, and pricing guidance
-3. **Store** — save the proposal as a file, update the Notion pipeline row with a summary
+3. **Store** — save the proposal as a file, update the database with a summary
 
 ---
 
@@ -36,7 +36,7 @@ The Proposal Builder takes discovery notes from a client call and generates a sc
 The Proposal Builder needs two things:
 
 **Required:**
-- **Client identification** — a company name that matches a row in the Notion pipeline
+- **Client identification** — a company name that matches a row in the pipeline database
 - **Discovery notes** — the user's raw notes from a discovery call or client interaction. These can be pasted directly, dictated, or referenced from a file.
 
 **Read automatically from database:**
@@ -213,8 +213,8 @@ After the proposal is generated:
 
 ## 10. Design Decisions
 
-### Why Proposals Are Files, Not Notion Pages
-Proposals are 1,000-2,000 word documents that the freelancer will send to clients. They need to be formatted, shareable, and possibly exported to PDF. A Notion page works, but a markdown file gives the freelancer more flexibility (convert to PDF, paste into Google Docs, email directly).
+### Why Proposals Are Files, Not Database Rows
+Proposals are 1,000-2,000 word documents that the freelancer will send to clients. They need to be formatted, shareable, and possibly exported to PDF. A database cell is not the right place for this — a markdown file gives the freelancer more flexibility (convert to PDF, paste into Google Docs, email directly).
 
 ### Why Pricing Is Ranges
 The freelancer knows their own value, overhead, and relationship with the client. Setting a fixed price would either undersell the freelancer or scare off the client. Ranges provide a starting point for the freelancer to adjust.

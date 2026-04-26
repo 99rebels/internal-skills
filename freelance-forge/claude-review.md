@@ -29,9 +29,9 @@ freelance-forge/
 
 1. **Does the overall architecture hold together?** Are there any logical gaps, circular dependencies, or assumptions that break down under scrutiny?
 
-2. **Is the data flow realistic?** All sub-skills communicate through a Notion database. Are there scenarios where this pattern causes problems (e.g., race conditions, data conflicts, missing data between stages)?
+2. **Is the data flow realistic?** All sub-skills communicate through a local SQLite database. Are there scenarios where this pattern causes problems (e.g., concurrent access, data conflicts, missing data between stages)?
 
-3. **Is the schema-adaptive approach feasible at the described level?** Mapping user fields by type + name heuristics, then augmenting missing columns — does this work reliably with real Notion databases, or are there edge cases we're missing?
+3. **Is the database schema sound?** Review the schema in `storage.md`. Are there missing fields, wrong types, or missing indexes for common query patterns? Are there edge cases where the fixed schema is too rigid?
 
 4. **Are the env var defaults sensible?** `FREELANCE_FORGE_CONFIG_DIR` defaults to `~/.freelance-forge/`, `FREELANCE_FORGE_REPORTS_DIR` defaults to `./freelance-forge-reports/`. Are there cross-platform issues (Windows paths, sandboxed environments)?
 
@@ -39,7 +39,7 @@ freelance-forge/
 
 5. **Lead Qualifier — is the research process realistic?** Web scraping → search → social → tech stack, with graceful handling of JS-rendered sites. Are we underestimating the complexity of this? What are the likely failure modes?
 
-6. **Pipeline Tracker — is the setup flow too complex?** The discover → map → augment → save flow involves multiple Notion API calls and user confirmations. Is there a simpler approach that achieves the same result?
+6. **Pipeline Tracker — is the query interface comprehensive enough?** Does it cover all the queries a freelancer would realistically want? Are there missing query patterns?
 
 7. **Are the two sub-skills well-scoped relative to each other?** Does the Lead Qualifier try to do too much or too little? Does the Pipeline Tracker have the right responsibilities, or should some of its functions live elsewhere?
 
@@ -49,7 +49,7 @@ freelance-forge/
 
 9. **Are there any dependencies or prerequisites we haven't accounted for?** Python packages, system tools, API rate limits, auth complexity.
 
-10. **What would you change about the architecture?** Not nitpicks — substantive changes that would make the product better, simpler, or more robust. Assume the core concept (four sub-skills, Notion as hub, freelancer-focused) is fixed. Focus on structure and implementation approach.
+10. **What would you change about the architecture?** Not nitpicks — substantive changes that would make the product better, simpler, or more robust. Assume the core concept (four sub-skills, local SQLite database, freelancer-focused) is fixed. Focus on structure and implementation approach.
 
 ### Cross-Agent Compatibility
 

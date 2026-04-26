@@ -8,10 +8,10 @@
 
 ## 1. Purpose
 
-The Project Onboarder turns a signed proposal into a running project. When the client says yes, this sub-skill creates the project infrastructure in Notion, generates a structured project brief, builds an onboarding checklist, and drafts an initial sitemap. It's the bridge between "sold" and "building."
+The Project Onboarder turns a signed proposal into a running project. When the client says yes, this sub-skill creates project tasks in the database, generates a structured project brief, builds an onboarding checklist, and drafts an initial sitemap. It's the bridge between "sold" and "building."
 
 **It does four things:**
-1. **Create project infrastructure** — set up a Notion project database for the client
+1. **Create project tasks** — create tasks in the database for the client's project
 2. **Generate a project brief** — a structured document capturing scope, contacts, timeline, and technical requirements
 3. **Build an onboarding checklist** — what the freelancer needs from the client before work can begin
 4. **Draft a sitemap/IA** — initial information architecture based on discovery notes and proposal scope
@@ -36,7 +36,7 @@ The Project Onboarder turns a signed proposal into a running project. When the c
 ## 3. Input
 
 **Required:**
-- Client name — matching a row in the Notion pipeline
+- Client name — matching a row in the pipeline database
 
 **Read from database:**
 - The client's full lead row (research notes, discovery notes, proposal summary, tags)
@@ -137,7 +137,7 @@ A structured document that captures everything the freelancer needs to execute t
 ## Links
 - Qualification report: [path if exists]
 - Proposal: [path if exists]
-- Project database: [Notion link]
+- Project directory: [path to reports/projects/<slug>/]
 - Client website: [URL]
 ```
 
@@ -178,7 +178,7 @@ A practical list of what the freelancer needs from the client before work can be
 **Approvals Process:**
 - Who approves design work?
 - Who approves content?
-- How should revisions be submitted? (email, shared doc, Notion comments)
+- How should revisions be submitted? (email, shared document)
 - Expected turnaround time for client reviews
 
 ### Output
@@ -300,8 +300,8 @@ The email should:
 
 ## 12. Design Decisions
 
-### Why a Separate Project Database Per Client
-Each client has their own tasks, milestones, and timeline. Mixing multiple clients into one database creates noise and confusion. Separate databases mean the freelancer (and the agent) can focus on one project at a time.
+### Why Tasks Live in a Shared Table Keyed by `lead_id`
+A single `tasks` table with a `lead_id` foreign key is simpler and more flexible than per-client databases. It enables cross-client queries ("show me all overdue tasks across all projects"), requires no per-client schema management, and keeps data consistent through cascading deletes. The Project Onboarder creates the initial task set; the Pipeline Tracker manages them day-to-day.
 
 ### Why the Project Brief Is Internal-Only
 The brief contains honest assessments (lead score, research notes, assumptions). These are useful for the freelancer but shouldn't be client-facing. The proposal is the client-facing document.

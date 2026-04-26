@@ -14,7 +14,7 @@ The Lead Qualifier researches a prospective client and produces a structured ass
 1. **Research** — gather information about the company from public sources
 2. **Assess** — score the lead's fit (1-10) based on research findings
 3. **Report** — generate a full qualification brief with honest uncertainty flags
-4. **Store** — create a pipeline row in Notion with summary data
+4. **Store** — create a pipeline row in the database with summary data
 
 ---
 
@@ -128,17 +128,16 @@ The score reflects how good a fit this lead is for a freelance web designer. Eac
 
 ### 5.3 Scoring Honesty Rules
 
+- **Score is a single integer 1-10 stored in the database.** The report's Fit Assessment paragraph carries any nuance (e.g. *"Score: 6 — could be a 7 if budget signal is confirmed"*). The database stores the best single number; the report explains the reasoning.
 - **Never inflate the score.** A 5 is fine. Not every lead is an 8. Honest scores build trust with the freelancer.
 - **State the reasoning.** Every score should have a brief explanation of what supports it.
 - **Acknowledge the uncertainty.** If the score is based on assumptions, say which assumptions and how confident you are in each.
-- **Score range, not exact number.** If there's significant uncertainty, present a range: "Score: 6-7 (hinges on budget — couldn't confirm)."
-- **No score is better than a wrong score.** If there's genuinely not enough information to assess, say so: "Insufficient information to score. Recommend manual research before proceeding."
 
 ---
 
 ## 6. Report Structure
 
-The full qualification report is saved as a markdown file. The Notion row stores a summary.
+The full qualification report is saved as a markdown file. The database row stores a summary.
 
 ### 6.1 Report Template
 
@@ -206,23 +205,23 @@ If everything was verified or the agent is highly confident: "⚠️ All finding
 3. [Specific action item]
 ```
 
-### 6.2 What Goes in Notion vs. What Goes in the File
+### 6.2 What Goes in the Database vs. What Goes in the File
 
 **File (full report):** Everything in the template above. This is the document the freelancer reads to understand the lead.
 
-**Notion (summary row):**
-- Company Name (title)
-- Website (URL)
-- Lead Score (number — the score, not the reasoning)
-- Research Notes (rich text — a 2-3 sentence summary, not the full report)
-- Status (select — "Lead")
-- Budget Range (select — if a signal was detected, e.g., "£1-3K" or "Unknown")
-- Service Type (multi_select — e.g., "Website Redesign", "New Website")
-- Source (select — how the lead was found, if specified by user)
+**Database (summary row — see `storage.md` §3.1):**
+- Company Name (text)
+- Website (text)
+- Lead Score (integer 1-10)
+- Research Quality (text — HIGH/MEDIUM/LOW)
+- Research Notes (text — a 2-3 sentence summary, not the full report)
+- Status (text — default "lead")
+- Suggested tags (via the tags table — e.g., "wordpress", "local-business", "ecommerce")
+- Date Added, Date Updated, Status Since (timestamps, auto-managed)
 
 ---
 
-## 7. Notion Interaction
+## 7. Database Interaction
 
 ### 7.1 Prerequisite Check
 
@@ -281,8 +280,8 @@ After the qualification report, offer to draft a first-contact email:
 | Very little web presence (LOW research quality) | Produce the report with heavy uncertainty flags. Recommend the freelancer do manual research before making contact. Don't inflate the score due to lack of contrary evidence. |
 | Company is in a different country/region | Note the location. Consider timezone, language, and payment implications. Don't disqualify based on location alone. |
 | Company already exists in pipeline | See §7.2. Offer to update or create new. |
-| Config file doesn't exist | Trigger Pipeline Tracker setup. Don't try to create pipeline rows without a valid config. |
-| Notion API error | Same error handling as Pipeline Tracker (see Pipeline Tracker §10). |
+| Config file doesn't exist | Auto-created with defaults by the helper on first call. No separate setup step needed. |
+| Database not found | Auto-created with full schema by the helper on first call. No separate setup step needed. |
 
 ---
 
