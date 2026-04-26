@@ -26,6 +26,19 @@ PYTHONPATH="$SHARED" python3 -m db_helper <command>
 PYTHONPATH="$SHARED" python3 -m templates render <path> --json '...'
 ```
 
+
+## First Run Check
+
+Before the flow below, run the guard clause:
+```bash
+python3 -c "import sys; sys.path.insert(0, '$HOME/.freelance-forge/shared'); import db_helper" 2>/dev/null && echo OK
+```
+
+If `OK` — proceed to Flow.
+
+If it fails — read `~/.freelance-forge/references/setup.md` and execute the setup steps. Once setup completes, return here and proceed with the Flow.
+
+
 ## Flow
 
 ### 1. Find the lead

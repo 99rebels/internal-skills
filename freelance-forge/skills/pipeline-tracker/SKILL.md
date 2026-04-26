@@ -29,8 +29,19 @@ This skill does **not** create new leads (Lead Qualifier does) and does **not** 
 
 ```bash
 SHARED="${FREELANCE_FORGE_CONFIG_DIR:-$HOME/.freelance-forge}/shared"
-PYTHONPATH="$(dirname "$SHARED")" python3 -m db_helper <command>
+PYTHONPATH="$SHARED" python3 -m db_helper <command>
 ```
+
+## First Run Check
+
+Before any section below, run the guard clause:
+```bash
+python3 -c "import sys; sys.path.insert(0, '$HOME/.freelance-forge/shared'); import db_helper" 2>/dev/null && echo OK
+```
+
+If `OK` — proceed.
+
+If it fails — read `~/.freelance-forge/references/setup.md` and execute the setup steps. Once setup completes, return here.
 
 ---
 

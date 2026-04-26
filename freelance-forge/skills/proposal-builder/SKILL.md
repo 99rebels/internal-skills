@@ -25,13 +25,30 @@ PYTHONPATH="$SHARED" python3 -m db_helper <command>
 PYTHONPATH="$SHARED" python3 -m templates render <path> --json '...'
 ```
 
+
+
+
+## First Run Check
+
+Before the flow below, run the guard clause:
+```bash
+python3 -c "import sys; sys.path.insert(0, '$HOME/.freelance-forge/shared'); import db_helper" 2>/dev/null && echo OK
+```
+
+If `OK` — proceed to Flow.
+
+If it fails — read `~/.freelance-forge/references/setup.md` and execute the setup steps. Once setup completes, return here and proceed with the Flow.
+
+
 ## Flow
 
 ### 1. Find the client in the pipeline
 
 ```
+
 python3 -m db_helper get-lead --company "<client name>"
 ```
+
 
 Three paths:
 - **Exactly one match** → continue with that lead row.
@@ -43,8 +60,10 @@ Three paths:
 
 If the user picks (2):
 ```
+
 python3 -m db_helper add-lead "<client>" --website "<url if known>"
 ```
+
 Then continue.
 
 ### 2. Get discovery notes
@@ -60,17 +79,21 @@ If they pick the template, output a structured question list in chat (not a file
 ### 3. Read the full lead row
 
 ```
+
 python3 -m db_helper get-lead --id <lead-id>
 python3 -m db_helper tag list --lead-id <lead-id>
 ```
+
 
 Combine: research notes + tags + lead score (context for tone) + discovery notes (the actual scope).
 
 ### 4. First-run pricing strategy check
 
 ```
+
 python3 -m db_helper config get
 ```
+
 
 If `preferences.pricingStrategy` is `null`, ask the user **once**:
 
@@ -78,18 +101,22 @@ If `preferences.pricingStrategy` is `null`, ask the user **once**:
 
 Persist their choice:
 ```
+
 python3 -m db_helper config set --path preferences.pricingStrategy --value '"day_rate"'
 ```
+
 
 (Use `null` to record "skip / use market ranges".)
 
 ### 5. Render and adapt the proposal
 
 ```
+
 python3 -m templates render proposal-templates/default.md \
     --json-file /tmp/ctx.json \
     --out "$FREELANCE_FORGE_CONFIG_DIR/reports/proposals/<slug>-<YYYY-MM-DD>.md"
 ```
+
 
 The template is a **starting point**, not a form. After rendering, **read the file and adapt it** to the client:
 - Reference specific things from discovery notes (shows you were paying attention).
@@ -125,18 +152,22 @@ The template ships with these sections — keep them in this order:
 ### 9. Update the database
 
 ```
+
 python3 -m db_helper update-field <lead-id> \
     '{"proposal_summary": "<2-3 sentence summary, NOT the full proposal>", "proposal_date": "<YYYY-MM-DD>"}'
 
 python3 -m db_helper update-status <lead-id> proposal_sent
 ```
 
+
 The shim auto-logs `proposal_created` and `status_changed` (`<old> -> proposal_sent`). If discovery notes were captured separately, also:
 
 ```
+
 python3 -m db_helper update-field <lead-id> \
     '{"discovery_notes": "<concise notes, not full transcript>"}'
 ```
+
 
 ### 10. Optional: covering email draft
 
