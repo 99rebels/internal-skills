@@ -1,8 +1,8 @@
 # Sub-Skill Deep Dive: Lead Qualifier
 
 **Parent:** Freelance Forge — `architecture.md`
-**Version:** 0.1 — Design Phase
-**Date:** 2026-04-25
+**Version:** 0.2 — Design Phase (updated for local SQLite storage)
+**Date:** 2026-04-26
 
 ---
 
@@ -226,23 +226,24 @@ If everything was verified or the agent is highly confident: "⚠️ All finding
 
 ### 7.1 Prerequisite Check
 
-Before writing to Notion, the Lead Qualifier must:
-1. Check for `freelance-forge-config.json` in `$FREELANCE_FORGE_CONFIG_DIR`
-2. If missing: run the Pipeline Tracker setup flow first (or instruct the user to set it up)
-3. If present: load field mappings
+Before writing to the database, the Lead Qualifier must:
+1. Check for the database at `$FREELANCE_FORGE_CONFIG_DIR/pipeline.db`
+2. If missing: the database helper creates it automatically (tables, indexes, default config)
+3. If present: proceed with qualification
 
 ### 7.2 Duplicate Check
 
-Before creating a new pipeline row:
-1. Search the pipeline database for an existing page with the same company name
+Before creating a new lead row:
+1. Search the leads table for an existing row with the same company name
 2. If found: alert the user — "Acme Plumbing already exists in your pipeline (Status: Qualified, Score: 7). Want me to update the existing entry, or create a new one?"
 3. If not found: proceed with creation
 
-### 7.3 Creating the Pipeline Row
+### 7.3 Creating the Lead Row
 
-- Use `POST /pages` with the pipeline database as parent
-- Map fields using the config's `fieldMappings`
-- For shared fields (see Pipeline Tracker §3.5): if `researchNotes` and `discoveryNotes` map to the same property, prepend a label: "=== Research Notes ===\n[summary]\n\n=== Discovery Notes ===\n[notes]"
+- Insert a new row in the leads table
+- Set: Company Name, Website, Lead Score, Research Quality, Research Notes (summary only, not full report), Status = Lead
+- Suggest tags based on research findings (e.g., "wordpress", "local-business", "ecommerce")
+- Log: `lead_created` and `lead_scored` in activity_log
 
 ---
 
@@ -288,19 +289,20 @@ After the qualification report, offer to draft a first-contact email:
 ## 10. Shared Dependencies
 
 **Reads from:**
-- `freelance-forge-config.json` — database ID, field mappings
+- Database (leads table — for duplicate checking)
 - Web (company website, search results, social media)
 
 **Writes to:**
-- Pipeline database in Notion — new page (or update existing)
-- Report file in `$FREELANCE_FORGE_REPORTS_DIR/qualifications/[company-name].md`
+- Database — new lead row + suggested tags
+- Activity log — `lead_created`, `lead_scored`
+- Report file in `$FREELANCE_FORGE_CONFIG_DIR/reports/qualifications/[company-name]-[date].md`
 
 **Depends on:**
-- Pipeline Tracker — config file must exist before this sub-skill can write to Notion
+- Database helper module (`db_helper.py`) — must be installed
 
 **Does NOT depend on:**
 - Proposal Builder, Project Onboarder (this runs first in the pipeline)
-- Any other sub-skills
+- Any external services or API keys
 
 ---
 
@@ -331,16 +333,18 @@ Not every qualified lead gets contacted immediately. Sometimes the freelancer wa
 - The report structure with mandatory unverified section
 - Research quality tiers (HIGH/MEDIUM/LOW)
 - The honest scoring rules (§5.3)
-- Notion as metadata store, file as full report
-- Duplicate checking before creating pipeline rows
+- Database as metadata store, file as full report
+- Duplicate checking before creating lead rows
 - Email drafts are chat output only, optional
+- Activity logging: `lead_created`, `lead_scored`
+- Tag suggestion based on research findings
 
 ### What Claude Code Decides
 - How to implement web fetching and parsing (library choices, error handling)
 - The exact search queries to run
 - How to detect tech stack from HTML (what to look for, how reliable the detection is)
 - How to present the research quality tier
-- The specific format of the Notion summary (how much to condense)
+- The specific format of the database summary (how much to condense)
 - File naming convention for reports
 - How to handle rate limiting across multiple sources
 - The tone and structure of the optional email draft

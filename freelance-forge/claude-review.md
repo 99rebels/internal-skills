@@ -11,10 +11,14 @@
 ```
 freelance-forge/
 ├── architecture.md              # Main architecture doc (start here)
-├── session-context.md           # How we got here, conversational decisions
+├── storage.md                  # Database schema and local storage spec (read this second)
+├── design-philosophy.md        # Anti-hallucination principles + design principles
+├── claude-review.md            # This file — review questions
 └── subskills/
-    ├── pipeline-tracker.md      # Sub-skill deep dive
-    └── lead-qualifier.md        # Sub-skill deep dive (more to come)
+    ├── pipeline-tracker.md    # Sub-skill deep dive
+    ├── lead-qualifier.md       # Sub-skill deep dive
+    ├── proposal-builder.md     # Sub-skill deep dive
+    └── project-onboarder.md    # Sub-skill deep dive
 ```
 
 ---
@@ -59,14 +63,17 @@ freelance-forge/
 
 14. **If you had to add one thing to make this significantly better, what would it be?**
 
-15. **Is the "report as file, Notion as metadata" pattern the right call?** Or should everything live in Notion? Or everything as files?
+15. **Is the "report as file, database as metadata" pattern the right call?** Or should everything live in the database? Or everything as files?
+
+16. **Is the activity log worth the implementation cost?** Every agent action gets logged — is the value clear enough to justify the extra writes?
 
 ---
 
 ## Ground Rules for the Review
 
 - **This is a review, not a redesign.** Flag problems, suggest alternatives, but don't rewrite the architecture.
-- **The target user is fixed:** freelance web designers using Notion. Don't suggest broadening the audience.
+- **The target user is fixed:** freelance web designers. Don't suggest broadening the audience.
 - **The four sub-skills are fixed.** Don't suggest adding or removing sub-skills (though question 13 asks which to cut if forced).
-- **Budget is a concern.** The user is a student. Flag anything that would be expensive to run (API costs, heavy compute, paid dependencies).
+- **Budget matters.** Flag anything expensive to run. Note: this bundle has zero external API costs — all storage is local.
 - **Scope creep is the enemy.** If a suggestion makes the product 20% better but doubles the build time, say so. We want to know the trade-off.
+- **Create implementation plans from these docs before building.** The architecture and storage spec are your source of truth. Don't start coding until you've written a plan for each sub-skill and shared script. Plans will be reviewed before you begin building.

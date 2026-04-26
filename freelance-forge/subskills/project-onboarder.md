@@ -1,8 +1,8 @@
 # Sub-Skill Deep Dive: Project Onboarder
 
 **Parent:** Freelance Forge — `architecture.md`
-**Version:** 0.1 — Design Phase
-**Date:** 2026-04-25
+**Version:** 0.2 — Design Phase (updated for local SQLite storage)
+**Date:** 2026-04-26
 
 ---
 
@@ -38,9 +38,9 @@ The Project Onboarder turns a signed proposal into a running project. When the c
 **Required:**
 - Client name — matching a row in the Notion pipeline
 
-**Read from Notion:**
-- The client's full pipeline row (research notes, discovery notes, proposal summary, budget, service type)
-- Proposal file if it exists (from `$FREELANCE_FORGE_REPORTS_DIR/proposals/`)
+**Read from database:**
+- The client's full lead row (research notes, discovery notes, proposal summary, tags)
+- Proposal file if it exists (from `$FREELANCE_FORGE_CONFIG_DIR/reports/proposals/`)
 
 **Read from workspace (if available):**
 - Qualification report (from Lead Qualifier)
@@ -50,31 +50,31 @@ The onboarder should use all available context. If some files are missing (e.g.,
 
 ---
 
-## 4. Project Database
+## 4. Project Tasks
 
-### Creating the Database
+### Creating Tasks
 
-Create a new Notion database for this client's project tasks. Use the default project schema from architecture doc §4.3, or adapt based on the client's specific needs.
+Create task rows in the database's `tasks` table for this client's project. Use the default task schema from `storage.md` §3.4.
 
-**Default properties:**
-- Task Name (title)
-- Status (select: Briefing → Design → Development → Review → Live)
-- Priority (select: High / Medium / Low)
+**Default task properties:**
+- Task Name (text)
+- Status (select: todo, in_progress, done)
+- Priority (select: high, medium, low)
 - Due Date (date)
-- Notes (rich_text)
-- Deliverable (checkbox)
+- Notes (text)
+- Is Deliverable (boolean)
 
-**Customisation:** If the proposal mentions specific phases (e.g., "Phase 1: Discovery, Phase 2: Design, Phase 3: Build"), suggest creating matching status options instead of the defaults. The user confirms.
+**Customisation:** If the proposal mentions specific phases (e.g., "Phase 1: Discovery, Phase 2: Design, Phase 3: Build"), suggest creating matching status options or task groups. The user confirms.
 
-### Linking to Pipeline
+### Linking to Lead
 
-After creating the project database, link it to the client's pipeline row via the `projectLink` relation property. Update the pipeline Status to "Active" (or the mapped equivalent).
+After creating tasks, update the lead's `project_path` field to point to the project directory. Update the lead's status to "active".
 
-If the user already has a project database for this client, ask whether to use the existing one or create a new one.
+If tasks already exist for this lead, ask whether to add to existing or start fresh.
 
 ### Pre-populating Tasks
 
-Based on the proposal scope, generate initial tasks for the project database. These should be high-level milestones, not granular task breakdowns:
+Based on the proposal scope, generate initial tasks. These should be high-level milestones, not granular task breakdowns:
 
 - "Kickoff call with client"
 - "Collect brand assets (logo, colours, fonts)"
@@ -84,6 +84,8 @@ Based on the proposal scope, generate initial tasks for the project database. Th
 - etc.
 
 The exact tasks depend on the proposal scope. Don't over-specify — these are starting points the freelancer will refine.
+
+Log: `project_started` + `task_created` for each task in activity_log.
 
 ---
 
@@ -236,19 +238,19 @@ In these cases, note in the project brief that a sitemap was skipped and why.
 
 ---
 
-## 8. Notion Interaction
+## 8. Database Interaction
 
 ### Prerequisite Check
-Same pattern as other sub-skills — config must exist, token must be valid.
+The database helper handles this automatically — if the database doesn't exist, it's created.
 
 ### Reading
-- Fetch the client's pipeline page
+- Fetch the client's lead row
 - Read all available fields for context
 
 ### Writing
-- Create a new project database (see §4)
-- Link the project database to the pipeline row via the `projectLink` field
-- Update pipeline Status to "Active"
+- Insert task rows into the tasks table
+- Update lead row with project_path and status
+- Log: `project_started`, `task_created` (for each task) in activity_log
 
 ### If No Proposal Exists
 The onboarder should still work. It'll have less context (only the lead research and whatever the freelancer provides), but it can generate a basic project brief and checklist. Flag the missing proposal in the brief.
@@ -257,7 +259,7 @@ The onboarder should still work. It'll have less context (only the lead research
 
 ## 9. Output Files
 
-All saved to `$FREELANCE_FORGE_REPORTS_DIR/projects/[client-name]/`:
+All saved to `$FREELANCE_FORGE_CONFIG_DIR/reports/projects/[client-name]/`:
 
 | File | Purpose |
 |---|---|
@@ -265,7 +267,7 @@ All saved to `$FREELANCE_FORGE_REPORTS_DIR/projects/[client-name]/`:
 | `onboarding-checklist.md` | Track what's needed from the client |
 | `sitemap.md` | Draft page structure for client review |
 
-Plus the Notion project database (linked to pipeline).
+Plus task rows in the database (linked to lead via `lead_id`).
 
 ---
 
@@ -318,13 +320,14 @@ Granular task breakdowns (e.g., "Create header component", "Style navigation lin
 ## 13. Claude Code Implementation Notes
 
 ### What's Fixed
-- The four outputs: project database, project brief, onboarding checklist, sitemap draft
-- Project database linked to pipeline row
-- Pipeline status updated to "Active"
+- The four outputs: project tasks, project brief, onboarding checklist, sitemap draft
+- Tasks linked to lead via `lead_id`
+- Lead status updated to "active"
+- `project_path` set in lead row
 - Placeholder approach for missing information (same as Proposal Builder)
-- Files saved to reports directory, Notion stores summary only
+- Files saved to reports directory, database stores metadata
 - Email draft is optional, chat output only
-- Config prerequisite check
+- Activity logging: `project_started`, `task_created` (for each task)
 
 ### What Claude Code Has Freedom On
 - Exact SKILL.md wording and structure

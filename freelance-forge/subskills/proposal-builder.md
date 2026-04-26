@@ -1,8 +1,8 @@
 # Sub-Skill Deep Dive: Proposal Builder
 
 **Parent:** Freelance Forge — `architecture.md`
-**Version:** 0.1 — Design Phase
-**Date:** 2026-04-25
+**Version:** 0.2 — Design Phase (updated for local SQLite storage)
+**Date:** 2026-04-26
 
 ---
 
@@ -39,12 +39,11 @@ The Proposal Builder needs two things:
 - **Client identification** — a company name that matches a row in the Notion pipeline
 - **Discovery notes** — the user's raw notes from a discovery call or client interaction. These can be pasted directly, dictated, or referenced from a file.
 
-**Read automatically from Notion:**
+**Read automatically from database:**
 - Research notes (from Lead Qualifier)
 - Lead score and assessment
-- Budget range (if set)
-- Service type (if set)
-- Any other context stored in the pipeline row
+- Tags (service type, budget signals, etc.)
+- Any other context stored in the lead's row
 
 ### When Discovery Notes Are Missing
 
@@ -155,37 +154,40 @@ The proposal represents the freelancer. It should read like a professional consu
 
 ---
 
-## 7. Notion Interaction
+## 7. Database Interaction
 
 ### Prerequisite Check
-Same as Lead Qualifier — config file must exist, token must be valid. If not, direct the user to set up Pipeline Tracker first.
+The database helper handles this automatically — if the database doesn't exist, it's created. No manual setup required.
 
-### Reading the Pipeline Row
-- Fetch the client's page by searching on company name
-- Read: research notes, lead score, budget range, service type, any other context
+### Reading the Lead Row
+- Search the leads table by company name
+- Read: research notes, lead score, tags
 - Combine with the discovery notes the user provides
 
 ### If the Client Isn't in the Pipeline
 The Lead Qualifier should have been run first. Options:
 1. Suggest running the Lead Qualifier first (recommended — gives better context for the proposal)
-2. Create a minimal pipeline row with just the company name and "Qualified" status, then proceed
+2. Create a minimal lead row with just the company name and "qualified" status, then proceed
 3. Build the proposal from discovery notes alone (weaker, but possible)
 
 Let the user choose.
 
 ### Updating the Pipeline
 After the proposal is generated:
-- Write a brief summary to the Proposal Summary field (2-3 sentences, not the full proposal)
-- Set the Proposal Date to today
-- Update Status to "Proposal Sent" (or the mapped equivalent)
+- Write a brief summary to the proposal_summary field (2-3 sentences, not the full proposal)
+- Set the proposal_date to today
+- Update status to "proposal_sent"
+- Log: `discovery_added`, `proposal_created`, `proposal_sent` in activity_log
 
 ---
 
 ## 8. Output
 
-**Primary output:** A markdown file saved to `$FREELANCE_FORGE_REPORTS_DIR/proposals/[client-name]-proposal.md`
+**Primary output:** A markdown file saved to `$FREELANCE_FORGE_CONFIG_DIR/reports/proposals/[client-name]-proposal-[date].md`
 
-**Secondary output:** Notion pipeline row updated with summary and status change
+**Secondary output:** Database row updated with summary and status change
+
+**Activity log:** `discovery_added`, `proposal_created`, `proposal_sent`
 
 **Optional:** Draft an email in chat that the freelancer can use to send the proposal. The email should:
 - Reference the discovery call positively
@@ -232,9 +234,9 @@ A proposal with "[Confirm with client: whether they need e-commerce]" is better 
 - Pricing as ranges, not fixed numbers (§5)
 - Tone principles (§6)
 - Placeholder approach for missing information
-- Notion reads the pipeline row, writes summary + status
+- Database reads the lead row, writes summary + status
 - Email draft is optional, chat output only
-- Config prerequisite check before Notion interaction
+- Activity logging: `discovery_added`, `proposal_created`, `proposal_sent`
 
 ### What Claude Code Has Freedom On
 - Exact SKILL.md wording and structure

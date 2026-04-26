@@ -119,13 +119,13 @@ Before starting implementation, review the architecture and answer these questio
 
 1. Does the overall architecture hold together? Any logical gaps, circular dependencies, or assumptions that break down?
 2. Is the data flow realistic? Are there race conditions, data conflicts, or missing data scenarios between stages?
-3. Is the schema-adaptive approach feasible? Are there Notion API edge cases we're missing?
+3. Is the database schema sound? Review `storage.md` — missing fields, wrong types, missing indexes?
 4. Are the env var defaults sensible across platforms?
 
 ### Sub-Skill Design
 
 5. Is the Lead Qualifier's research process realistic? What are the likely failure modes?
-6. Is the Pipeline Tracker setup flow too complex? Is there a simpler approach?
+6. Is the Pipeline Tracker query interface comprehensive enough? Missing query types?
 7. Are the four sub-skills well-scoped relative to each other?
 
 ### Implementation
@@ -143,12 +143,14 @@ Before starting implementation, review the architecture and answer these questio
 
 13. If you had to cut one sub-skill to ship faster, which and why?
 14. If you had to add one thing to make this significantly better, what?
-15. Is "report as file, Notion as metadata" the right pattern, or should everything live in one place?
+15. Is "report as file, database as metadata" the right pattern, or should everything live in one place?
+16. Is the activity log worth the implementation cost?
 
 ### Ground Rules
 
 - This is a review, not a redesign. Flag problems, don't rewrite the architecture.
-- Target user is fixed: freelance web designers using Notion.
+- Target user is fixed: freelance web designers.
 - The four sub-skills are fixed.
-- Budget matters. Flag anything expensive to run.
+- Budget matters — but note this bundle has zero external API costs.
 - If a suggestion makes the product 20% better but doubles build time, say so.
+- **Create implementation plans before building.** Architecture and storage spec are source of truth.

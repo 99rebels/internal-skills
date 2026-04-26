@@ -1,19 +1,19 @@
 # Sub-Skill Deep Dive: Pipeline Tracker
 
 **Parent:** Freelance Forge — `architecture.md`
-**Version:** 0.2 — Design Phase
-**Date:** 2026-04-25
+**Version:** 0.3 — Design Phase (updated for local SQLite storage)
+**Date:** 2026-04-26
 
 ---
 
 ## 1. Purpose
 
-The Pipeline Tracker is the foundation of Freelance Forge. It owns the Notion database that serves as the freelancer's CRM, and it's the first sub-skill to run during setup. Every other sub-skill depends on the config file it creates.
+The Pipeline Tracker is the command center of Freelance Forge. It lets the freelancer view, manage, and query their entire pipeline. With local SQLite storage, setup is instant — no authentication, no schema discovery, no configuration.
 
 **Three core functions:**
-1. **Setup** — discover or create the Notion pipeline database, map the user's schema, save config
-2. **Track** — show pipeline status, update lead stages, provide summaries
-3. **Alert** — flag overdue proposals and follow-ups, offer to draft follow-up emails
+1. **View** — show pipeline status, summaries, and details
+2. **Manage** — update lead stages, add/remove tags, manage follow-ups
+3. **Query** — answer any question about the pipeline data (history, stats, filters)
 
 ---
 
@@ -22,70 +22,41 @@ The Pipeline Tracker is the foundation of Freelance Forge. It owns the Notion da
 - "show my pipeline" / "pipeline update" / "pipeline summary"
 - "update [client] to [status]" / "mark [client] as [status]"
 - "any overdue follow-ups" / "check my follow-ups"
-- "set up freelance forge" / "set up my pipeline"
-- Also triggered implicitly when other sub-skills discover the config file doesn't exist
+- "tag [client] as [tag]" / "remove [tag] from [client]"
+- "what happened with [client]?" / "lead history for [client]"
+- "how many leads this month?" / "show my conversion rate"
+- "export my pipeline" / "export to CSV"
 
 ---
 
-## 3. Setup Flow
+## 3. Setup
 
-### 3.1 Prerequisites
+### 3.1 First Run
 
-The sub-skill needs a Notion integration token. If `NOTION_TOKEN` env var is missing, display clear setup instructions (how to create an integration at notion.so/my-integrations, how to set the env var, and how to share the database with the integration in Notion). Then stop — don't proceed without a valid token.
+On first use, the database helper creates everything automatically:
+1. Create `~/.freelance-forge/` directory and subdirectories
+2. Create `pipeline.db` with all tables, indexes, and constraints
+3. Create `config.json` with default preferences
 
-Check for existing config at `$FREELANCE_FORGE_CONFIG_DIR/freelance-forge-config.json`. If it exists and is valid, skip to the tracking functions.
+No user interaction required. No credentials needed. The user can say "show my pipeline" immediately after install and it works.
 
-### 3.2 Database Discovery
+### 3.2 What the User Sees
 
-Ask the user if they have an existing client pipeline or CRM database in Notion.
+First time: "You don't have any leads yet. Say 'qualify this lead: [company]' to add your first one."
 
-**If yes:** Search their workspace for databases (`POST /search`), present a list, let them pick one. Fetch the schema of the selected database (`GET /databases/{id}`).
-
-**If no:** Skip to §3.4 to create a new one.
-
-### 3.3 Schema Mapping & Augmentation
-
-This is the critical setup step. The goal: map the user's existing database fields to our concepts, identify gaps, and offer to fill them.
-
-**Mapping approach:** Inspect each property in the user's database and attempt to match it to our required concepts using property type and name heuristics (e.g., a `title` property → Company Name, a `select` with status-like values → Status, a `number` with score-like name → Lead Score). The full mapping list is in the architecture doc §4.1.
-
-**Augmentation:** After mapping, identify which required concepts have no matching property. Present a clear summary to the user showing what mapped successfully and what's missing. Offer to add the missing columns via `PATCH /databases/{id}`. Emphasise that existing properties and data will not be touched.
-
-If the user's database is too simple and several concepts would need to share a single field (e.g., one "Notes" field for research, discovery, and proposal notes), track this in the config under `sharedFields` so other sub-skills are aware.
-
-**If the user declines augmentation:** Save the partial mapping. Note which features will be limited without the missing fields. The sub-skill should still work, just with reduced functionality.
-
-### 3.4 Creating a New Database
-
-If the user doesn't have an existing database, create one with the full default schema (see architecture doc §4.2). Ask the user for a name (default: "Client Pipeline") and whether they want to customise the status values before creation.
-
-Default status options: Lead → Qualified → Proposal Sent → Onboarding → Active → Complete → Lost
-
-### 3.5 Config File
-
-Save `freelance-forge-config.json` to `$FREELANCE_FORGE_CONFIG_DIR/`. The config stores:
-- The pipeline database ID
-- Field mappings (our concept → their property name + type)
-- Shared fields tracking (which concepts share a single Notion property)
-- User preferences (currency, follow-up threshold days, default status options)
-
-The exact config structure is defined in architecture doc §4.4. All sub-skills read this file to know which Notion properties to read/write.
-
-### 3.6 Post-Setup
-
-Confirm setup is complete. Briefly tell the user what they can do now and how to get started. Don't over-explain — they'll figure it out.
+No setup wizard, no configuration screens, no API tokens. Just start using it.
 
 ---
 
 ## 4. Pipeline Summary
 
-When the user asks to see their pipeline, query the database and present a grouped, scannable digest. Key principles:
+When the user asks to see their pipeline, query the database and present a grouped, scannable digest:
 
 - **Group by status** — each stage as a section
-- **Compact** — company name, score (if available), and one relevant data point (proposal date, days since last action, etc.)
-- **Flag overdue items** — any lead in "Proposal Sent" past the follow-up threshold gets a visual indicator
+- **Compact** — company name, score (if available), and one relevant data point (proposal date, days since last action, tag)
+- **Flag overdue items** — any lead in "proposal_sent" past the follow-up threshold gets a visual indicator
 - **Sort within groups** — by lead score descending if available
-- **Handle unknown statuses** — if the user has status values we don't recognise, show them under a catch-all group rather than hiding them
+- **Handle unknown statuses** — if the user has custom status values, show them under their own group rather than hiding them
 
 The follow-up checker (§6) runs automatically as part of the pipeline summary. No separate trigger needed.
 
@@ -93,13 +64,15 @@ The follow-up checker (§6) runs automatically as part of the pipeline summary. 
 
 ## 5. Status Updates
 
-Parse the company name and target status from the user's request. Search the database for a matching page (exact match first, then fuzzy). Present the match for confirmation if ambiguous.
+Parse the company name and target status from the user's request. Search the database for a matching lead (exact match first, then fuzzy). Present the match for confirmation if ambiguous.
 
-**Special case:** updating to "Lost" (or equivalent negative status) requires explicit user confirmation before proceeding. This is a meaningful signal that shouldn't happen by accident.
+**Special case:** updating to "lost" (or equivalent negative status) requires explicit user confirmation before proceeding. This is a meaningful signal that shouldn't happen by accident.
 
-**Special case:** updating to "Active" should check whether a project database is linked. If not, flag it — the Project Onboarder may not have been run yet.
+**Special case:** updating to "active" should check whether tasks exist for this lead. If not, flag it — the Project Onboarder may not have been run yet.
 
 Keep the confirmation output minimal — one line is sufficient.
+
+**Activity log:** Every status change is logged with old status, new status, and timestamp.
 
 ---
 
@@ -109,89 +82,176 @@ Keep the confirmation output minimal — one line is sufficient.
 
 **No cron for v1.** The user sees overdue items when they check their pipeline. Proactive alerts would require cron setup and risk being annoying. This can be a v2 feature.
 
-**Logic:** Query for leads with status "Proposal Sent" (or the mapped equivalent). Compare their `proposalDate` or `lastFollowUp` to the current date. Flag any where the elapsed days exceed the `followUpDays` preference (default: 5). Sort by most overdue first.
+**Logic:** Query for leads with status "proposal_sent". Compare their `proposal_date` or `last_follow_up` to the current date. Flag any where the elapsed days exceed the `followUpDays` preference (default: 5). Sort by most overdue first.
 
-**Offer to draft:** For each overdue lead, offer to draft a follow-up email in chat. If the user accepts, read the lead's full pipeline row for context and write a short, professional follow-up that references specific details from the proposal. Tone: helpful, not pushy. Include a clear next step.
+**Offer to draft:** For each overdue lead, offer to draft a follow-up email in chat. If the user accepts, read the lead's full row + recent activity for context and write a short, professional follow-up. Tone: helpful, not pushy. Include a clear next step.
 
 ---
 
-## 7. Query Variants
+## 7. Tag Management
+
+**Adding tags:** "tag Acme as urgent", "mark Baker as wordpress", "add referral-john to Smith Plumbing"
+- Creates the tag if it doesn't exist
+- Optionally categorises: "tag Acme as urgent [category: custom]"
+- Logs: `tag_added` in activity_log
+
+**Removing tags:** "remove urgent from Acme", "untag Baker as wordpress"
+- Logs: `tag_removed` in activity_log
+
+**Querying by tag:** "show me all wordpress leads", "which leads are tagged urgent?"
+- Uses the `lead_tags` junction table
+- Can combine with other filters ("show me all wordpress leads that are still in lead status")
+
+---
+
+## 8. Activity History
+
+**Lead history:** "what happened with Acme?"
+- Queries `activity_log` for the lead's ID
+- Returns chronologically ordered list of all actions
+- Presented as a readable timeline, not raw log entries
+
+**Recent activity:** "what happened this week?", "any activity in the last 7 days?"
+- Queries `activity_log` by date range
+- Groups by lead
+
+**Stats:** "how many leads did I qualify this month?", "what's my conversion rate?"
+- Counts actions by type and date range
+- Calculates conversion rates between statuses
+
+---
+
+## 9. Query Variants
 
 Beyond the default summary, support these common queries:
 - **Filtered by status:** "show me all leads in [status]"
 - **Filtered by score:** "show me my best leads" (score above a threshold)
 - **Filtered by date:** "leads from this week" (creation date range)
-- **Single lead detail:** "tell me about [client]" (full row details)
+- **Filtered by tag:** "show me all [tag] leads"
+- **Single lead detail:** "tell me about [client]" (full row details + recent activity)
+- **Search:** "find leads matching [query]" (search across company, contact, notes)
+- **Stats/aggregates:** "how many leads this month?", "conversion rate from lead to active"
+- **Task queries:** "show me [client]'s tasks", "what's left to do?", "any overdue tasks?"
 
 ---
 
-## 8. Notion API Calls
+## 10. Task Management
 
-The Pipeline Tracker uses these Notion API operations:
-- `POST /search` — find databases during setup
-- `GET /databases/{id}` — read schema during setup
-- `POST /databases` — create new database
-- `PATCH /databases/{id}` — augment existing database with missing properties
-- `POST /databases/{id}/query` — query/filter pipeline pages
-- `PATCH /pages/{id}` — update page properties (status changes)
+During active projects, the Pipeline Tracker handles day-to-day task operations:
 
-It does NOT create pages (that's handled by Lead Qualifier, Proposal Builder, etc.).
+**Viewing tasks:**
+- "show me O'Brien's tasks" → all tasks for a lead, sorted by priority then due date
+- "what's left to do for O'Brien?" → pending tasks only (status != 'done')
+- "any overdue tasks?" → tasks where due_date < today and status != 'done'
+
+**Updating tasks:**
+- "mark 'collect brand assets' as done" → update task status
+- "move 'design homepage' to in progress" → update task status
+- Uses fuzzy matching on task name to find the right task
+- Logs `task_completed` or `status_changed` in activity_log
+
+**Adding tasks:**
+- "add a task for O'Brien: set up Google Analytics" → create new task with default priority
+- "add a high-priority task: client review of homepage" → create with specified priority
+- Logs `task_created` in activity_log
 
 ---
 
-## 9. Error Handling Principles
+## 11. Export
+
+**CSV export:** "export my pipeline"
+- All leads with their tags as a CSV file
+- Saved to `~/.freelance-forge/exports/pipeline-[date].csv`
+- Suitable for import into Notion, Google Sheets, Excel
+
+**JSON export:** "export pipeline as JSON"
+- Full data including activity log and tasks
+- Suitable for backup or programmatic use
+
+**Single lead export:** "export Acme"
+- One lead with full context (tags, activity, tasks)
+
+---
+
+## 11. Database Interactions
+
+The Pipeline Tracker uses these database helper functions:
+- `get_leads_by_status()` — pipeline summary
+- `get_stale_leads()` — follow-up suggestions (status-based, see §6.1)
+- `update_lead_status(lead_id, status)` — status updates (auto-updates status_since)
+- `record_follow_up(lead_id)` — user-reported follow-up (updates last_follow_up + resets status_since)
+- `add_tag(lead_id, tag_name, category)` — tag management
+- `remove_tag(lead_id, tag_name)` — tag management
+- `get_lead_activity(lead_id)` — history
+- `get_recent_activity(days)` — recent activity
+- `search_leads(query)` — search
+- `get_tasks(lead_id)` / `get_pending_tasks(lead_id)` — task viewing
+- `update_task_status(task_id, status)` — task updates
+- `add_task(lead_id, task_name, priority)` — task creation
+- `export_pipeline(format)` — export
+- `log_activity(lead_id, action, details)` — activity logging
+
+It does NOT create leads (that's handled by Lead Qualifier) and does NOT create the initial project task set (that's handled by Project Onboarder). It does manage tasks day-to-day after they're created.
+
+---
+
+## 12. Error Handling Principles
 
 Errors should be helpful and actionable, not just informative. General patterns:
 
-- **Missing token** → clear setup instructions with the exact URL and steps
-- **Invalid token (401)** → direct the user to check at notion.so/my-integrations
-- **Database not found** → list available databases so the user can pick
-- **Integration not connected to database** → explain how to add the connection in Notion
-- **Rate limited (429)** → wait and retry automatically
-- **Config corrupted** → offer to re-run setup
-- **Empty pipeline** → suggest adding leads via the Lead Qualifier
+- **Database not found** → create it automatically (this should never surface as an error to the user)
+- **Config corrupted** → recreate with defaults, preserve what data can be salvaged
+- **Empty pipeline** → "No leads in pipeline. Run Lead Qualifier to add your first lead."
 - **Ambiguous company name** → present matching options for disambiguation
+- **Lead not found** → "No lead found matching '[name]'. Check the spelling or use 'show my pipeline' to see all leads."
+- **Export directory missing** → create it automatically
 
 ---
 
-## 10. Design Decisions
+## 13. Design Decisions
 
-### Why Discover Existing Database First
-Most freelancers already track clients somewhere. Forcing a fresh database means migration or dual systems. Augmenting their existing setup is lower friction.
-
-### Why Augment, Don't Replace
-The user's existing data and workflow are preserved. We add what's missing, never modify or remove what exists. If their stages are "New/Contacted/Won/Lost" instead of our defaults, we work with that.
+### Why No Setup Flow
+The entire Notion integration (schema discovery, field mapping, augmentation, config saving) was replaced by a single function call that creates the database. Setup is not a user-facing concept anymore. The database exists or it doesn't — and if it doesn't, it's created. This is the single biggest simplification from the architecture shift.
 
 ### Why "Lost" Requires Confirmation
 Accidental status changes are easy in chat ("mark Baker as lost" when you meant "qualified"). One extra confirmation prevents data issues.
 
 ### Why Follow-Up Is Attached to Pipeline Summary
-The natural moment to surface overdue items is when the user is already looking at their pipeline. A separate check requires a separate thought. Passive awareness beats proactive nagging for v1.
+The natural moment to surface stale leads is when the user is already looking at their pipeline. A separate check requires a separate thought. Passive awareness beats proactive nagging for v1.
+
+### Why Status-Based Follow-Ups (Not Just Post-Proposal)
+Freelancers forget to follow up at every stage, not just after sending proposals. A lead gets qualified, they mean to call, a week passes. A discovery call happens, they mean to schedule the next one, another week passes. Checking `status_since` against per-status thresholds catches these gaps regardless of pipeline stage.
+
+### Why The Agent Doesn't Repeat Suggestions
+If the agent mentions "follow up with Acme" every time the user asks anything, it becomes noise. The suggestion appears in the pipeline summary (once) and in specific follow-up queries. The user's session context handles the "already mentioned" logic naturally — the LLM knows it already told the user.
+
+### Why Task Management Lives Here
+The Project Onboarder creates the initial task set. But day-to-day task management (checking off tasks, adding new ones, seeing what's left) is a pipeline operation. The freelancer checks their pipeline, sees what's active, and manages tasks from there. Splitting task management across two sub-skills would create confusion about who owns what.
 
 ### Why No Cron
 Cron adds setup complexity and unprompted alerts can feel annoying. The user checks their pipeline when they want to. If they want proactive alerts, that's an easy v2 addition.
 
+### Why Tags Are a First-Class Feature
+With Notion gone, we lost the visual kanban board. Tags partially compensate — they give users a way to categorise and filter leads without rigid predefined categories. The agent suggests relevant tags from research; users define their own taxonomy.
+
 ---
 
-## 11. Claude Code Implementation Notes
+## 14. Claude Code Implementation Notes
 
 ### What's Fixed
-- The setup flow order: token check → discover/map → augment → save config
-- Schema augmentation approach (add missing properties, never modify existing)
-- The `sharedFields` concept for databases with fewer columns than we need
-- Config file structure (architecture doc §4.4)
+- No setup flow — database created automatically on first use
 - "Lost" status requires confirmation
 - Follow-up check runs as part of pipeline summary, no cron in v1
 - Email drafts are chat output only
-- The three core functions: setup, track, alert
+- Activity logging on every status change and tag operation
+- Export to CSV and JSON
+- Tag management (add, remove, query)
 
 ### What Claude Code Has Freedom On
 - The exact SKILL.md structure, wording, and sections
-- How to present the database list and mapping summary during setup
 - The specific pipeline summary format (should be compact and scannable, but the exact layout is up to you)
 - Fuzzy matching logic for company names
-- Error message wording (should be helpful and actionable — follow the principle, not specific text)
-- Rate limiting and retry strategy
-- How to handle session-level caching of database queries
-- How to adapt output for different chat platforms
+- How to present activity history in chat
+- How to present stats and aggregates
 - The tone and content of drafted follow-up emails
+- Error message wording (should be helpful and actionable — follow the principle, not specific text)
