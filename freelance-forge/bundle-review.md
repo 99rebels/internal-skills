@@ -211,3 +211,18 @@ I'd go with A for v1. It's simpler and the db_helper.py is only ~500 lines. The 
 4. Decide on free-tier distribution model for Pipeline Tracker
 5. Remove corrections.md from repo
 6. Test the install flow end-to-end
+
+---
+
+## Pipeline Tracker Display Redesign (deferred — 2026-04-27)
+
+Agreed with Rian on a master view + filter + drill-down model:
+
+1. **Master view** — "show my pipeline" → compact list grouped by status, stale flags, next-action hints per lead. Slack-friendly (no markdown tables).
+2. **Filtered views** — "show qualified leads" / "show follow-ups" / "show lost" → same format, one group only.
+3. **Deep view** — "tell me about [client]" → full client dossier: score, research notes, discovery notes, proposal summary, status, tags, tasks, recent activity.
+4. **Next-action hints** — per lead in master view: "last contacted 12 days ago", "proposal sent, no response", etc.
+
+Constraint: LLM-rendered output, not a web app. No interactive filters — user says the filter, agent re-renders. Slack tables are ugly — use structured text/bullets.
+
+Data model (db_helper) already supports most of this. Main work is restructuring the SKILL.md display instructions.

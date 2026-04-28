@@ -39,7 +39,7 @@ All persistent structured data lives in a local SQLite database (`~/.freelance-f
 
 **Why:** Zero setup — no API keys, no external services, no authentication. Data is fully portable (single directory). Schema is controlled by us (no discovery or mapping complexity). Reports and metadata live in the same place. Users who want Notion/Sheets can export via CSV/JSON. See `storage.md` for the full specification.
 
-**The agent IS the CRM.** Users never interact with the database directly. They say "show my pipeline" and the agent queries the database and presents the result. They say "update Acme to Active" and the agent updates the database. Whether data lives in Notion or locally, the user experience is identical — but the local approach has zero friction.
+**The agent IS the CRM.** Users never interact with the database directly. They say "show my pipeline" and the agent queries the database and presents the result. They say "update Acme to Active" and the agent updates the database. The local approach has zero friction.
 
 ### 2.2 Each Sub-Skill Works Standalone
 
@@ -91,6 +91,8 @@ Each sub-skill generates a **full report or document** as a markdown file in the
 - Project Onboarder → project brief + checklist + sitemap (files) + project link (database)
 - Pipeline Tracker → pipeline digest (chat output) + statuses (database)
 
+**File storage:** All client files live in `reports/clients/<slug>/`. Qualification reports start in `reports/qualifications/` (staging zone) and move to the client folder when the lead is added to the pipeline. This is the commitment point — no abandoned client folders for leads the freelancer never pursues.
+
 **Audit trail:** Every agent action is recorded in the `activity_log` table. "What happened with Acme over the last two weeks?" → one query. This was not possible with external CRM integration and is a key advantage of local storage.
 
 ---
@@ -116,8 +118,9 @@ Each sub-skill generates a **full report or document** as a markdown file in the
 - **Input:** Company name, website URL, or domain
 - **Process:** Web research (company site, social, tech stack, site quality)
 - **Output:** Qualification score (1-10), research notes, added to database as "Lead"
-- **Database writes:** New row in leads table (Company Name, Website, Lead Score, Research Notes, Status = Lead)
+- **Database writes:** New row in leads table (Company Name, Website, Lead Score, Data Confidence, Research Notes, Pitch Notes, Status = Lead)
 - **Activity log:** `lead_created`, `lead_scored`
+- **File writes:** Qualification report saved to `reports/qualifications/<slug>-<date>.md` (staging zone). When added to pipeline, moves to `reports/clients/<slug>/qualification-<date>.md`
 
 **Stage 2: Proposal Generation**
 - **Input:** Discovery call notes (user provides), pipeline data (read from database)
@@ -125,6 +128,7 @@ Each sub-skill generates a **full report or document** as a markdown file in the
 - **Output:** Proposal document (markdown), pipeline status updated to "Proposal Sent"
 - **Database reads:** Lead's row (research notes, score, tags)
 - **Database writes:** Proposal Summary, Proposal Date, Status = Proposal Sent
+- **File writes:** Proposal saved to `reports/clients/<slug>/proposal-<date>.md`
 - **Activity log:** `discovery_added`, `proposal_created`, `proposal_sent`
 
 **Stage 3: Project Onboarding**
@@ -132,7 +136,8 @@ Each sub-skill generates a **full report or document** as a markdown file in the
 - **Process:** Creates project tasks in database, generates project brief + onboarding checklist + sitemap draft
 - **Output:** Project tasks (database), project brief doc, checklist, sitemap
 - **Database reads:** Pipeline row for client details
-- **Database writes:** New tasks, project_path link, Status = Active
+- **Database writes:** New tasks, project_path link (points to `reports/clients/<slug>/`), Status = Active
+- **File writes:** Project brief, checklist, sitemap saved to `reports/clients/<slug>/`
 - **Activity log:** `project_started`, `task_created` (for each pre-populated task)
 
 **Stage 4: Pipeline Management**
@@ -253,7 +258,7 @@ On first run, the database helper creates `pipeline.db` with all tables, indexes
 
 **Database interaction:**
 - Creates new row in leads table
-- Writes: Company Name, Website, Lead Score, Research Quality, Research Notes (summary only, not full report), Status = Lead
+- Writes: Company Name, Website, Lead Score, Data Confidence, Research Notes (summary only, not full report), Pitch Notes (pros/cons), Status = Lead
 - Suggests tags based on research (e.g., "wordpress", "local-business")
 - Logs: `lead_created`, `lead_scored` in activity_log
 
@@ -407,10 +412,12 @@ Key functions:
 ### 6.2 Web Research Helper
 
 Used by Lead Qualifier:
-- Fetch and parse a company's website
+- Fetch and parse a company's website (with Content-Type validation — skips non-HTML responses)
 - Extract basic info (company description, services, contact info)
 - Detect tech stack indicators (CMS, hosting, frameworks)
 - Find social media profiles
+- Phone number extraction with false-positive filtering (rejects IP addresses, dates, bare digit strings)
+- Handle JS-rendered sites via Playwright (preferred) with HTTP/BeautifulSoup fallback
 - **Track what couldn't be found** — return a structured list of unverified claims alongside verified findings
 
 ### 6.3 Config Manager
@@ -435,7 +442,7 @@ Templates are starting points, not rigid forms. The agent should adapt content b
 Used by all sub-skills:
 - Generate markdown report files with consistent structure
 - Include uncertainty sections in every analytical output
-- Save to `$FREELANCE_FORGE_CONFIG_DIR/reports/` (subdirectories for qualifications, proposals, projects)
+- Save to `$FREELANCE_FORGE_CONFIG_DIR/reports/` (qualifications in staging zone, client files in `clients/<slug>/`)
 - Return the file path so the agent can reference it in chat
 
 ---
@@ -605,7 +612,7 @@ The `openclaw-install.sh` script should:
 - Shared scripts should handle graceful degradation (if database doesn't exist, create it; if config is missing, use defaults)
 - Keep database queries efficient — fetch what's needed, don't pull entire tables when a filtered query works
 - All user-facing output should be concise and actionable — freelancers are busy, they want the answer, not a wall of text
-- Error handling should suggest the fix, not just report the error ("Database not found at ~/.freelance-forge/pipeline.db. It will be created automatically on first use.")
+- **Error handling should suggest the fix, not just report the error.** The CLI catches common errors (missing leads → "Lead not found", missing templates → "Template not found") and translates them to actionable messages. Raw database or Python errors should never reach the user.
 - Every analytical output must include uncertainty flags — what the agent couldn't verify, what assumptions were made, what requires human confirmation (see §2.6)
 - Full reports are saved as files; database stores summaries and metadata only (see §2.7)
 - Email drafting means outputting text in the chat for the user to copy and send — no inbox integration, no email API, no OAuth

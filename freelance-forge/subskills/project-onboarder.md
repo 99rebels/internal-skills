@@ -40,7 +40,7 @@ The Project Onboarder turns a signed proposal into a running project. When the c
 
 **Read from database:**
 - The client's full lead row (research notes, discovery notes, proposal summary, tags)
-- Proposal file if it exists (from `$FREELANCE_FORGE_CONFIG_DIR/reports/proposals/`)
+- Proposal file if it exists (from `$FREELANCE_FORGE_CONFIG_DIR/reports/clients/<slug>/`)
 
 **Read from workspace (if available):**
 - Qualification report (from Lead Qualifier)
@@ -137,7 +137,7 @@ A structured document that captures everything the freelancer needs to execute t
 ## Links
 - Qualification report: [path if exists]
 - Proposal: [path if exists]
-- Project directory: [path to reports/projects/<slug>/]
+- Project directory: [path to reports/clients/<slug>/]
 - Client website: [URL]
 ```
 
@@ -259,7 +259,7 @@ The onboarder should still work. It'll have less context (only the lead research
 
 ## 9. Output Files
 
-All saved to `$FREELANCE_FORGE_CONFIG_DIR/reports/projects/[client-name]/`:
+All saved to `$FREELANCE_FORGE_CONFIG_DIR/reports/clients/[client-name]/`:
 
 | File | Purpose |
 |---|---|

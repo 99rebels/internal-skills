@@ -180,7 +180,7 @@ Then ask: "Add to pipeline?"
 - **If no:** stop. The report is saved at the path from Step 6 — the freelancer can come back later and add it then (see "Add from existing report" below).
 - **If they say something like "maybe later":** same as no — the report is saved, they can revisit anytime.
 
-### 7a. Write the database row
+### 7a. Write the database row and create client folder
 
 Read the saved report file and extract the values from it — do NOT rely on conversation memory.
 
@@ -207,6 +207,19 @@ Notes:
 - The shim auto-logs `lead_created` and `lead_scored` (if score given) in `activity_log`.
 - Suggested tags from `web_research`'s `extraction.suggested_tags` are a starting point — add/remove to match what you actually saw.
 
+**Create the client folder and move the qualification report:**
+
+Adding to the pipeline is the commitment point. Create a client folder and move the qualification report into it:
+
+```bash
+CLIENT_SLUG="$(echo "<Company Name>" | tr '[:upper:]' '[:lower:]' | sed 's/[^a-z0-9]/-/g' | sed 's/--*/-/g' | sed 's/^-\|-$/g')"
+mkdir -p "$FREELANCE_FORGE_CONFIG_DIR/reports/clients/$CLIENT_SLUG"
+mv "$FREELANCE_FORGE_CONFIG_DIR/reports/qualifications/<company-slug>-<YYYY-MM-DD>.md" \
+   "$FREELANCE_FORGE_CONFIG_DIR/reports/clients/$CLIENT_SLUG/qualification-<YYYY-MM-DD>.md"
+```
+
+The file is renamed from `<company-slug>-<date>.md` to `qualification-<date>.md` inside the client folder. If no qualification report exists (e.g. lead was added manually), just create the folder — subsequent skills will write into it.
+
 ### Add from existing report
 
 When the freelancer says something like "add [company] to my pipeline":
@@ -221,7 +234,7 @@ If it returns results: tell the user "[Company] is already in your pipeline (sta
 ```bash
 ls ~/.freelance-forge/reports/qualifications/*<company-slug>* 2>/dev/null
 ```
-If a report exists: read it, extract score + data confidence + compose research_notes from the report content, then run the `add-lead` command from Step 7a.
+If a report exists: read it, extract score + data confidence + compose research_notes from the report content, then run the `add-lead` command from Step 7a above. **Then move the report** into the client folder using the move command from Step 7a.
 
 3. If no report exists: tell the user "No qualification report found for [company]. Run Lead Qualifier first to create one, or provide details to add manually."
 
@@ -287,11 +300,11 @@ These come directly from `design-philosophy.md`. Every report must comply.
 
 ## End-of-turn
 
-**If the freelancer said yes to adding:** tell the user lead ID, score, and any tags applied. Offer the optional email draft.
+**If the freelancer said yes to adding:** tell the user lead ID, score, and any tags applied. Mention the client folder path. Offer the optional email draft.
 
-**If the freelancer said no or later:** tell the user the report path. Remind them they can add it anytime.
+**If the freelancer said no or later:** tell the user the report path in `qualifications/`. Remind them they can add it anytime — the report will be moved to a client folder when they do.
 
 Examples:
-> Added Acme Plumbing to pipeline (score 7/10, tags: wordpress, local-business). Want a first-contact email draft?
+> Added Acme Plumbing to pipeline (score 7/10, tags: wordpress, local-business). Client folder created at `~/.freelance-forge/reports/clients/acme-plumbing/`. Want a first-contact email draft?
 
-> Report saved at `~/.freelance-forge/reports/qualifications/acme-plumbing-2026-04-26.md`. You can add it to the pipeline anytime — just say "add Acme Plumbing" and I'll pull from the report.
+> Report saved at `~/.freelance-forge/reports/qualifications/acme-plumbing-2026-04-26.md`. You can add it to the pipeline anytime — just say "add Acme Plumbing" and I'll move it into a client folder.

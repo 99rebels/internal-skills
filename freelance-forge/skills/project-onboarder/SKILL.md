@@ -65,7 +65,7 @@ If tasks already exist, ask: *"This client has 4 existing tasks. Add the new onb
 
 ### 3. Build the project directory
 
-Create `$FREELANCE_FORGE_CONFIG_DIR/reports/projects/<client-slug>/` (slug = lowercased company, non-alphanumeric replaced with `-`).
+Create files inside `$FREELANCE_FORGE_CONFIG_DIR/reports/clients/<client-slug>/` (slug = lowercased company, non-alphanumeric replaced with `-`). The client folder should already exist from the lead qualifier or proposal builder. If it doesn't, create it.
 
 You'll write three files there:
 - `project-brief.md` — internal reference for the freelancer
@@ -118,7 +118,7 @@ Any assumptions made, things to verify, risks flagged during discovery.
 ## Links
 - Qualification report: <path if exists>
 - Proposal: <path if exists>
-- Project directory: <path to reports/projects/<slug>/>
+- Project directory: <path to reports/clients/<slug>/>,
 - Client website: <URL>
 ```
 
@@ -130,7 +130,7 @@ Use the template:
 ```
 python3 -m templates render onboarding-checklists/default.md \
     --json '{"company": "<name>", "service_type": "<type>"}' \
-    --out "$FREELANCE_FORGE_CONFIG_DIR/reports/projects/<slug>/onboarding-checklist.md"
+    --out "$FREELANCE_FORGE_CONFIG_DIR/reports/clients/<slug>/onboarding-checklist.md"
 ```
 
 The checklist has four sections (project-onboarder.md §6):
@@ -210,7 +210,7 @@ The shim auto-logs `task_created` per task.
 
 ```
 python3 -m db_helper update-field <lead-id> \
-    '{"project_path": "<path to reports/projects/<slug>/>"}'
+    '{"project_path": "<path to reports/clients/<slug>/"}'
 
 python3 -m db_helper update-status <lead-id> active
 ```
@@ -254,4 +254,4 @@ Output **in chat only**.
 Tell the user: project directory path, number of tasks created, lead status now `active`. Offer the optional welcome email.
 
 Example:
-> Created `~/.freelance-forge/reports/projects/acme-plumbing/` with project-brief.md, onboarding-checklist.md, sitemap.md. Added 9 tasks. Lead status updated to `active`. Want a welcome email draft for the client?
+> Created `~/.freelance-forge/reports/clients/acme-plumbing/` with project-brief.md, onboarding-checklist.md, sitemap.md. Added 9 tasks. Lead status updated to `active`. Want a welcome email draft for the client?

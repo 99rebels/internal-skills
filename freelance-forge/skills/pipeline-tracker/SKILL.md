@@ -205,7 +205,27 @@ Render as: *"<Company> — <N> days in <status> (threshold: <T>)"* sorted most o
 
 Per-row offer: *"Want a follow-up email draft for Acme?"*
 
-If yes, draft in chat (never auto-send). Use the lead's full row + recent activity for context (`db_helper activity --lead-id <id>`). Tone: helpful, not pushy. Specific reference to what's pending. Clear next step.
+If yes, output **in chat only** (never auto-send). Always include both:
+
+**The draft email:**
+- 2–4 sentences max
+- Reference something specific and current — a pending proposal, a discovery call, a question they raised
+- Don't re-introduce yourself from scratch (they've heard from you before)
+- Helpful, not pushy — give them a clear out if they're not interested
+- One clear next step
+
+**Context points** (always included after the draft):
+
+A lightweight brief so the freelancer can adapt the tone or write their own. Format:
+
+```
+**Reference:** <the specific thing to mention — e.g. "proposal sent 10 days ago", "they asked about pricing last call">
+**Tone check:** <e.g. "gentle nudge, not a chase" / "more direct, proposal has been out 3 weeks">
+**Next step:** <what to suggest — call, reply, review proposal section>
+**If they say no:** <how to close gracefully — e.g. "keep the door open, ask to stay in touch">
+```
+
+Use the lead's full row + recent activity for context (`db_helper activity --lead-id <id>`).
 
 When the user says they followed up:
 ```

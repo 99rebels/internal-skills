@@ -1,5 +1,9 @@
 # Claude's Architecture Review — Cambrian's Corrections
 
+**Status:** ✅ All corrections applied (2026-04-28). See `architecture-changes.md` for additional updates made since.
+
+---
+
 **Purpose:** Marked-up response to Claude's §1 findings. Each entry: Claude's finding → my verdict (accept/reject/modify) → the exact change to make.
 
 ---

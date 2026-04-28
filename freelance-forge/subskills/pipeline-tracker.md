@@ -84,7 +84,27 @@ Keep the confirmation output minimal — one line is sufficient.
 
 **Logic:** Query for leads with status "proposal_sent". Compare their `proposal_date` or `last_follow_up` to the current date. Flag any where the elapsed days exceed the `followUpDays` preference (default: 5). Sort by most overdue first.
 
-**Offer to draft:** For each overdue lead, offer to draft a follow-up email in chat. If the user accepts, read the lead's full row + recent activity for context and write a short, professional follow-up. Tone: helpful, not pushy. Include a clear next step.
+**Offer to draft:** For each overdue lead, offer to draft a follow-up email in chat. If the user accepts, output **in chat only** (never auto-send). Always include both:
+
+**The draft email:**
+- 2-4 sentences max
+- Reference something specific and current — a pending proposal, a discovery call, a question they raised
+- Don't re-introduce yourself from scratch (they've heard from you before)
+- Helpful, not pushy — give them a clear out if they're not interested
+- One clear next step
+
+**Context points** (always included after the draft):
+
+A lightweight brief so the freelancer can adapt the tone or write their own. Format:
+
+```
+**Reference:** <the specific thing to mention — e.g. "proposal sent 10 days ago", "they asked about pricing last call">
+**Tone check:** <e.g. "gentle nudge, not a chase" / "more direct, proposal has been out 3 weeks">
+**Next step:** <what to suggest — call, reply, review proposal section>
+**If they say no:** <how to close gracefully — e.g. "keep the door open, ask to stay in touch">
+```
+
+Use the lead's full row + recent activity for context (`db_helper activity --lead-id <id>`).
 
 ---
 

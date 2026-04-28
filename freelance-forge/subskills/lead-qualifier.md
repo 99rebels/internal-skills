@@ -294,7 +294,7 @@ After the qualification report, offer to draft a first-contact email:
 **Writes to:**
 - Database — new lead row + suggested tags
 - Activity log — `lead_created`, `lead_scored`
-- Report file in `$FREELANCE_FORGE_CONFIG_DIR/reports/qualifications/[company-name]-[date].md`
+- Report file in `$FREELANCE_FORGE_CONFIG_DIR/reports/clients/<slug>/qualification-[date].md` (moved from `qualifications/` when added to pipeline)
 
 **Depends on:**
 - Database helper module (`db_helper.py`) — must be installed

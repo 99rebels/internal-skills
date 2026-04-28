@@ -183,7 +183,7 @@ After the proposal is generated:
 
 ## 8. Output
 
-**Primary output:** A markdown file saved to `$FREELANCE_FORGE_CONFIG_DIR/reports/proposals/[client-name]-proposal-[date].md`
+**Primary output:** A markdown file saved to `$FREELANCE_FORGE_CONFIG_DIR/reports/clients/<slug>/proposal-[date].md`
 
 **Secondary output:** Database row updated with summary and status change
 

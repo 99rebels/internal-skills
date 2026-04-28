@@ -62,9 +62,8 @@ After install, try these in your agent:
 ├── shared/              # Python modules (auto-installed)
 ├── references/          # Templates (auto-installed)
 ├── reports/
-│   ├── qualifications/  # Lead qualification reports
-│   ├── proposals/       # Proposal documents
-│   └── projects/        # Project briefs, checklists, sitemaps
+│   ├── qualifications/  # Lead qualification reports (staging zone)
+│   └── clients/         # Per-client folders (qualification, proposal, brief, checklist, sitemap)
 └── exports/             # CSV/JSON exports
 ```
 

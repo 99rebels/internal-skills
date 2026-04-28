@@ -28,15 +28,17 @@ All persistent data for Freelance Forge lives locally in a single directory. The
 ├── config.json                          # User preferences
 └── reports/
     ├── qualifications/
-    │   └── acme-plumbing-2026-04-25.md  # Full qualification report
-    ├── proposals/
-    │   └── acme-plumbing-2026-04-28.md  # Full proposal document
-    └── projects/
-        └── acme-plumbing/               # Per-client project directory
+    │   └── acme-plumbing-2026-04-25.md  # Staging zone — pre-pipeline
+    └── clients/
+        └── acme-plumbing/               # Per-client folder (created when added to pipeline)
+            ├── qualification-2026-04-25.md
+            ├── proposal-2026-04-28.md
             ├── project-brief.md
             ├── onboarding-checklist.md
             └── sitemap.md
 ```
+
+**Staging vs committed:** Qualification reports start flat in `qualifications/` — the freelancer hasn't decided to pursue the lead yet, so no client folder is created. When the lead is added to the pipeline (the commitment point), a `clients/<slug>/` folder is created and the qualification report is moved into it, renamed to `qualification-<date>.md`. All subsequent files (proposal, brief, checklist, sitemap) go directly into the client folder.
 
 **Environment variables:**
 - `FREELANCE_FORGE_CONFIG_DIR` — base directory (default: `~/.freelance-forge/`)
@@ -62,7 +64,7 @@ CREATE TABLE IF NOT EXISTS leads (
     contact_email   TEXT,                      -- Primary contact email
     status          TEXT NOT NULL DEFAULT 'lead',  -- Pipeline stage
     lead_score      INTEGER,                   -- 1-10 qualification score
-    research_quality TEXT,                     -- HIGH/MEDIUM/LOW from Lead Qualifier
+    data_confidence  TEXT,                     -- HIGH/MEDIUM/LOW from Lead Qualifier
     date_added      TEXT NOT NULL,             -- ISO 8601 timestamp
     date_updated    TEXT NOT NULL,             -- ISO 8601, updated on every write
     proposal_date   TEXT,                      -- Date proposal was sent
@@ -72,7 +74,8 @@ CREATE TABLE IF NOT EXISTS leads (
     research_notes  TEXT,                      -- Summary from Lead Qualifier (full report is a file)
     discovery_notes TEXT,                      -- User's notes from discovery call
     proposal_summary TEXT,                     -- Summary from Proposal Builder (full proposal is a file)
-    project_path    TEXT                       -- Path to project directory in reports/projects/
+    project_path    TEXT                       -- Path to client folder in reports/clients/
+    pitch_notes     TEXT                       -- Structured pros/cons for pitching
 );
 
 -- Indexes for common queries
@@ -193,7 +196,7 @@ Stored at `$FREELANCE_FORGE_CONFIG_DIR/config.json`. Minimal — just user prefe
 ```json
 {
   "preferences": {
-    "currency": "GBP",
+    "currency": "EUR",
     "followUpDays": 5,
     "statusFollowUpDays": {
       "lead": 5,

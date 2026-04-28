@@ -64,6 +64,11 @@ If the user picks (2):
 python3 -m db_helper add-lead "<client>" --website "<url if known>"
 ```
 
+Then create the client folder:
+```bash
+mkdir -p "$FREELANCE_FORGE_CONFIG_DIR/reports/clients/<slug>"
+```
+
 Then continue.
 
 ### 2. Get discovery notes
@@ -114,7 +119,7 @@ python3 -m db_helper config set --path preferences.pricingStrategy --value '"day
 
 python3 -m templates render proposal-templates/default.md \
     --json-file /tmp/ctx.json \
-    --out "$FREELANCE_FORGE_CONFIG_DIR/reports/proposals/<slug>-<YYYY-MM-DD>.md"
+    --out "$FREELANCE_FORGE_CONFIG_DIR/reports/clients/<slug>/proposal-<YYYY-MM-DD>.md"
 ```
 
 
@@ -197,4 +202,4 @@ If yes, output **in chat only**. Rules (proposal-builder.md §8):
 Tell the user: file path, status now `proposal_sent`, summary of what was included, any `[Confirm with client: ...]` placeholders left in the document. Offer the optional covering email.
 
 Example:
-> Wrote `~/.freelance-forge/reports/proposals/acme-plumbing-2026-04-26.md`. Status updated to `proposal_sent`. The proposal has 2 placeholders to confirm with the client (booking system features, content delivery deadline). Want a covering email draft?
+> Wrote `~/.freelance-forge/reports/clients/acme-plumbing/proposal-2026-04-26.md`. Status updated to `proposal_sent`. The proposal has 2 placeholders to confirm with the client (booking system features, content delivery deadline). Want a covering email draft?
