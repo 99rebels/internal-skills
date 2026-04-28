@@ -22,7 +22,7 @@ If it fails, execute the setup steps below **in order**.
 
 The shared scripts, references, and skill files need to be installed. Find the bundle source by checking these locations in order:
 
-1. `$FREELANCE_FORGE_BUNDLE_DIR/` (if set — Agensi or user may define this)
+1. `$FREELANCE_FORGE_BUNDLE_DIR/` (if set — user or agent may define this)
 2. The directory two levels up from this SKILL.md's location (`../../shared/`, `../../references/`, `../../skills/`)
 3. `$HOME/Downloads/freelance-forge/` or `$HOME/Desktop/freelance-forge/` (common download locations)
 4. Ask the user: "Where did you download the Freelance Forge bundle?"
@@ -41,9 +41,12 @@ BUNDLE_SOURCE="<path-found-above>"
 
 Find where the agent loads skills from:
 
-1. Check if `$HOME/.openclaw/skills/` exists → use it
-2. Check if `$HOME/.claude/skills/` exists → use it
-3. Ask the user: "What is your agent's skills directory?"
+1. Check `$SKILLS_DIR` environment variable (if set, use it directly)
+2. Check `$SKILL_DATA_DIR/` — some agents set this for skill data directories; skills may live in a `skills/` subdirectory
+3. Check if `$HOME/.openclaw/skills/` exists → use it (OpenClaw)
+4. Check if `$HOME/.claude/skills/` exists → use it (Claude Code)
+5. Check if `$HOME/.codex/skills/` exists → use it (Codex CLI)
+6. Ask the user: "What is your agent's skills directory?"
 
 Set a variable:
 ```bash
@@ -55,14 +58,14 @@ SKILLS_DIR="<skills-directory-found-above>"
 ```bash
 mkdir -p ~/.freelance-forge/shared
 mkdir -p ~/.freelance-forge/references
-mkdir -p ~/.freelance-forge/reports/{qualifications,proposals,projects}
+mkdir -p ~/.freelance-forge/reports/{qualifications,clients}
 mkdir -p ~/.freelance-forge/exports
 ```
 
 ### Step 4: Copy shared scripts
 
 ```bash
-cp -r "$BUNDLE_SOURCE/shared/"* ~/.freelance-forge/shared/
+cp "$BUNDLE_SOURCE/shared/"* ~/.freelance-forge/shared/
 ```
 
 Verify:
@@ -81,6 +84,8 @@ cp -r "$BUNDLE_SOURCE/references/"* ~/.freelance-forge/references/
 Verify:
 ```bash
 ls ~/.freelance-forge/references/proposal-templates/default.md
+# and
+ls ~/.freelance-forge/references/onboarding-checklists/default.md
 ```
 
 ### Step 6: Copy skill files to the agent's skills directory

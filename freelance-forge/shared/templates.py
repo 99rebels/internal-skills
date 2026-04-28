@@ -82,14 +82,18 @@ def render_string(template: str, context: dict[str, Any]) -> str:
 def _references_search_paths() -> list[Path]:
     """Where to look for templates when given a relative path.
 
-    Order: env var > ~/.freelance-forge/references/ > sibling references/ > inside this module's dir.
+    Order: env var > config dir references/ > source-repo paths.
     """
     paths: list[Path] = []
     env = os.environ.get("FREELANCE_FORGE_REFERENCES_DIR")
     if env:
         paths.append(Path(env).expanduser())
-    # ~/.freelance-forge/references/ — the standard install location
-    paths.append(Path.home() / ".freelance-forge" / "references")
+    # Use the config dir (respects FREELANCE_FORGE_CONFIG_DIR and SKILL_DATA_DIR)
+    try:
+        from db_helper import get_config_dir
+        paths.append(get_config_dir() / "references")
+    except ImportError:
+        paths.append(Path.home() / ".freelance-forge" / "references")
     # Source-repo layout (for development)
     here = Path(__file__).resolve().parent
     paths.append(here.parent / "references")
@@ -148,7 +152,14 @@ def _build_parser() -> argparse.ArgumentParser:
 
 def main(argv: list[str] | None = None) -> int:
     args = _build_parser().parse_args(argv)
-    args.func(args)
+    try:
+        args.func(args)
+    except FileNotFoundError as exc:
+        print(f"error: {exc}", file=sys.stderr)
+        return 1
+    except Exception as exc:
+        print(f"error: {exc}", file=sys.stderr)
+        return 1
     return 0
 
 

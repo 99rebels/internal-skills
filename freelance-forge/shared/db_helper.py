@@ -38,12 +38,16 @@ DEFAULT_CONFIG_DIR_NAME = ".freelance-forge"
 def get_config_dir() -> Path:
     """Resolve the config directory.
 
-    Honours $FREELANCE_FORGE_CONFIG_DIR; otherwise ~/.freelance-forge/.
+    Resolution order:
+      1. $FREELANCE_FORGE_CONFIG_DIR (skill-specific, always wins)
+      2. $SKILL_DATA_DIR (standard cross-agent env var)
+      3. ~/.freelance-forge/ (default)
+
     Creates the directory tree on first call.
     """
-    env = os.environ.get("FREELANCE_FORGE_CONFIG_DIR")
+    env = os.environ.get("FREELANCE_FORGE_CONFIG_DIR") or os.environ.get("SKILL_DATA_DIR")
     base = Path(env).expanduser() if env else Path.home() / DEFAULT_CONFIG_DIR_NAME
-    for sub in ("reports/qualifications", "reports/proposals", "reports/projects", "exports"):
+    for sub in ("reports/qualifications", "reports/clients", "exports"):
         (base / sub).mkdir(parents=True, exist_ok=True)
     return base
 
@@ -795,9 +799,19 @@ def _cmd_follow_up(args: argparse.Namespace) -> None:
 
 def _cmd_tag(args: argparse.Namespace) -> None:
     if args.action == "add":
-        add_tag(args.lead_id, args.name, args.category, dry_run=args.dry_run)
+        try:
+            add_tag(args.lead_id, args.name, args.category, dry_run=args.dry_run)
+        except Exception as exc:
+            if "FOREIGN KEY" in str(exc):
+                raise ValueError(f"Lead not found (id: {args.lead_id})")
+            raise
     elif args.action == "remove":
-        remove_tag(args.lead_id, args.name, dry_run=args.dry_run)
+        try:
+            remove_tag(args.lead_id, args.name, dry_run=args.dry_run)
+        except Exception as exc:
+            if "FOREIGN KEY" in str(exc):
+                raise ValueError(f"Lead not found (id: {args.lead_id})")
+            raise
     elif args.action == "list":
         _print_json(get_tags_for_lead(args.lead_id))
     elif args.action == "leads":
@@ -806,12 +820,17 @@ def _cmd_tag(args: argparse.Namespace) -> None:
 
 def _cmd_task(args: argparse.Namespace) -> None:
     if args.action == "add":
-        _print_json(add_task(
-            args.lead_id, args.name,
-            priority=args.priority, due_date=args.due_date,
-            notes=args.notes, is_deliverable=args.deliverable,
-            dry_run=args.dry_run,
-        ))
+        try:
+            _print_json(add_task(
+                args.lead_id, args.name,
+                priority=args.priority, due_date=args.due_date,
+                notes=args.notes, is_deliverable=args.deliverable,
+                dry_run=args.dry_run,
+            ))
+        except Exception as exc:
+            if "FOREIGN KEY" in str(exc):
+                raise ValueError(f"Lead not found (id: {args.lead_id})")
+            raise
     elif args.action == "list":
         _print_json(get_tasks(args.lead_id))
     elif args.action == "pending":

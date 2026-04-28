@@ -47,8 +47,7 @@ except ImportError:
 
 
 USER_AGENT = (
-    "Mozilla/5.0 (compatible; FreelanceForge/1.0; "
-    "+https://github.com/anthropics/freelance-forge)"
+    "Mozilla/5.0 (compatible; FreelanceForge/1.0; +https://github.com/99rebels/freelance-forge)"
 )
 
 # Skip these file extensions when discovering pages
@@ -122,6 +121,12 @@ def fetch_page(url: str, *, timeout: int = 15, prefer_playwright: bool = True) -
             if resp.status_code >= 400:
                 result.notes.append(f"HTTP {resp.status_code} {resp.reason}")
                 return result
+            # Check content type — skip non-HTML responses
+            content_type = resp.headers.get("Content-Type", "")
+            if content_type and not any(ct in content_type.lower() for ct in ("text/html", "text/xhtml", "text/plain", "application/xhtml")):
+                result.notes.append(f"HTTP response is {content_type.split(';')[0].strip()} — not HTML, skipping extraction")
+                result.status_code = resp.status_code
+                return result
             result.html = resp.text
             soup = BeautifulSoup(resp.text, "html.parser")
             for tag in soup(["script", "style", "noscript"]):
@@ -163,6 +168,42 @@ _EMAIL_RE = re.compile(r"[A-Za-z0-9._%+\-]+@[A-Za-z0-9.\-]+\.[A-Za-z]{2,}")
 _PHONE_RE = re.compile(
     r"\+?\d[\d\s\-().]{7,}\d"  # loose international
 )
+# Stricter filter applied after raw match to reject false positives
+_IP_RE = re.compile(r"^\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}$")
+_DATE_RE = re.compile(r"^\d{4}[-/]\d{2}[-/]\d{2}$")
+_BARE_DIGITS_RE = re.compile(r"^\d{7,15}$")
+
+
+def _filter_phone(match: str) -> str | None:
+    """Return normalised phone if it looks like a real phone number, else None.
+
+    Rejects:
+    - IP addresses (e.g. 86.45.109.96)
+    - ISO dates (e.g. 2024-01-15)
+    - Bare digit strings without separators that could be IDs/order numbers
+    - Matches shorter than 10 digits after stripping non-digits
+    """
+    stripped = match.strip()
+    if not stripped:
+        return None
+    # Reject IP addresses
+    if _IP_RE.match(stripped):
+        return None
+    # Reject ISO dates
+    if _DATE_RE.match(stripped):
+        return None
+    # Count actual digits
+    digits_only = re.sub(r"\D", "", stripped)
+    if len(digits_only) < 10:
+        return None
+    # Bare digits (no separators) with 10+ digits — likely an ID or order number.
+    # Real phone numbers in text almost always have spaces, dashes, or a + prefix.
+    if _BARE_DIGITS_RE.match(stripped):
+        return None
+    # Normalise whitespace
+    return re.sub(r"\s+", " ", stripped)
+
+
 _SOCIAL_HOSTS = {
     "facebook.com": "facebook",
     "instagram.com": "instagram",
@@ -264,7 +305,7 @@ def extract_company_info(html: str, url: str) -> dict[str, Any]:
     emails = sorted(set(m.lower() for m in _EMAIL_RE.findall(body_text)
                         if not m.lower().endswith((".png", ".jpg", ".svg"))))
     phones_raw = _PHONE_RE.findall(body_text)
-    phones = sorted({re.sub(r"\s+", " ", p).strip() for p in phones_raw})
+    phones = sorted({_filter_phone(p) for p in phones_raw if _filter_phone(p)})
 
     if not emails and not phones:
         missing.append("No email or phone number found in body text")
